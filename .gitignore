@@ -1,0 +1,22 @@
+# Frontend build output
+build/
+web/static/
+
+# Python
+__pycache__/
+*.pyc
+
+# .NET
+bin/
+obj/
+*.db
+
+
+# Logs
+run.log
+node_modules/
+.benchmarks/
+
+# Monorepo
+app/dist
+tauri/target

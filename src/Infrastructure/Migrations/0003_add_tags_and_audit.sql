@@ -1,0 +1,8 @@
+ALTER TABLE entries ADD COLUMN tags TEXT;
+
+CREATE TABLE IF NOT EXISTS query_audit (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    query TEXT NOT NULL,
+    duration_ms INTEGER NOT NULL,
+    executed_at TEXT NOT NULL
+);

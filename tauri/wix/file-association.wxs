@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <DirectoryRef Id="APPLICATIONFOLDER">
+      <Component Id="SmartPadFileAssoc" Guid="*">
+        <ProgId Id="SmartPad.note" Description="SmartPad Markdown Note" Icon="[#SmartPad.exe]">
+          <Extension Id="smartpad" ContentType="text/markdown">
+            <Verb Id="open" Command="Open" TargetFile="[#SmartPad.exe]" Argument="\"%1\"" />
+          </Extension>
+        </ProgId>
+        <RegistryKey Root="HKCU" Key="Software\Classes\.smartpad" Action="write">
+          <RegistryValue Type="string" Value="SmartPad.note" />
+        </RegistryKey>
+        <RegistryKey Root="HKCU" Key="Software\Classes\smartpad" Action="write">
+          <RegistryValue Type="string" Value="URL:smartpad" />
+          <RegistryValue Type="string" Name="URL Protocol" Value="" />
+          <RegistryKey Id="smartpadopen" Action="write" Key="shell\open\command">
+            <RegistryValue Type="string" Value="[#SmartPad.exe] -- %1" />
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

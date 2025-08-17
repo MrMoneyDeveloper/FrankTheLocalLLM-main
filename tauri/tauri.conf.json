@@ -1,0 +1,24 @@
+{
+  "package": {
+    "productName": "SmartPad",
+    "version": "0.1.0"
+  },
+  "build": {
+    "beforeBuildCommand": "yarn workspace app build",
+    "beforeDevCommand": "yarn workspace app dev"
+  },
+  "tauri": {
+    "bundle": {
+      "active": true,
+      "identifier": "com.smartpad.app",
+      "targets": ["msi", "deb"],
+      "resources": ["../models"],
+      "compression": "lzma",
+      "windows": {
+        "wix": {
+          "fragmentPaths": ["wix/file-association.wxs"]
+        }
+      }
+    }
+  }
+}

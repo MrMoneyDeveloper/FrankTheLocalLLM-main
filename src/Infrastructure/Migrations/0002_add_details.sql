@@ -1,0 +1,2 @@
+ALTER TABLE tasks ADD COLUMN description TEXT;
+ALTER TABLE llm_logs ADD COLUMN model TEXT;

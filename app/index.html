@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+  <div id="mode-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden">
+    <div class="bg-white p-4 rounded shadow">
+      <p class="mb-2">Open in Desktop window or Browser tab?</p>
+      <div class="mb-2">
+        <label class="mr-4"><input type="radio" name="mode" value="desktop" class="mr-1">Desktop</label>
+        <label><input type="radio" name="mode" value="browser" class="mr-1">Browser</label>
+      </div>
+      <button id="mode-confirm" class="bg-blue-500 text-white px-3 py-1 rounded">OK</button>
+    </div>
+  </div>
+  <div id="mode-chip" class="fixed top-2 right-2 bg-gray-200 px-2 py-1 rounded text-sm cursor-pointer"></div>
+  <div id="splash" class="absolute inset-0 flex items-center justify-center bg-gray-100">
+    <div id="status">Starting...</div>
+  </div>
+  <div id="app" class="w-80 bg-white p-4 rounded shadow" v-if="!success">
+    <form @submit.prevent="submit">
+      <div class="mb-4">
+        <label class="block mb-1">Username</label>
+        <input type="text" v-model="username" class="w-full border rounded p-2" />
+      </div>
+      <div class="mb-4">
+        <label class="block mb-1">Password</label>
+        <input type="password" v-model="password" class="w-full border rounded p-2" />
+      </div>
+      <div v-if="error" class="text-red-600 mb-2">{{ error }}</div>
+      <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded" :disabled="loading">
+        <span v-if="loading">Loading...</span>
+        <span v-else>Login</span>
+      </button>
+      <div v-if="success" class="text-green-600 mt-2">Login successful!</div>
+    </form>
+  </div>
+  <div v-else class="w-full h-screen">
+    <WikiPage />
+  </div>
+  <script type="module" src="app.js"></script>
+  <script>
+    const chip = document.getElementById('mode-chip')
+    const modal = document.getElementById('mode-modal')
+    const confirmBtn = document.getElementById('mode-confirm')
+
+    const currentMode = location.protocol === 'tauri:' ? 'desktop' : 'browser'
+    chip.textContent = currentMode.charAt(0).toUpperCase() + currentMode.slice(1)
+
+    chip.addEventListener('click', () => {
+      if (window.__TAURI__) {
+        window.__TAURI__.invoke('toggle_mode').then(() => location.reload())
+      }
+    })
+
+    if (!localStorage.getItem('mode-chosen')) {
+      modal.classList.remove('hidden')
+      const input = modal.querySelector(`input[value="${currentMode}"]`)
+      if (input) input.checked = true
+      confirmBtn.addEventListener('click', () => {
+        const choice = modal.querySelector('input[name=mode]:checked').value
+        localStorage.setItem('mode-chosen', 'true')
+        modal.classList.add('hidden')
+        if (choice !== currentMode && window.__TAURI__) {
+          window.__TAURI__.invoke('toggle_mode').then(() => location.reload())
+        }
+      })
+    }
+
+    fetch('/status').then(r => r.json()).then(d => {
+      document.getElementById('status').textContent = `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`;
+      setTimeout(() => document.getElementById('splash').style.display = 'none', 1000);
+    }).catch(() => {
+      document.getElementById('status').textContent = 'Starting...';
+    });
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(reg => {
+          if (reg.waiting) notifyUpdate(reg.waiting)
+
+          reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                notifyUpdate(newWorker)
+              }
+            })
+          })
+        })
+      })
+
+      let refreshing = false
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return
+        refreshing = true
+        window.location.reload()
+      })
+    }
+
+    function notifyUpdate (worker) {
+      const n = document.createElement('div')
+      n.className = 'fixed bottom-2 right-2 bg-blue-500 text-white px-3 py-2 rounded cursor-pointer'
+      n.textContent = 'Update available - click to reload'
+      n.addEventListener('click', () => {
+        worker.postMessage({ type: 'SKIP_WAITING' })
+      })
+      document.body.appendChild(n)
+    }
+  </script>
+</body>
+</html>

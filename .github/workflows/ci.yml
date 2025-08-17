@@ -1,0 +1,40 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npx playwright install --with-deps
+      - run: npm run lint
+      - run: npm test -- --run
+      - run: node app/server.js &
+        shell: bash
+      - run: npx playwright test
+        env:
+          PW_BASE_URL: http://localhost:8080
+      - run: kill %1
+        if: always()
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r backend/requirements.txt
+      - run: pip install pytest-benchmark
+      - run: pytest backend/tests/test_bench.py
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: dotnet run -c Release --project src/Benchmarks/Benchmarks.csproj
+      - run: python scripts/compare_benchmarkdotnet.py src/Benchmarks/baseline.csv BenchmarkDotNet.Artifacts/results/DapperBenchmarks-report.csv
+      - run: python scripts/measure_latency.py http://localhost:8000 > desktop.json
+      - run: python scripts/measure_latency.py http://localhost:8000 > browser.json
+      - run: python scripts/compare_latency.py benchmarks/llm_baseline.json desktop.json browser.json

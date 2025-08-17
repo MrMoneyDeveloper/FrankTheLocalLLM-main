@@ -1,0 +1,1091 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250815102813
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 37332
+PSVersion: 5.1.19041.6093
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6093
+BuildVersion: 10.0.19041.6093
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/15 10:28:13 ===
+
+
+
+
+
+Start-Process : This command cannot be run because "RedirectStandardOutput" and "RedirectStandardError" are same. Give 
+different inputs and Run your command again.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:69 char:12
++ $backend = Start-Process python -ArgumentList '-m backend.app.main' - ...
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run because "RedirectStandardOutput" and "RedirectStandardError" are same. Give different inputs and Run your command again.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:69 char:12
++ $backend = Start-Process python -ArgumentList '-m backend.app.main' - ...
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:70 char:1
++ $backend.Id | Out-File (Join-Path $LogDir 'backend.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:70 char:1
++ $backend.Id | Out-File (Join-Path $LogDir 'backend.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+
+>> TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+Start-Process : This command cannot be run because "RedirectStandardOutput" and "RedirectStandardError" are same. Give 
+different inputs and Run your command again.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:82 char:11
++ $celery = Start-Process celery -ArgumentList '-A backend.app.tasks wo ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run because "RedirectStandardOutput" and "RedirectStandardError" are same. Give different inputs and Run your command again.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:82 char:11
++ $celery = Start-Process celery -ArgumentList '-A backend.app.tasks wo ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:83 char:1
++ $celery.Id | Out-File (Join-Path $LogDir 'celery.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:83 char:1
++ $celery.Id | Out-File (Join-Path $LogDir 'celery.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+
+Start-Process : This command cannot be run because "RedirectStandardOutput" and "RedirectStandardError" are same. Give 
+different inputs and Run your command again.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:88 char:13
++ $frontend = Start-Process python -ArgumentList '-m http.server 8080'  ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run because "RedirectStandardOutput" and "RedirectStandardError" are same. Give different inputs and Run your command again.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:88 char:13
++ $frontend = Start-Process python -ArgumentList '-m http.server 8080'  ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:89 char:1
++ $frontend.Id | Out-File (Join-Path $LogDir 'frontend.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:89 char:1
++ $frontend.Id | Out-File (Join-Path $LogDir 'frontend.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+
+OS            : Windows
+Backend URL   : http://localhost:8000/api
+Frontend URL  : http://localhost:8080
+**********************
+Windows PowerShell transcript end
+End time: 20250815103542
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250815113350
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 32780
+PSVersion: 5.1.19041.6093
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6093
+BuildVersion: 10.0.19041.6093
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/15 11:33:50 ===
+
+
+
+
+
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+OS            : Windows
+Backend URL   : http://localhost:8000/api
+Frontend URL  : http://localhost:8080
+**********************
+Windows PowerShell transcript end
+End time: 20250815113440
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250815115848
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 20792
+PSVersion: 5.1.19041.6093
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6093
+BuildVersion: 10.0.19041.6093
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/15 11:58:48 ===
+
+
+
+
+
+Start-Process : Parameters "-NoNewWindow" and "-WindowStyle" cannot be specified at the same time.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:74 char:12
++ $backend = Start-Process python -ArgumentList '-m backend.app.main' - ...
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : Parameters "-NoNewWindow" and "-WindowStyle" cannot be specified at the same time.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:74 char:12
++ $backend = Start-Process python -ArgumentList '-m backend.app.main' - ...
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:76 char:1
++ $backend.Id | Out-File (Join-Path $LogDir 'backend.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:76 char:1
++ $backend.Id | Out-File (Join-Path $LogDir 'backend.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+
+>> TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+Start-Process : Parameters "-NoNewWindow" and "-WindowStyle" cannot be specified at the same time.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:89 char:11
++ $celery = Start-Process celery -ArgumentList '-A backend.app.tasks wo ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : Parameters "-NoNewWindow" and "-WindowStyle" cannot be specified at the same time.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:89 char:11
++ $celery = Start-Process celery -ArgumentList '-A backend.app.tasks wo ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:91 char:1
++ $celery.Id | Out-File (Join-Path $LogDir 'celery.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:91 char:1
++ $celery.Id | Out-File (Join-Path $LogDir 'celery.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+
+Start-Process : Parameters "-NoNewWindow" and "-WindowStyle" cannot be specified at the same time.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:97 char:13
++ $frontend = Start-Process python -ArgumentList '-m http.server 8080'  ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : Parameters "-NoNewWindow" and "-WindowStyle" cannot be specified at the same time.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:97 char:13
++ $frontend = Start-Process python -ArgumentList '-m http.server 8080'  ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:99 char:1
++ $frontend.Id | Out-File (Join-Path $LogDir 'frontend.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+The property 'Id' cannot be found on this object. Verify that the property exists.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:99 char:1
++ $frontend.Id | Out-File (Join-Path $LogDir 'frontend.pid')
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+
+OS            : Windows
+Backend URL   : http://localhost:8000/api
+Frontend URL  : http://localhost:8080
+**********************
+Windows PowerShell transcript end
+End time: 20250815115929
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250815124814
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 31624
+PSVersion: 5.1.19041.6093
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6093
+BuildVersion: 10.0.19041.6093
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/15 12:48:14 ===
+
+
+
+
+
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+OS            : Windows
+Backend URL   : http://localhost:8000/api
+Frontend URL  : http://localhost:8080
+**********************
+Windows PowerShell transcript end
+End time: 20250815124903
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250816233634
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 23732
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/16 23:36:34 ===
+
+
+
+
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+PS>TerminatingError(Invoke-WebRequest): "The underlying connection was closed: The connection was closed unexpectedly."
+OS            : Windows
+Backend URL   : http://localhost:8000/api
+Frontend URL  : http://localhost:8080
+**********************
+Windows PowerShell transcript end
+End time: 20250816233720
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250817000805
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 23520
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 00:08:05 ===
+
+
+
+
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:8080
+**********************
+Windows PowerShell transcript end
+End time: 20250817000822
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250817114129
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 8996
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 11:41:29 ===
+
+
+
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:129 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:129 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:133 char:1
++ Start-Process npm -ArgumentList '--prefix','app','run','build' -Redir ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:133 char:1
++ Start-Process npm -ArgumentList '--prefix','app','run','build' -Redir ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+Start-Process : This command cannot be run because either the parameter "WorkingDirectory" has a value that is not 
+valid or cannot be used with this command. Give a valid input and Run your command again.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:138 char:13
++ $frontend = Start-Process python -ArgumentList '-m','http.server','80 ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], DirectoryNotFoundException
+    + FullyQualifiedErrorId : DirectoryNotFoundException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run because either the parameter "WorkingDirectory" has a value that is not valid or cannot be used with this command. Give a valid input and Run your command again.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:138 char:13
++ $frontend = Start-Process python -ArgumentList '-m','http.server','80 ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], DirectoryNotFoundException
+    + FullyQualifiedErrorId : DirectoryNotFoundException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+C:\Workspace\FrankTheLocalLLM\frank_up.ps1 : Failed to start frontend
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,frank_up.ps1
+C:\Workspace\FrankTheLocalLLM\frank_up.ps1 : Failed to start frontend
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,frank_up.ps1
+
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:8080
+**********************
+Windows PowerShell transcript end
+End time: 20250817114143
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250817121329
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 19700
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 12:13:29 ===
+
+
+
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:128 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:128 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:135 char:13
++ $frontend = Start-Process npm -ArgumentList '--prefix','app','run','d ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:135 char:13
++ $frontend = Start-Process npm -ArgumentList '--prefix','app','run','d ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+The variable '$frontend' cannot be retrieved because it has not been set.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:137 char:5
++ if ($frontend) {
++     ~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (frontend:String) [], RuntimeException
+    + FullyQualifiedErrorId : VariableIsUndefined
+The variable '$frontend' cannot be retrieved because it has not been set.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:137 char:5
++ if ($frontend) {
++     ~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (frontend:String) [], RuntimeException
+    + FullyQualifiedErrorId : VariableIsUndefined
+
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250817121340
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250817122822
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 9972
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 12:28:22 ===
+
+
+
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:128 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:128 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:135 char:13
++ $frontend = Start-Process npm -ArgumentList '--prefix','app','run','d ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:135 char:13
++ $frontend = Start-Process npm -ArgumentList '--prefix','app','run','d ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+The variable '$frontend' cannot be retrieved because it has not been set.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:137 char:5
++ if ($frontend) {
++     ~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (frontend:String) [], RuntimeException
+    + FullyQualifiedErrorId : VariableIsUndefined
+The variable '$frontend' cannot be retrieved because it has not been set.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:137 char:5
++ if ($frontend) {
++     ~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (frontend:String) [], RuntimeException
+    + FullyQualifiedErrorId : VariableIsUndefined
+
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250817122833
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250817210508
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 1484
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 21:05:08 ===
+
+
+
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:129 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid
+Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:129 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOp
+   erationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.C
+   ommands.StartProcessCommand
+
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250817210534
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250817213832
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 30700
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 21:38:32 ===
+
+Killing processes on port 11434: 17864
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872
+No process running on port 8001
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:134 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid
+Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:134 char:3
++   Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -Redir ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOp
+   erationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.C
+   ommands.StartProcessCommand
+
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:141 char:3
++   Start-Process npm -ArgumentList 'install' -WorkingDirectory $frontD ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid
+Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:141 char:3
++   Start-Process npm -ArgumentList 'install' -WorkingDirectory $frontD ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOp
+   erationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.C
+   ommands.StartProcessCommand
+
+VITE_API_BASE=http://localhost:8001/api
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250817213844
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250817220057
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 27000
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 22:00:57 ===
+
+Killing processes on port 11434: 17864
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872
+No process running on port 8001
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:146 char:3
++   Start-Process npm -ArgumentList 'install' -WorkingDirectory $frontD ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid
+Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:146 char:3
++   Start-Process npm -ArgumentList 'install' -WorkingDirectory $frontD ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOp
+   erationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.C
+   ommands.StartProcessCommand
+
+VITE_API_BASE=http://localhost:8001/api
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250817220109
+**********************
+=== frank_up.sh started at Sun, Aug 17, 2025 10:01:53 PM ===
+This bootstrap is tailored for Ubuntu. For other OS, ask me for the macOS/Windows variant.
+[H[2J[3J=== frank_up.sh started at Sun, Aug 17, 2025 10:02:11 PM ===
+This bootstrap is tailored for Ubuntu. For other OS, ask me for the macOS/Windows variant.
+[H[2J[3J**********************
+Windows PowerShell transcript start
+Start time: 20250817222720
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 24560
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 22:27:20 ===
+
+Killing processes on port 11434: 17864
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872
+No process running on port 8001
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: %1 is not a valid Win32 application."
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:146 char:3
++   Start-Process npm -ArgumentList 'install' -WorkingDirectory $frontD ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run due to the error: %1 is not a valid Win32 application.
+At C:\Workspace\FrankTheLocalLLM\frank_up.ps1:146 char:3
++   Start-Process npm -ArgumentList 'install' -WorkingDirectory $frontD ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+VITE_API_BASE=http://localhost:8001/api
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250817222734
+**********************
+=== frank_up.sh started at Sun, Aug 17, 2025 10:28:22 PM ===
+This bootstrap is tailored for Ubuntu. For other OS, ask me for the macOS/Windows variant.
+[H[2J[3J**********************
+Windows PowerShell transcript start
+Start time: 20250817225556
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 30588
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 22:55:56 ===
+
+Killing processes on port 11434: 17864
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872
+No process running on port 8001
+VITE_API_BASE=http://localhost:8001/api
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250817225611
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250817230801
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 4440
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 23:08:01 ===
+
+Killing processes on port 11434: 17864
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872
+No process running on port 8001
+VITE_API_BASE=http://localhost:8001/api
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250817230815
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250817230930
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM/frank_up.ps1
+Process ID: 30392
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/17 23:09:30 ===
+
+Killing processes on port 11434: 17864
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872, 0
+No process running on port 8001
+VITE_API_BASE=http://localhost:8001/api
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250817230943
+**********************

@@ -1,0 +1,30 @@
+{
+  "packageManager": "yarn@1.22.19",
+  "name": "frankthelocalllm-monorepo",
+  "private": true,
+  "workspaces": [
+    "app"
+  ],
+  "scripts": {
+    "lint": "eslint app --ext .js,.vue",
+    "test": "vitest",
+    "cy:run": "cypress run",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@playwright/test": "^1.54.1",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "@vue/test-utils": "^2.4.6",
+    "cypress": "^14.5.2",
+    "eslint": "^9.31.0",
+    "eslint-plugin-vue": "^10.3.0",
+    "flush-promises": "^1.0.2",
+    "jsdom": "^26.1.0",
+    "playwright": "^1.54.1",
+    "vite": "^7.0.6",
+    "vitest": "^3.2.4",
+    "vue": "^3.5.18",
+    "vue-eslint-parser": "^10.2.0"
+  }
+}

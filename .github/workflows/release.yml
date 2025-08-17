@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    env:
+      CSC_LINK: ${{ secrets.WINDOWS_CERT }}
+      CSC_KEY_PASSWORD: ${{ secrets.WINDOWS_CERT_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - run: npm install -g @tauri-apps/cli nativefier
+      - run: npm install
+      - name: Build SmartPad frontend
+        run: yarn workspace app build
+      - name: Copy frontend to Tauri crate
+        run: |
+          mkdir -p tauri/dist
+          cp -r app/dist/* tauri/dist/ || true
+      - name: Build signed installer and portable exe
+        run: |
+          cargo tauri build --target x86_64-pc-windows-msvc --bundles msi
+          signtool sign /f "$env:CSC_LINK" /p "$env:CSC_KEY_PASSWORD" "target\x86_64-pc-windows-msvc\release\tauri.exe"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smartpad-windows
+          path: |
+            target/x86_64-pc-windows-msvc/release/tauri.exe
+            src-tauri/target/release/bundle/msi/*.msi
+      - name: Build nativefier wrapper
+        run: nativefier "https://smartpad.app" nativefier-build -n SmartPad
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smartpad-nativefier
+          path: nativefier-build
