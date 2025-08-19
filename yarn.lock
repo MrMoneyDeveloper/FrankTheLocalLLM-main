@@ -515,7 +515,7 @@ ansi-styles@^6.1.0:
   resolved "https://registry.npmjs.org/ansi-styles/-/ansi-styles-6.2.1.tgz"
   integrity sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==
 
-"app@file:C:\\Workspace\\FrankTheLocalLLM\\app":
+"app@file:C:\\Users\\itsup\\Downloads\\FrankTheLocalLLM-main\\FrankTheLocalLLM-main\\app":
   version "1.0.0"
   resolved "file:app"
   dependencies:
