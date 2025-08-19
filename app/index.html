@@ -44,7 +44,7 @@
     <WikiPage />
   </div>
   <script type="module" src="app.js"></script>
-  <script>
+  <script type="module">
     const chip = document.getElementById('mode-chip')
     const modal = document.getElementById('mode-modal')
     const confirmBtn = document.getElementById('mode-confirm')
@@ -79,7 +79,7 @@
       document.getElementById('status').textContent = 'Starting...';
     });
 
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && import.meta.env.PROD) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').then(reg => {
           if (reg.waiting) notifyUpdate(reg.waiting)
