@@ -1,0 +1,264 @@
+[2025-08-19 11:58:15,338: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 2.00 seconds... (1/100)
+
+[2025-08-19 11:58:22,443: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 4.00 seconds... (2/100)
+
+[2025-08-19 11:58:22,593: ERROR/SpawnPoolWorker-1] Pool process <billiard.pool.Worker object at 0x000002062864A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-19 11:58:22,593: ERROR/SpawnPoolWorker-1] Pool process <billiard.pool.Worker object at 0x000002062864A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-19 11:58:22,742: ERROR/MainProcess] Process 'SpawnPoolWorker-1' pid:39960 exited with 'exitcode 1'
+[2025-08-19 11:58:22,920: ERROR/SpawnPoolWorker-2] Pool process <billiard.pool.Worker object at 0x00000200D7AAA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-19 11:58:22,920: ERROR/SpawnPoolWorker-2] Pool process <billiard.pool.Worker object at 0x00000200D7AAA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-19 11:58:23,549: ERROR/MainProcess] Process 'SpawnPoolWorker-2' pid:39968 exited with 'exitcode 1'
+[2025-08-19 11:58:27,670: ERROR/SpawnPoolWorker-14] Pool process <billiard.pool.Worker object at 0x0000018E241CA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-19 11:58:27,670: ERROR/SpawnPoolWorker-14] Pool process <billiard.pool.Worker object at 0x0000018E241CA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-19 11:58:28,358: ERROR/MainProcess] Process 'SpawnPoolWorker-14' pid:13072 exited with 'exitcode 1'
+[2025-08-19 11:58:30,521: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 6.00 seconds... (3/100)
+
+[2025-08-19 11:58:40,599: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 8.00 seconds... (4/100)
+
+[2025-08-19 11:58:52,716: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 10.00 seconds... (5/100)
+
+[2025-08-19 11:59:06,818: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 12.00 seconds... (6/100)
+
+[2025-08-19 11:59:22,913: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 14.00 seconds... (7/100)
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     [2025-08-19 11:58:24,847: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-19 11:59:00,959: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
