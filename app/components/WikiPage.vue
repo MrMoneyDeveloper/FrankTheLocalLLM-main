@@ -22,7 +22,7 @@ const palette = ref(false)
 const settings = ref(false)
 const titles = ref([])
 
-const { data, fetchData } = useFetch('/api/entries')
+const { data, fetchData } = useFetch('/entries')
 
 onMounted(async () => {
   await fetchData()

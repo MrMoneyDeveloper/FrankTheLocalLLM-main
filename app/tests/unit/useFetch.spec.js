@@ -15,7 +15,7 @@ describe('useFetch', () => {
     const fetchMock = vi.fn(() => Promise.resolve({ ok: true, json: () => Promise.resolve({ ok: true }) }))
     global.fetch = fetchMock
 
-    const { fetchData } = useFetch('/api/test')
+    const { fetchData } = useFetch('/test')
     const p = fetchData()
     vi.runAllTimers()
     await p

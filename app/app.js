@@ -13,7 +13,8 @@ createApp({
     const success = ref(false)
 
     const { error, loading, fetchData } = useFetch(
-      `${apiBase}/auth/login`,
+
+      '/auth/login',
       { method: 'POST', headers: { 'Content-Type': 'application/json' } }
     )
 

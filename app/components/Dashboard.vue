@@ -11,7 +11,7 @@ defineOptions({ name: 'AppDashboard' })
 import { onMounted } from 'vue'
 import { useFetch } from '../composables/useFetch'
 
-const { data: items, fetchData } = useFetch('/api/entries')
+const { data: items, fetchData } = useFetch('/entries')
 
 onMounted(() => {
   fetchData()
