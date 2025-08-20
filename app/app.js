@@ -2,14 +2,16 @@ import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 import { useFetch } from './composables/useFetch.js'
 import WikiPage from './components/WikiPage.vue'
 
+const apiBase = import.meta.env.VITE_API_BASE ?? 'http://localhost:8001/api'
+
 createApp({
   setup() {
     const username = ref('')
     const password = ref('')
     const success = ref(false)
 
-    const { data, error, loading, fetchData } = useFetch(
-      '/api/auth/login',
+    const { error, loading, fetchData } = useFetch(
+      `${apiBase}/auth/login`,
       { method: 'POST', headers: { 'Content-Type': 'application/json' } }
     )
 
