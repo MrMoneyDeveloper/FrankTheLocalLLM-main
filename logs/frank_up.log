@@ -1254,3 +1254,167 @@ Frontend URL  : http://localhost:5173
 Windows PowerShell transcript end
 End time: 20250819115806
 **********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250819125204
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Users/itsup/Downloads/FrankTheLocalLLM-main/FrankTheLocalLLM-main/frank_up.ps1
+Process ID: 29044
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/19 12:52:04 ===
+
+Killing processes on port 11434: 17864
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872
+No process running on port 8001
+VITE_API_BASE=http://localhost:8001/api
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250819125216
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250820120507
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Users/itsup/Downloads/FrankTheLocalLLM-main/FrankTheLocalLLM-main/frank_up.ps1
+Process ID: 7508
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/20 12:05:07 ===
+
+Killing processes on port 11434: 38876
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872
+No process running on port 8001
+VITE_API_BASE=http://localhost:8001/api
+Killing processes on port 5173: 39236
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250820120527
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250820162935
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Users/itsup/Downloads/FrankTheLocalLLM-main/FrankTheLocalLLM-main/frank_up.ps1
+Process ID: 14972
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/20 16:29:35 ===
+
+Killing processes on port 11434: 38876
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872
+No process running on port 8001
+VITE_API_BASE=http://localhost:8001/api
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250820162957
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250820165417
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Users/itsup/Downloads/FrankTheLocalLLM-main/FrankTheLocalLLM-main/frank_up.ps1
+Process ID: 18796
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/20 16:54:17 ===
+
+Killing processes on port 11434: 38876
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6804
+No process running on port 8000
+Killing processes on port 8001: 23872
+No process running on port 8001
+VITE_API_BASE=http://localhost:8001/api
+Killing processes on port 5173: 33716
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250820165433
+**********************

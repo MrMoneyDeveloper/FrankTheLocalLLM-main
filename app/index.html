@@ -22,6 +22,7 @@
   <div id="splash" class="absolute inset-0 flex items-center justify-center bg-gray-100">
     <div id="status">Starting...</div>
   </div>
+
   <div id="app" class="w-full max-w-sm mx-auto bg-white p-6 rounded shadow" v-if="!success">
     <h1 class="text-xl font-bold mb-2 text-center">Frank The Local LLM</h1>
     <ol class="text-sm text-gray-600 mb-4 list-decimal list-inside">
@@ -29,6 +30,7 @@
       <li>Use the pre-filled test credentials below.</li>
       <li>Click <strong>Login</strong> to continue to the wiki.</li>
     </ol>
+
     <form @submit.prevent="submit">
       <div class="mb-4">
         <label class="block mb-1">Username</label>
@@ -88,7 +90,9 @@
           `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`
       })
       .catch(() => {
+
         document.getElementById('status').textContent = 'Backend unavailable'
+
       })
       .finally(() =>
         setTimeout(() =>
