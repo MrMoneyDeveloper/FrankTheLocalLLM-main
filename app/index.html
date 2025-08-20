@@ -87,7 +87,9 @@
           `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`
       })
       .catch(() => {
+
         document.getElementById('status').textContent = 'Backend unavailable'
+
       })
       .finally(() =>
         setTimeout(() =>
