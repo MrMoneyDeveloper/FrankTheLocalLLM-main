@@ -4,12 +4,14 @@ import WikiPage from './components/WikiPage.vue'
 
 createApp({
   setup() {
-    const username = ref('')
-    const password = ref('')
+    // Default test credentials so the login form is pre-filled during demos.
+    // Replace or remove for production deployments.
+    const username = ref('testuser')
+    const password = ref('testpass')
     const success = ref(false)
 
-    const { data, error, loading, fetchData } = useFetch(
-      '/api/auth/login',
+    const { error, loading, fetchData } = useFetch(
+      '/auth/login',
       { method: 'POST', headers: { 'Content-Type': 'application/json' } }
     )
 

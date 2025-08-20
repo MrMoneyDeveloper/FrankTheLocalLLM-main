@@ -74,10 +74,16 @@ troubleshooting.
 2. In your browser open the served page. The client expects the FastAPI backend
     to be available at `http://localhost:8001/api`.
     When started the server tries to bind to port `8001` but if it is already
-
    taken the process automatically increments the port until a free one is
    found. Set the `PORT` environment variable to force a specific port or edit
    `backend/app/config.py`.
+
+    The login screen includes pre-filled test credentials:
+
+    - **Username:** `testuser`
+    - **Password:** `testpass`
+
+    These are intended for local development only; change them for production.
 
 You can modify `app/index.html` and `app/app.js` to tweak the UI or add new
 components.
