@@ -1,4 +1,5 @@
-import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import { createApp, ref } from 'vue'
+import './styles.css'
 import { useFetch } from './composables/useFetch.js'
 import WikiPage from './components/WikiPage.vue'
 

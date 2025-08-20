@@ -6,7 +6,7 @@
     <div class="flex-1 flex flex-col">
       <ChatInterface class="flex-1" />
     </div>
-    <CommandPalette :open="palette" :titles="titles" @close="palette=false" @select="jump" />
+    <CommandPalette :open="palette" :titles="titles" @close="palette=false" />
     <SettingsModal :open="settings" @close="settings=false" />
   </div>
 </template>
@@ -28,11 +28,6 @@ onMounted(async () => {
   await fetchData()
   titles.value = (data.value || []).map(e => e.content.split('\n')[0])
 })
-
-function jump (title) {
-  // placeholder: open note
-  console.log('jump to', title)
-}
 
 window.addEventListener('keydown', e => {
   if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {

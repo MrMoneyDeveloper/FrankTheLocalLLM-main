@@ -44,6 +44,7 @@ Install-IfMissing python 'Python.Python.3' 'python'
 Install-IfMissing node 'OpenJS.NodeJS.LTS' 'nodejs'
 Install-IfMissing redis-server 'Microsoft.OpenSource.Redis' 'redis-64'
 Install-IfMissing ollama 'Ollama.Ollama' 'ollama'
+Install-IfMissing dotnet 'Microsoft.DotNet.SDK.8' 'dotnet-sdk'
 
 if (Get-Service redis -ErrorAction SilentlyContinue) {
   Start-Service redis
@@ -132,6 +133,16 @@ if ($celeryBeat) {
   Write-Error 'Failed to start Celery beat'
 }
 
+# .NET console app
+$dotnetOut = Join-Path $LogDir 'dotnet.log'
+Remove-Item $dotnetOut -ErrorAction SilentlyContinue
+$dotnet = Start-Process dotnet -ArgumentList @('run','--project','src/ConsoleApp/ConsoleApp.csproj') -RedirectStandardOutput $dotnetOut -RedirectStandardError $dotnetOut -WindowStyle Hidden -PassThru
+if ($dotnet) {
+  $dotnet.Id | Out-File (Join-Path $LogDir 'dotnet.pid')
+} else {
+  Write-Error 'Failed to start .NET console app'
+}
+
 $nodeModules = Join-Path $Root 'node_modules'
 if (-not (Test-Path $nodeModules)) {
   $npmOut = Join-Path $LogDir 'npm_install.out.log'
@@ -146,7 +157,7 @@ if (-not (Test-Path $appNodeModules)) {
   Start-Process npm -ArgumentList 'install' -WorkingDirectory $frontDir -RedirectStandardOutput $npmAppOut -RedirectStandardError $npmAppErr -NoNewWindow -Wait
 }
 
-$env:VITE_API_BASE = "http://localhost:$backendPort/api"
+$env:VITE_API_BASE = "http://localhost:$backendPort"
 Write-Output ("VITE_API_BASE={0}" -f $env:VITE_API_BASE)
 Free-Port 5173
 $frontendOut = Join-Path $LogDir 'frontend.out.log'

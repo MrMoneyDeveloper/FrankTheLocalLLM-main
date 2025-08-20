@@ -59,6 +59,8 @@ else
   powershell.exe -ExecutionPolicy Bypass -File "$ROOT/frank_up.ps1"
 fi
 
+echo "Logs directory: $LOG_DIR (backend.log, frontend.log, dotnet.log, etc.)"
+
 
 # Ensure Vite is installed for the frontend
 echo "--- Ensuring Vite is installed ---"
