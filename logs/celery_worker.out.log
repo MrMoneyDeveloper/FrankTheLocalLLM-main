@@ -1,10 +1,10 @@
  
  -------------- celery@ItSupportPc v5.5.3 (immunity)
 --- ***** ----- 
--- ******* ---- Windows-10-10.0.19045-SP0 2025-08-19 11:58:11
+-- ******* ---- Windows-10-10.0.19045-SP0 2025-08-20 16:30:03
 - *** --- * --- 
 - ** ---------- [config]
-- ** ---------- .> app:         worker:0x293e57d6cf0
+- ** ---------- .> app:         worker:0x12d29686cf0
 - ** ---------- .> transport:   redis://localhost:6379/0
 - ** ---------- .> results:     disabled://
 - *** --- * --- .> concurrency: 12 (prefork)

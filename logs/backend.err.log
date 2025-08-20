@@ -14,9 +14,12 @@ ERROR:__main__:Cannot bind to 0.0.0.0:8011 - [WinError 10048] Only one usage of 
 ERROR:__main__:Cannot bind to 0.0.0.0:8012 - [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
 ERROR:__main__:Cannot bind to 0.0.0.0:8013 - [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
 ERROR:__main__:Cannot bind to 0.0.0.0:8014 - [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
-WARNING:__main__:Port 8001 busy, switching to 8015
-INFO:__main__:FrankTheLocalLLM bound to 0.0.0.0:8015
-INFO:     Started server process [36980]
+ERROR:__main__:Cannot bind to 0.0.0.0:8015 - [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
+ERROR:__main__:Cannot bind to 0.0.0.0:8016 - [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
+ERROR:__main__:Cannot bind to 0.0.0.0:8017 - [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
+WARNING:__main__:Port 8001 busy, switching to 8018
+INFO:__main__:FrankTheLocalLLM bound to 0.0.0.0:8018
+INFO:     Started server process [19032]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8015 (Press CTRL+C to quit)
+INFO:     Uvicorn running on http://0.0.0.0:8018 (Press CTRL+C to quit)
