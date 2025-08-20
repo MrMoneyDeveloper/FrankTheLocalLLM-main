@@ -35,7 +35,7 @@ const entries = ref([])
 const newTitle = ref('')
 const newGroup = ref('')
 const newContent = ref('')
-const API_BASE = import.meta.env?.VITE_API_BASE || 'http://localhost:8001/api'
+const API_BASE = (import.meta.env?.VITE_API_BASE || '/api').replace(/\/$/, '')
 
 
 const groups = computed(() => {

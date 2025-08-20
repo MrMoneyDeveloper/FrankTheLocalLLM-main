@@ -16,7 +16,7 @@ import { ref, nextTick } from 'vue'
 const message = ref('')
 const messages = ref([])
 const container = ref(null)
-const API_BASE = import.meta.env?.VITE_API_BASE || 'http://localhost:8001/api'
+const API_BASE = (import.meta.env?.VITE_API_BASE || '/api').replace(/\/$/, '')
 
 
 async function send () {
