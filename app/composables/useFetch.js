@@ -32,13 +32,12 @@ export function useFetch (url, options = {}, config = {}) {
     let attempt = 0
     while (attempt <= retries) {
       try {
-        const base = (import.meta.env?.VITE_API_BASE || '/api').replace(/\/$/, '')
+        const base = (import.meta.env?.VITE_API_BASE || 'http://localhost:8001')
+          .replace(/\/$/, '')
         const path = url.startsWith('/') ? url : `/${url}`
         const target = url.startsWith('http')
           ? url
-          : base.endsWith('/api') && path.startsWith('/api')
-            ? base + path.slice(4)
-            : base + path
+          : `${base}${path.startsWith('/api') ? path : '/api' + path}`
         const resp = await fetch(target, opts)
         if (!resp.ok) throw new Error(resp.statusText)
         data.value = await resp.json()
