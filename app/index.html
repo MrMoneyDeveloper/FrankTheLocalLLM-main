@@ -22,7 +22,13 @@
   <div id="splash" class="absolute inset-0 flex items-center justify-center bg-gray-100">
     <div id="status">Starting...</div>
   </div>
-  <div id="app" class="w-80 bg-white p-4 rounded shadow" v-if="!success">
+  <div id="app" class="w-full max-w-sm mx-auto bg-white p-6 rounded shadow" v-if="!success">
+    <h1 class="text-xl font-bold mb-2 text-center">Frank The Local LLM</h1>
+    <ol class="text-sm text-gray-600 mb-4 list-decimal list-inside">
+      <li>Confirm your environment when prompted (Desktop or Browser).</li>
+      <li>Use the pre-filled test credentials below.</li>
+      <li>Click <strong>Login</strong> to continue to the wiki.</li>
+    </ol>
     <form @submit.prevent="submit">
       <div class="mb-4">
         <label class="block mb-1">Username</label>
@@ -72,12 +78,23 @@
       })
     }
 
-    fetch('/status').then(r => r.json()).then(d => {
-      document.getElementById('status').textContent = `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`;
-      setTimeout(() => document.getElementById('splash').style.display = 'none', 1000);
-    }).catch(() => {
-      document.getElementById('status').textContent = 'Starting...';
-    });
+    const apiBase = (import.meta.env.VITE_API_BASE ?? 'http://localhost:8001/api')
+      .replace(/\/api$/, '')
+
+    fetch(`${apiBase}/status`)
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('status').textContent =
+          `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`
+      })
+      .catch(() => {
+        document.getElementById('status').textContent = 'Backend unavailable'
+      })
+      .finally(() =>
+        setTimeout(() =>
+          document.getElementById('splash').style.display = 'none',
+        1000)
+      )
 
     if ('serviceWorker' in navigator && import.meta.env.PROD) {
       window.addEventListener('load', () => {
