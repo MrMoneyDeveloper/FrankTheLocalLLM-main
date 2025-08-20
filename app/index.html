@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/vue@3"></script>
+  <title>Frank The Local LLM</title>
 </head>
-<body class="flex items-center justify-center h-screen bg-gray-100">
+<body class="bg-gray-100">
   <div id="mode-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden">
     <div class="bg-white p-4 rounded shadow">
       <p class="mb-2">Open in Desktop window or Browser tab?</p>
@@ -23,34 +21,8 @@
     <div id="status">Starting...</div>
   </div>
 
-  <div id="app" class="w-full max-w-sm mx-auto bg-white p-6 rounded shadow" v-if="!success">
-    <h1 class="text-xl font-bold mb-2 text-center">Frank The Local LLM</h1>
-    <ol class="text-sm text-gray-600 mb-4 list-decimal list-inside">
-      <li>Confirm your environment when prompted (Desktop or Browser).</li>
-      <li>Use the pre-filled test credentials below.</li>
-      <li>Click <strong>Login</strong> to continue to the wiki.</li>
-    </ol>
+  <div id="app" class="w-full h-screen"></div>
 
-    <form @submit.prevent="submit">
-      <div class="mb-4">
-        <label class="block mb-1">Username</label>
-        <input type="text" v-model="username" class="w-full border rounded p-2" />
-      </div>
-      <div class="mb-4">
-        <label class="block mb-1">Password</label>
-        <input type="password" v-model="password" class="w-full border rounded p-2" />
-      </div>
-      <div v-if="error" class="text-red-600 mb-2">{{ error }}</div>
-      <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded" :disabled="loading">
-        <span v-if="loading">Loading...</span>
-        <span v-else>Login</span>
-      </button>
-      <div v-if="success" class="text-green-600 mt-2">Login successful!</div>
-    </form>
-  </div>
-  <div v-else class="w-full h-screen">
-    <WikiPage />
-  </div>
   <script type="module" src="app.js"></script>
   <script type="module">
     const chip = document.getElementById('mode-chip')
@@ -80,8 +52,8 @@
       })
     }
 
-    const apiBase = (import.meta.env.VITE_API_BASE ?? 'http://localhost:8001/api')
-      .replace(/\/api$/, '')
+    const apiBase = (import.meta.env.VITE_API_BASE ?? 'http://localhost:8001')
+      .replace(/\/$/, '')
 
     fetch(`${apiBase}/status`)
       .then(r => r.json())
@@ -90,9 +62,7 @@
           `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`
       })
       .catch(() => {
-
         document.getElementById('status').textContent = 'Backend unavailable'
-
       })
       .finally(() =>
         setTimeout(() =>

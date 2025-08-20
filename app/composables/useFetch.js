@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 /**
- * Generic fetch composable with debouncing, JWT support and
+ * Generic fetch composable with debouncing and
  * exponential backoff retries.
  * @param {string} url - request URL
  * @param {object} options - fetch options
@@ -23,22 +23,15 @@ export function useFetch (url, options = {}, config = {}) {
     const opts = { ...options, ...override }
     opts.headers = { ...(options.headers || {}), ...(override.headers || {}) }
 
-    const token = localStorage.getItem('token')
-    if (token) {
-      opts.headers = opts.headers || {}
-      opts.headers.Authorization = `Bearer ${token}`
-    }
-
     let attempt = 0
     while (attempt <= retries) {
       try {
-        const base = (import.meta.env?.VITE_API_BASE || '/api').replace(/\/$/, '')
+        const base = (import.meta.env?.VITE_API_BASE || 'http://localhost:8001')
+          .replace(/\/$/, '')
         const path = url.startsWith('/') ? url : `/${url}`
         const target = url.startsWith('http')
           ? url
-          : base.endsWith('/api') && path.startsWith('/api')
-            ? base + path.slice(4)
-            : base + path
+          : `${base}${path.startsWith('/api') ? path : '/api' + path}`
         const resp = await fetch(target, opts)
         if (!resp.ok) throw new Error(resp.statusText)
         data.value = await resp.json()

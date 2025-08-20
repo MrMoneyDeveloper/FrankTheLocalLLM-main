@@ -1,18 +1,11 @@
 describe('Full flow', () => {
-  it('logs in and chats', () => {
-    cy.intercept('POST', '/api/auth/login', {
-      body: { access_token: 'token', token_type: 'bearer' }
-    })
+  it('loads wiki and chats', () => {
     cy.intercept('POST', '/api/chat', {
       body: { response: 'hi there', cached: false }
     })
     cy.visit('/')
-    cy.get('input[type=text]').type('bob')
-    cy.get('input[type=password]').type('pw')
-    cy.contains('Login').click()
-    cy.contains('Login successful!')
-
-    // imagine chat component exists
+    cy.get('input[placeholder="Say hi"]').type('hello')
+    cy.contains('Send').click()
     // chat request is mocked above
   })
 })

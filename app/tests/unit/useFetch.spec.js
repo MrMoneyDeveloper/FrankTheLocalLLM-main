@@ -10,16 +10,16 @@ describe('useFetch', () => {
     localStorage.clear()
   })
 
-  it('adds Authorization header from localStorage', async () => {
-    localStorage.setItem('token', 'abc')
-    const fetchMock = vi.fn(() => Promise.resolve({ ok: true, json: () => Promise.resolve({ ok: true }) }))
-    global.fetch = fetchMock
+    it('does not add Authorization header', async () => {
+      localStorage.setItem('token', 'abc')
+      const fetchMock = vi.fn(() => Promise.resolve({ ok: true, json: () => Promise.resolve({ ok: true }) }))
+      global.fetch = fetchMock
 
-    const { fetchData } = useFetch('/test')
-    const p = fetchData()
-    vi.runAllTimers()
-    await p
-    expect(fetchMock).toHaveBeenCalled()
-    expect(fetchMock.mock.calls[0][1].headers.Authorization).toBe('Bearer abc')
-  })
+      const { fetchData } = useFetch('/test')
+      const p = fetchData()
+      vi.runAllTimers()
+      await p
+      expect(fetchMock).toHaveBeenCalled()
+      expect(fetchMock.mock.calls[0][1].headers.Authorization).toBeUndefined()
+    })
 })

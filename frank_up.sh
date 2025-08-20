@@ -6,10 +6,8 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT"
 
 LOG_DIR="$ROOT/logs"
-LOG_FILE="$LOG_DIR/frank_up.log"
 mkdir -p "$LOG_DIR"
 
-exec > >(tee -a "$LOG_FILE") 2>&1
 echo "=== frank_up.sh started at $(date) ==="
 
 # --- Project policy ---
@@ -70,6 +68,12 @@ fi
 if ! need_cmd node || ! need_cmd npm; then
   log "Installing Node.js & npm (Ubuntu repos)"
   sudo apt-get install -y nodejs npm
+fi
+
+# --- .NET SDK ---
+if ! need_cmd dotnet; then
+  log "Installing .NET SDK"
+  sudo apt-get install -y dotnet-sdk-8.0
 fi
 
 # --- Redis server + redis-cli ---
@@ -152,6 +156,12 @@ nohup celery -A backend.app.tasks beat > logs/celery_beat.log 2>&1 &
 echo $! > logs/celery_beat.pid
 sleep 1
 
+# --- Start .NET console app ---
+log "Building and starting .NET console app"
+dotnet build src/ConsoleApp/ConsoleApp.csproj >/dev/null
+nohup dotnet run --project src/ConsoleApp/ConsoleApp.csproj > logs/dotnet.log 2>&1 &
+echo $! > logs/dotnet.pid
+
 
 # --- Start frontend dev server ---
 log "Starting frontend dev server"
@@ -162,7 +172,7 @@ if [[ ! -d app/node_modules ]]; then
   npm --prefix app install
 fi
 free_port 5173
-VITE_API_BASE="http://localhost:${BACKEND_PORT}/api"
+VITE_API_BASE="http://localhost:${BACKEND_PORT}"
 echo "VITE_API_BASE=$VITE_API_BASE"
 echo "Running frontend: npm --prefix app run dev"
 VITE_API_BASE="$VITE_API_BASE" nohup npm --prefix app run dev > logs/frontend.log 2>&1 &
