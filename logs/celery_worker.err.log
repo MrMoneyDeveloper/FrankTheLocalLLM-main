@@ -1,10 +1,2118 @@
-[2025-08-20 16:54:43,801: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-20 21:59:28,770: ERROR/SpawnPoolWorker-1] Process SpawnPoolWorker-1
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 7, in <module>
+    from .db import Base, engine
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\db.py", line 3, in <module>
+    from sqlalchemy.orm import sessionmaker, declarative_base
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\orm\__init__.py", line 75, in <module>
+    from .events import AttributeEvents as AttributeEvents
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1118, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1218, in get_data
+MemoryError
+Process SpawnPoolWorker-1:
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 7, in <module>
+    from .db import Base, engine
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\db.py", line 3, in <module>
+    from sqlalchemy.orm import sessionmaker, declarative_base
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\orm\__init__.py", line 75, in <module>
+    from .events import AttributeEvents as AttributeEvents
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1118, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1218, in get_data
+MemoryError
+[2025-08-20 21:59:28,826: ERROR/SpawnPoolWorker-10] Process SpawnPoolWorker-10
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 8, in <module>
+    from .services.example_service import router as example_router
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\services\example_service.py", line 4, in <module>
+    from .. import dependencies
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\dependencies.py", line 5, in <module>
+    from .models import User
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\models.py", line 5, in <module>
+    from pgvector.sqlalchemy import Vector
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\sqlalchemy\__init__.py", line 1, in <module>
+    from .bit import BIT
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\sqlalchemy\bit.py", line 1, in <module>
+    from sqlalchemy.dialects.postgresql.base import ischema_names
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\__init__.py", line 12, in <module>
+    from . import asyncpg  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 190, in <module>
+    from .base import _DECIMAL_TYPES
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1118, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1218, in get_data
+MemoryError
+Process SpawnPoolWorker-10:
+[2025-08-20 21:59:28,688: ERROR/SpawnPoolWorker-11] Process SpawnPoolWorker-11
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\__init__.py", line 22, in <module>
+    from . import multiarray
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\multiarray.py", line 11, in <module>
+    from . import _multiarray_umath, overrides
+ImportError: DLL load failed while importing _multiarray_umath: The paging file is too small for this operation to complete.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__init__.py", line 125, in[2025-08-20 21:59:46,974: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:00:23,002: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:00:59,028: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:01:35,066: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:02:11,106: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:02:47,144: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:03:23,181: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:03:59,234: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:04:35,262: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:05:11,287: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:05:47,326: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:06:23,408: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:06:59,480: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:07:35,589: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:08:11,667: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:08:47,696: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:09:23,733: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:09:59,763: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:10:35,801: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:11:11,827: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:11:47,850: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:12:23,892: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:12:59,925: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:13:35,962: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:14:11,988: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:14:48,030: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:15:24,061: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:16:00,102: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:16:36,209: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:17:12,234: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:17:48,273: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:18:24,308: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:19:00,342: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:19:36,375: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:20:12,403: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:20:48,458: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:21:24,484: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:22:00,535: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:22:36,566: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:23:12,598: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:23:48,641: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:24:24,700: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:25:00,739: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:25:36,776: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:26:12,815: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:26:48,853: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:27:24,896: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:28:00,937: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:28:36,973: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:29:12,999: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:29:49,036: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:30:25,068: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:31:01,094: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:31:37,132: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:32:13,169: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:32:49,199: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:33:25,235: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:34:01,280: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:34:37,313: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:35:13,350: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-20 22:35:49,388: CRITICAL/MainProcess] Unrecoverable error: OperationalError('Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.')
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 951, in create_channel
+    return self._avail_channels.pop()
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^
+IndexError: pop from empty list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\connection.py", line 389, in connect_check_health
+    sock = self.retry.call_with_retry(
+        lambda: self._connect(), lambda error: self.disconnect(error)
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\retry.py", line 105, in call_with_retry
+    return do()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\connection.py", line 390, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\connection.py", line 803, in _connect
+    raise err
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\connection.py", line 787, in _connect
+    sock.connect(socket_address)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\connection.py", line 472, in _reraise_as_library_errors
+    yield
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\connection.py", line 459, in _ensure_connection
+    return retry_over_time(
+        self._connection_factory, self.recoverable_connection_errors,
+    ...<2 lines>...
+        callback, timeout=timeout
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\utils\functional.py", line 318, in retry_over_time
+    return fun(*args, **kwargs)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\connection.py", line 938, in _connection_factory
+    self._connection = self._establish_connection()
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\connection.py", line 860, in _establish_connection
+    conn = self.transport.establish_connection()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 975, in establish_connection
+    self._avail_channels.append(self.create_channel(self))
+                                ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 953, in create_channel
+    channel = self.Channel(connection)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\transport\redis.py", line 751, in __init__
+    self.client.ping()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\commands\core.py", line 1219, in ping
+    return self.execute_command("PING", **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\client.py", line 621, in execute_command
+    return self._execute_command(*args, **options)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\client.py", line 627, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\utils.py", line 195, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\connection.py", line 1533, in get_connection
+    connection.connect()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\connection.py", line 380, in connect
+    self.connect_check_health(check_health=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\redis\connection.py", line 397, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\worker\worker.py", line 203, in start
+    self.blueprint.start(self)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\bootsteps.py", line 116, in start
+    step.start(parent)
+    ~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\bootsteps.py", line 365, in start
+    return self.obj.start()
+           ~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\worker\consumer\consumer.py", line 341, in start
+    blueprint.start(self)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\bootsteps.py", line 116, in start
+    step.start(parent)
+    ~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\worker\consumer\connection.py", line 21, in start
+    c.connection = c.connect()
+                   ~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\worker\consumer\consumer.py", line 472, in connect
+    conn = self.connection_for_read(heartbeat=self.amqheartbeat)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\worker\consumer\consumer.py", line 478, in connection_for_read
+    return self.ensure_connected(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        self.app.connection_for_read(heartbeat=heartbeat))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\worker\consumer\consumer.py", line 530, in ensure_connected
+    conn = conn.ensure_connection(
+        _error_handler, self.app.conf.broker_connection_max_retries,
+        callback=maybe_shutdown,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\connection.py", line 406, in ensure_connection
+    self._ensure_connection(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\connection.py", line 458, in _ensure_connection
+    with ctx():
+         ~~~^^
+  File "C:\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\connection.py", line 476, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-11] Pool process <billiard.pool.Worker object at 0x0000023BE2F6A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-11] Pool process <billiard.pool.Worker object at 0x0000023BE2F6A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-13] Pool process <billiard.pool.Worker object at 0x0000024F064EA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-12] Pool process <billiard.pool.Worker object at 0x0000017ACA3BA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-8] Pool process <billiard.pool.Worker object at 0x0000024F6076A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-13] Pool process <billiard.pool.Worker object at 0x0000024F064EA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-10] Pool process <billiard.pool.Worker object at 0x000002284DC5A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-12] Pool process <billiard.pool.Worker object at 0x0000017ACA3BA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-7] Pool process <billiard.pool.Worker object at 0x00000215417AA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-8] Pool process <billiard.pool.Worker object at 0x0000024F6076A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-10] Pool process <billiard.pool.Worker object at 0x000002284DC5A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 22:35:49,457: ERROR/SpawnPoolWorker-7] Pool process <billiard.pool.Worker object at 0x00000215417AA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+"<frozen importlib._bootstrap_external>", line 1666, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1621, in _get_spec
+MemoryError
+[2025-08-20 21:59:28,803: ERROR/SpawnPoolWorker-3] Process SpawnPoolWorker-3
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 8, in <module>
+    from .services.example_service import router as example_router
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\services\example_service.py", line 4, in <module>
+    from .. import dependencies
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\dependencies.py", line 5, in <module>
+    from .models import User
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\models.py", line 5, in <module>
+    from pgvector.sqlalchemy import Vector
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\__init__.py", line 1, in <module>
+    from .bit import Bit
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\bit.py", line 1, in <module>
+    import numpy as np
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__init__.py", line 125, in <module>
+    from numpy.__config__ import show_config
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__config__.py", line 4, in <module>
+    from numpy._core._multiarray_umath import (
+    ...<3 lines>...
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\__init__.py", line 22, in <module>
+    from . import multiarray
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\multiarray.py", line 11, in <module>
+    from . import _multiarray_umath, overrides
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1322, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1262, in _find_spec
+  File "<frozen importlib._bootstrap_external>", line 1559, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1533, in _get_spec
+  File "<frozen importlib._bootstrap_external>", line 1665, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 166, in _path_isfile
+  File "<frozen importlib._bootstrap_external>", line 158, in _path_is_mode_type
+MemoryError
+Process SpawnPoolWorker-3:
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 8, in <module>
+    from .services.example_service import router as example_router
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\services\example_service.py", line 4, in <module>
+    from .. import dependencies
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\dependencies.py", line 5, in <module>
+    from .models import User
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\models.py", line 5, in <module>
+    from pgvector.sqlalchemy import Vector
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\__init__.py", line 1, in <module>
+    from .bit import Bit
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\bit.py", line 1, in <module>
+    import numpy as np
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__init__.py", line 125, in <module>
+    from numpy.__config__ import show_config
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__config__.py", line 4, in <module>
+    from numpy._core._multiarray_umath import (
+    ...<3 lines>...
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\__init__.py", line 22, in <module>
+    from . import multiarray
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\multiarray.py", line 11, in <module>
+    from . import _multiarray_umath, overrides
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1322, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1262, in _find_spec
+  File "<frozen importlib._bootstrap_external>", line 1559, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1533, in _get_spec
+  File "<frozen importlib._bootstrap_external>", line 1665, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 166, in _path_isfile
+  File "<frozen importlib._bootstrap_external>", line 158, in _path_is_mode_type
+MemoryError
+[2025-08-20 21:59:29,607: ERROR/MainProcess] Process 'SpawnPoolWorker-11' pid:37036 exited with 'exitcode 1'
+[2025-08-20 21:59:29,607: ERROR/MainProcess] Process 'SpawnPoolWorker-10' pid:43084 exited with 'exitcode 1'
+[2025-08-20 21:59:29,607: ERROR/MainProcess] Process 'SpawnPoolWorker-1' pid:11544 exited with 'exitcode 1'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from billiard.spawn import spawn_main; spawn_main(parent_pid=28396, pipe_handle=1236)
+                                           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\spawn.py", line 164, in spawn_main
+    exitcode = _main(fd)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\spawn.py", line 206, in _main
+    self = pickle.load(from_parent)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 12, in <module>
+    from celery import platforms, signals
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\platforms.py", line 24, in <module>
+    from .exceptions import SecurityError, SecurityWarning, reraise
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\exceptions.py", line 57, in <module>
+    from click import ClickException
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\click\__init__.py", line 10, in <module>
+    from .core import Argument as Argument
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1118, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1218, in get_data
+MemoryError
+[2025-08-20 21:59:30,385: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 2.00 seconds... (1/100)
 
-[2025-08-20 16:54:51,032: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
-Trying again in 4.00 seconds... (2/100)
+[2025-08-20 21:59:30,424: ERROR/MainProcess] Process 'SpawnPoolWorker-13' pid:44488 exited with 'exitcode 1'
+[2025-08-20 21:59:30,868: ERROR/SpawnPoolWorker-6] Process SpawnPoolWorker-6
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 8, in <module>
+    from .services.example_service import router as example_router
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\services\example_service.py", line 4, in <module>
+    from .. import dependencies
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\dependencies.py", line 5, in <module>
+    from .models import User
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\models.py", line 5, in <module>
+    from pgvector.sqlalchemy import Vector
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\__init__.py", line 1, in <module>
+    from .bit import Bit
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\bit.py", line 1, in <module>
+    import numpy as np
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__init__.py", line 125, in <module>
+    from numpy.__config__ import show_config
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__config__.py", line 4, in <module>
+    from numpy._core._multiarray_umath import (
+    ...<3 lines>...
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\__init__.py", line 99, in <module>
+    from . import (
+    ...<6 lines>...
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\_internal.py", line 142, in <module>
+    format_re = re.compile(r'(?P<order1>[<>|=]?)'
+                           r'(?P<repeats> *[(]?[ ,0-9]*[)]? *)'
+                           r'(?P<order2>[<>|=]?)'
+                           r'(?P<dtype>[A-Za-z0-9.?]*(?:\[[a-zA-Z0-9,.]+\])?)')
+  File "C:\Python313\Lib\re\__init__.py", line 289, in compile
+    return _compile(pattern, flags)
+  File "C:\Python313\Lib\re\__init__.py", line 350, in _compile
+    p = _compiler.compile(pattern, flags)
+  File "C:\Python313\Lib\re\_compiler.py", line 748, in compile
+    p = _parser.parse(p, flags)
+  File "C:\Python313\Lib\re\_parser.py", line 980, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+MemoryError
+Process SpawnPoolWorker-6:
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 8, in <module>
+    from .services.example_service import router as example_router
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\services\example_service.py", line 4, in <module>
+    from .. import dependencies
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\dependencies.py", line 5, in <module>
+    from .models import User
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\models.py", line 5, in <module>
+    from pgvector.sqlalchemy import Vector
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\__init__.py", line 1, in <module>
+    from .bit import Bit
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\bit.py", line 1, in <module>
+    import numpy as np
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__init__.py", line 125, in <module>
+    from numpy.__config__ import show_config
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__config__.py", line 4, in <module>
+    from numpy._core._multiarray_umath import (
+    ...<3 lines>...
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\__init__.py", line 99, in <module>
+    from . import (
+    ...<6 lines>...
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\_core\_internal.py", line 142, in <module>
+    format_re = re.compile(r'(?P<order1>[<>|=]?)'
+                           r'(?P<repeats> *[(]?[ ,0-9]*[)]? *)'
+                           r'(?P<order2>[<>|=]?)'
+                           r'(?P<dtype>[A-Za-z0-9.?]*(?:\[[a-zA-Z0-9,.]+\])?)')
+  File "C:\Python313\Lib\re\__init__.py", line 289, in compile
+    return _compile(pattern, flags)
+  File "C:\Python313\Lib\re\__init__.py", line 350, in _compile
+    p = _compiler.compile(pattern, flags)
+  File "C:\Python313\Lib\re\_compiler.py", line 748, in compile
+    p = _parser.parse(p, flags)
+  File "C:\Python313\Lib\re\_parser.py", line 980, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+MemoryError
+[2025-08-20 21:59:31,231: ERROR/MainProcess] Process 'SpawnPoolWorker-16' pid:100 exited with 'exitcode 3221225773'
+[2025-08-20 21:59:31,231: ERROR/MainProcess] Process 'SpawnPoolWorker-7' pid:22876 exited with 'exitcode 1'
+[2025-08-20 21:59:31,232: ERROR/MainProcess] Process 'SpawnPoolWorker-3' pid:27684 exited with 'exitcode 1'
+Unable to create process using '"C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Scripts\python.exe" "-c" "from billiard.spawn import spawn_main; spawn_main(parent_pid=28396, pipe_handle=556)" "--billiard-fork"': The paging file is too small for this operation to complete.
 
-[2025-08-20 16:54:53,169: ERROR/SpawnPoolWorker-2] Pool process <billiard.pool.Worker object at 0x00000289E01AA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+[2025-08-20 21:59:31,240: ERROR/MainProcess] Thread 'Supervisor' crashed: OSError(22, 'Insufficient system resources exist to complete the requested service', None, 1450, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 504, in run
+    return self.body()
+           ~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 563, in body
+    pool._maintain_pool()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 1343, in _maintain_pool
+    self._repopulate_pool(joined)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 1328, in _repopulate_pool
+    self._create_worker_process(self._avail_index())
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 1158, in _create_worker_process
+    w.start()
+    ~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 120, in start
+    self._popen = self._Popen(self)
+                  ~~~~~~~~~~~^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\context.py", line 381, in _Popen
+    return Popen(process_obj)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\popen_spawn_win32.py", line 63, in __init__
+    hp, ht, pid, tid = CreateProcess(
+                       ~~~~~~~~~~~~~^
+        spawn.get_executable(), cmd,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, None, False, 0, None, None, None)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [WinError 1450] Insufficient system resources exist to complete the requested service
+[2025-08-20 21:59:31,046: ERROR/SpawnPoolWorker-12] Process SpawnPoolWorker-12
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 8, in <module>
+    from .services.example_service import router as example_router
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\services\example_service.py", line 4, in <module>
+    from .. import dependencies
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\dependencies.py", line 5, in <module>
+    from .models import User
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\models.py", line 5, in <module>
+    from pgvector.sqlalchemy import Vector
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\sqlalchemy\__init__.py", line 1, in <module>
+    from .bit import BIT
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\sqlalchemy\bit.py", line 1, in <module>
+    from sqlalchemy.dialects.postgresql.base import ischema_names
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\__init__.py", line 12, in <module>
+    from . import asyncpg  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 190, in <module>
+    from .base import _DECIMAL_TYPES
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\base.py", line 1563, in <module>
+    from .hstore import HSTORE
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\hstore.py", line 303, in <module>
+    HSTORE_PAIR_RE = re.compile(
+        r"""
+    ...<9 lines>...
+        re.VERBOSE,
+    )
+  File "C:\Python313\Lib\re\__init__.py", line 289, in compile
+    return _compile(pattern, flags)
+  File "C:\Python313\Lib\re\__init__.py", line 350, in _compile
+    p = _compiler.compile(pattern, flags)
+  File "C:\Python313\Lib\re\_compiler.py", line 748, in compile
+    p = _parser.parse(p, flags)
+  File "C:\Python313\Lib\re\_parser.py", line 980, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 856, in _parse
+    group = state.opengroup(name)
+  File "C:\Python313\Lib\re\_parser.py", line 88, in opengroup
+    if self.groups > MAXGROUPS:
+       ^^^^^^^^^^^
+MemoryError
+Process SpawnPoolWorker-12:
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 8, in <module>
+    from .services.example_service import router as example_router
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\services\example_service.py", line 4, in <module>
+    from .. import dependencies
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\dependencies.py", line 5, in <module>
+    from .models import User
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\models.py", line 5, in <module>
+    from pgvector.sqlalchemy import Vector
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\sqlalchemy\__init__.py", line 1, in <module>
+    from .bit import BIT
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\sqlalchemy\bit.py", line 1, in <module>
+    from sqlalchemy.dialects.postgresql.base import ischema_names
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\__init__.py", line 12, in <module>
+    from . import asyncpg  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py", line 190, in <module>
+    from .base import _DECIMAL_TYPES
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\base.py", line 1563, in <module>
+    from .hstore import HSTORE
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\hstore.py", line 303, in <module>
+    HSTORE_PAIR_RE = re.compile(
+        r"""
+    ...<9 lines>...
+        re.VERBOSE,
+    )
+  File "C:\Python313\Lib\re\__init__.py", line 289, in compile
+    return _compile(pattern, flags)
+  File "C:\Python313\Lib\re\__init__.py", line 350, in _compile
+    p = _compiler.compile(pattern, flags)
+  File "C:\Python313\Lib\re\_compiler.py", line 748, in compile
+    p = _parser.parse(p, flags)
+  File "C:\Python313\Lib\re\_parser.py", line 980, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "C:\Python313\Lib\re\_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                       not nested and not items))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\re\_parser.py", line 856, in _parse
+    group = state.opengroup(name)
+  File "C:\Python313\Lib\re\_parser.py", line 88, in opengroup
+    if self.groups > MAXGROUPS:
+       ^^^^^^^^^^^
+MemoryError
+[2025-08-20 21:59:31,136: ERROR/SpawnPoolWorker-9] Process SpawnPoolWorker-9
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 8, in <module>
+    from .services.example_service import router as example_router
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\services\example_service.py", line 4, in <module>
+    from .. import dependencies
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\dependencies.py", line 5, in <module>
+    from .models import User
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\models.py", line 5, in <module>
+    from pgvector.sqlalchemy import Vector
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\__init__.py", line 1, in <module>
+    from .bit import Bit
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\bit.py", line 1, in <module>
+    import numpy as np
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__init__.py", line 467, in <module>
+    from . import lib
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\lib\__init__.py", line 18, in <module>
+    from . import (
+    ...<23 lines>...
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\lib\_arraypad_impl.py", line 8, in <module>
+    from numpy.lib._index_tricks_impl import ndindex
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\lib\_index_tricks_impl.py", line 8, in <module>
+    import numpy.matrixlib as matrixlib
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\matrixlib\__init__.py", line 4, in <module>
+    from . import defmatrix
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\matrixlib\defmatrix.py", line 13, in <module>
+    from numpy.linalg import matrix_power
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1112, in get_code
+MemoryError
+Process SpawnPoolWorker-9:
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 8, in <module>
+    from .services.example_service import router as example_router
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\services\example_service.py", line 4, in <module>
+    from .. import dependencies
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\dependencies.py", line 5, in <module>
+    from .models import User
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\models.py", line 5, in <module>
+    from pgvector.sqlalchemy import Vector
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\__init__.py", line 1, in <module>
+    from .bit import Bit
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\pgvector\bit.py", line 1, in <module>
+    import numpy as np
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\__init__.py", line 467, in <module>
+    from . import lib
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\lib\__init__.py", line 18, in <module>
+    from . import (
+    ...<23 lines>...
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\lib\_arraypad_impl.py", line 8, in <module>
+    from numpy.lib._index_tricks_impl import ndindex
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\lib\_index_tricks_impl.py", line 8, in <module>
+    import numpy.matrixlib as matrixlib
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\matrixlib\__init__.py", line 4, in <module>
+    from . import defmatrix
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\numpy\matrixlib\defmatrix.py", line 13, in <module>
+    from numpy.linalg import matrix_power
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1112, in get_code
+MemoryError
+[2025-08-20 21:59:31,122: ERROR/SpawnPoolWorker-15] Process SpawnPoolWorker-15
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 7, in <module>
+    from .db import Base, engine
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\db.py", line 2, in <module>
+    from sqlalchemy import create_engine
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\__init__.py", line 13, in <module>
+    from .engine import AdaptedConnection as AdaptedConnection
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\__init__.py", line 18, in <module>
+    from . import events as events
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\events.py", line 19, in <module>
+    from .base import Connection
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 28, in <module>
+    from .interfaces import BindTyping
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\interfaces.py", line 37, in <module>
+    from ..sql.compiler import Compiled as Compiled
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\__init__.py", line 14, in <module>
+    from .compiler import COLLECT_CARTESIAN_PRODUCTS as COLLECT_CARTESIAN_PRODUCTS
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 62, in <module>
+    from . import crud
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\crud.py", line 34, in <module>
+    from . import dml
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\dml.py", line 35, in <module>
+    from . import util as sql_util
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\util.py", line 33, in <module>
+    from . import coercions
+  File "<frozen importlib._bootstrap>", line 471, in _lock_unlock_module
+  File "<frozen importlib._bootstrap>", line 311, in acquire
+  File "<frozen importlib._bootstrap>", line 170, in __enter__
+  File "<frozen importlib._bootstrap>", line 132, in setdefault
+MemoryError
+Process SpawnPoolWorker-15:
+[2025-08-20 21:59:31,073: ERROR/SpawnPoolWorker-14] Process SpawnPoolWorker-14
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 7, in <module>
+    from .db import Base, engine
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\db.py", line 2, in <module>
+    from sqlalchemy import create_engine
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\__init__.py", line 13, in <module>
+    from .engine import AdaptedConnection as AdaptedConnection
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\__init__.py", line 18, in <module>
+    from . import events as events
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\events.py", line 19, in <module>
+    from .base import Connection
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 28, in <module>
+    from .interfaces import BindTyping
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\interfaces.py", line 37, in <module>
+    from ..sql.compiler import Compiled as Compiled
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\__init__.py", line 14, in <module>
+    from .compiler import COLLECT_CARTESIAN_PRODUCTS as COLLECT_CARTESIAN_PRODUCTS
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 62, in <module>
+    from . import crud
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\crud.py", line 34, in <module>
+    from . import dml
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\dml.py", line 35, in <module>
+    from . import util as sql_util
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\util.py", line 34, in <module>
+    from . import operators
+  File "<frozen importlib._bootstrap>", line 471, in _lock_unlock_module
+  File "<frozen importlib._bootstrap>", line 311, in acquire
+  File "<frozen importlib._bootstrap>", line 170, in __enter__
+  File "<frozen importlib._bootstrap>", line 132, in setdefault
+MemoryError
+Process SpawnPoolWorker-14:
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 323, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\process.py", line 110, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 289, in __call__
+    self.after_fork()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 421, in after_fork
+    self.initializer(*self.initargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\concurrency\prefork.py", line 53, in process_initializer
+    app.loader.init_worker()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 110, in init_worker
+    self.import_default_modules()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 105, in import_default_modules
+    return [self.import_task_module(m) for m in self.default_modules]
+            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 85, in import_task_module
+    return self.import_from_cwd(module)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 91, in import_from_cwd
+    return import_from_cwd(
+        module,
+        self.import_module if imp is None else imp,
+        package=package,
+    )
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\utils\imports.py", line 109, in import_from_cwd
+    return imp(module, package=package)
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\celery\loaders\base.py", line 88, in import_module
+    return importlib.import_module(module, package=package)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Python313\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 7, in <module>
+    from .db import Base, engine
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\db.py", line 2, in <module>
+    from sqlalchemy import create_engine
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\__init__.py", line 13, in <module>
+    from .engine import AdaptedConnection as AdaptedConnection
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\__init__.py", line 18, in <module>
+    from . import events as events
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\events.py", line 19, in <module>
+    from .base import Connection
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\__init__.py", line 7, in <module>
+    from .db import Base, engine
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\backend\app\db.py", line 2, in <module>
+    from sqlalchemy import create_engine
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\__init__.py", line 13, in <module>
+    from .engine import AdaptedConnection as AdaptedConnection
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 28, in <module>
+    from .interfaces import BindTyping
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\interfaces.py", line 37, in <module>
+    from ..sql.compiler import Compiled as Compiled
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\__init__.py", line 14, in <module>
+    from .compiler import COLLECT_CARTESIAN_PRODUCTS as COLLECT_CARTESIAN_PRODUCTS
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 62, in <module>
+    from . import crud
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\__init__.py", line 18, in <module>
+    from . import events as events
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\crud.py", line 34, in <module>
+    from . import dml
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\dml.py", line 35, in <module>
+    from . import util as sql_util
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\util.py", line 34, in <module>
+    from . import operators
+  File "<frozen importlib._bootstrap>", line 471, in _lock_unlock_module
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\events.py", line 19, in <module>
+    from .base import Connection
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 28, in <module>
+    from .interfaces import BindTyping
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\engine\interfaces.py", line 37, in <module>
+    from ..sql.compiler import Compiled as Compiled
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\__init__.py", line 14, in <module>
+    from .compiler import COLLECT_CARTESIAN_PRODUCTS as COLLECT_CARTESIAN_PRODUCTS
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\compiler.py", line 62, in <module>
+    from . import crud
+  File "<frozen importlib._bootstrap>", line 311, in acquire
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\crud.py", line 34, in <module>
+    from . import dml
+  File "<frozen importlib._bootstrap>", line 170, in __enter__
+  File "<frozen importlib._bootstrap>", line 132, in setdefault
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\dml.py", line 35, in <module>
+    from . import util as sql_util
+MemoryError
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\sqlalchemy\sql\util.py", line 33, in <module>
+    from . import coercions
+  File "<frozen importlib._bootstrap>", line 471, in _lock_unlock_module
+  File "<frozen importlib._bootstrap>", line 311, in acquire
+  File "<frozen importlib._bootstrap>", line 170, in __enter__
+  File "<frozen importlib._bootstrap>", line 132, in setdefault
+MemoryError
+[2025-08-20 21:59:34,517: ERROR/SpawnPoolWorker-5] Pool process <billiard.pool.Worker object at 0x000001B1D503A120> error: PermissionError(13, 'Access is denied', None, 5, None)
 Traceback (most recent call last):
   File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
@@ -43,7 +2151,7 @@ Traceback (most recent call last):
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 3, in getvalue
 PermissionError: [WinError 5] Access is denied
-[2025-08-20 16:54:53,169: ERROR/SpawnPoolWorker-2] Pool process <billiard.pool.Worker object at 0x00000289E01AA120> error: PermissionError(13, 'Access is denied', None, 5, None)
+[2025-08-20 21:59:34,517: ERROR/SpawnPoolWorker-5] Pool process <billiard.pool.Worker object at 0x000001B1D503A120> error: PermissionError(13, 'Access is denied', None, 5, None)
 Traceback (most recent call last):
   File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
@@ -82,25 +2190,129 @@ Traceback (most recent call last):
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 3, in getvalue
 PermissionError: [WinError 5] Access is denied
-[2025-08-20 16:54:53,627: ERROR/MainProcess] Process 'SpawnPoolWorker-2' pid:36428 exited with 'exitcode 1'
-[2025-08-20 16:54:59,124: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
-Trying again in 6.00 seconds... (3/100)
+[2025-08-20 21:59:34,618: ERROR/SpawnPoolWorker-8] Pool process <billiard.pool.Worker object at 0x00000200CF48A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\connection.py", line 333, in _recv_bytes
+    ov, err = _winapi.ReadFile(
+              ~~~~~~~~~~~~~~~~^
+        self._handle, bsize, overlapped=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+BrokenPipeError: [WinError 109] The pipe has been ended
 
-[2025-08-20 16:55:09,217: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
-Trying again in 8.00 seconds... (4/100)
+During handling of the above exception, another exception occurred:
 
-[2025-08-20 16:55:21,286: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
-Trying again in 10.00 seconds... (5/100)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 395, in get_payload
+    return self._reader.recv_bytes()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\connection.py", line 240, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\connection.py", line 354, in _recv_bytes
+    raise EOFError
+EOFError
 
-[2025-08-20 16:55:35,359: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
-Trying again in 12.00 seconds... (6/100)
+During handling of the above exception, another exception occurred:
 
-[2025-08-20 16:55:51,417: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
-Trying again in 14.00 seconds... (7/100)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
 
-[2025-08-20 16:56:09,491: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
-Trying again in 16.00 seconds... (8/100)
+During handling of the above exception, another exception occurred:
 
-[2025-08-20 16:56:29,575: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
-Trying again in 18.00 seconds... (9/100)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
 
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-20 21:59:34,618: ERROR/SpawnPoolWorker-8] Pool process <billiard.pool.Worker object at 0x00000200CF48A120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\connection.py", line 333, in _recv_bytes
+    ov, err = _winapi.ReadFile(
+              ~~~~~~~~~~~~~~~~^
+        self._handle, bsize, overlapped=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+BrokenPipeError: [WinError 109] The pipe has been ended
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 395, in get_payload
+    return self._reader.recv_bytes()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\connection.py", line 240, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\connection.py", line 354, in _recv_bytes
+    raise EOFError
+EOFError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\itsup\Downloads\FrankTheLocalLLM-main\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
