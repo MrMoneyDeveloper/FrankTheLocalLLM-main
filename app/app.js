@@ -6,8 +6,10 @@ const apiBase = import.meta.env.VITE_API_BASE ?? 'http://localhost:8001/api'
 
 createApp({
   setup() {
-    const username = ref('')
-    const password = ref('')
+    // Default test credentials so the login form is pre-filled during demos.
+    // Replace or remove for production deployments.
+    const username = ref('testuser')
+    const password = ref('testpass')
     const success = ref(false)
 
     const { error, loading, fetchData } = useFetch(
