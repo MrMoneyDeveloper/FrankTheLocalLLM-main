@@ -5098,3 +5098,6 @@ Services are running. Choose how to view the UI:
 2) Run the Tauri desktop app
 Selection [1/2]: Opening browser...
 Press Ctrl+C to stop services.
+Stopping frontend, backend, celery (and user-session ollama if present)...
+/c/Users/itsup/Downloads/FrankTheLocalLLM-main/FrankTheLocalLLM-main/frank_down.sh: line 4: warning: command substitution: ignored null byte in input
+Error on line 1: sleep 1 (exit code 1)
