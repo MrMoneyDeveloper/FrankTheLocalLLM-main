@@ -72,12 +72,23 @@
       })
     }
 
-    fetch('/status').then(r => r.json()).then(d => {
-      document.getElementById('status').textContent = `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`;
-      setTimeout(() => document.getElementById('splash').style.display = 'none', 1000);
-    }).catch(() => {
-      document.getElementById('status').textContent = 'Starting...';
-    });
+    const apiBase = (import.meta.env.VITE_API_BASE ?? 'http://localhost:8001/api')
+      .replace(/\/api$/, '')
+
+    fetch(`${apiBase}/status`)
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('status').textContent =
+          `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`
+      })
+      .catch(() => {
+        document.getElementById('status').textContent = 'Starting...'
+      })
+      .finally(() =>
+        setTimeout(() =>
+          document.getElementById('splash').style.display = 'none',
+        1000)
+      )
 
     if ('serviceWorker' in navigator && import.meta.env.PROD) {
       window.addEventListener('load', () => {
