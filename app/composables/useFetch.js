@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 /**
- * Generic fetch composable with debouncing, JWT support and
+ * Generic fetch composable with debouncing and
  * exponential backoff retries.
  * @param {string} url - request URL
  * @param {object} options - fetch options
@@ -22,12 +22,6 @@ export function useFetch (url, options = {}, config = {}) {
 
     const opts = { ...options, ...override }
     opts.headers = { ...(options.headers || {}), ...(override.headers || {}) }
-
-    const token = localStorage.getItem('token')
-    if (token) {
-      opts.headers = opts.headers || {}
-      opts.headers.Authorization = `Bearer ${token}`
-    }
 
     let attempt = 0
     while (attempt <= retries) {

@@ -78,12 +78,8 @@ troubleshooting.
    found. Set the `PORT` environment variable to force a specific port or edit
    `backend/app/config.py`.
 
-    The login screen includes pre-filled test credentials:
-
-    - **Username:** `testuser`
-    - **Password:** `testpass`
-
-    These are intended for local development only; change them for production.
+    Once the backend is running, the client loads directly into the wiki
+    interface without requiring a login.
 
 You can modify `app/index.html` and `app/app.js` to tweak the UI or add new
 components.
