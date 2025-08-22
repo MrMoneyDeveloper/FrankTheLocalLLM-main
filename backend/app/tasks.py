@@ -48,6 +48,7 @@ def embed_chunk(chunk_id: int):
         if chunk is None:
             return
         embeddings = OllamaEmbeddings(model=settings.embed_model)
+
         persist_dir = Path(__file__).resolve().parents[1] / "data" / "chroma"
         vectorstore = Chroma(
             embedding_function=embeddings,
@@ -60,6 +61,7 @@ def embed_chunk(chunk_id: int):
         }
         vectorstore.add_texts([chunk.content], metadatas=[metadata], ids=[str(chunk.id)])
         vectorstore.persist()
+
     finally:
         db.close()
 

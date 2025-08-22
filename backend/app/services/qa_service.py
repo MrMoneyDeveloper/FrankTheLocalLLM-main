@@ -18,8 +18,10 @@ settings = Settings()
 
 def _chain():
     embeddings = OllamaEmbeddings(model=settings.embed_model)
+
     persist_dir = Path(__file__).resolve().parents[2] / "data" / "chroma"
     vs = Chroma(
+
         embedding_function=embeddings,
         persist_directory=str(persist_dir),
     )
