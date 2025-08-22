@@ -15,7 +15,7 @@ settings = Settings()
 
 
 def _chain():
-    embeddings = OllamaEmbeddings(model="nomic-embed-text")
+    embeddings = OllamaEmbeddings(model=settings.embed_model)
     vs = PGVector(
         connection_string=settings.database_url,
         embedding_function=embeddings,
