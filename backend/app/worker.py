@@ -8,8 +8,10 @@ from langchain_community.llms import Ollama
 
 from .db import SessionLocal
 from .models import User
+from .config import Settings
 
 celery_app = Celery("worker", broker="redis://localhost:6379/0")
+settings = Settings()
 
 _STATE_FILE = Path(__file__).resolve().parents[1] / "data" / "summary_state.json"
 _SUMMARY_FILE = Path(__file__).resolve().parents[1] / "data" / "user_summaries.json"
@@ -45,7 +47,7 @@ def summarize_new_users():
     if not users:
         return "No new users"
 
-    llm = Ollama(model="llama3")
+    llm = Ollama(model=settings.model)
     content = "\n".join(u.username for u in users)
     summary = llm.invoke(f"Summarize the following new users:\n{content}")
 

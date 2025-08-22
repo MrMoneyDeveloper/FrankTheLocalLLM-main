@@ -24,7 +24,7 @@ celery_app.conf.beat_schedule = {
 }
 
 
-summarization_service = SummarizationService(OllamaLLM())
+summarization_service = SummarizationService(OllamaLLM(settings.model))
 
 
 @celery_app.task
@@ -44,7 +44,7 @@ def embed_chunk(chunk_id: int):
         chunk = db.query(models.Chunk).get(chunk_id)
         if chunk is None:
             return
-        embeddings = OllamaEmbeddings(model="nomic-embed-text")
+        embeddings = OllamaEmbeddings(model=settings.embed_model)
         vector = embeddings.embed_query(chunk.content)
         emb = models.Embedding(chunk_id=chunk.id, vector=vector)
         db.add(emb)
