@@ -6,8 +6,11 @@ from .config import Settings
 from .db import SessionLocal
 from .llm import OllamaLLM
 from .services.summarization_service import SummarizationService
+from pathlib import Path
+
 from . import models
 from langchain_community.embeddings import OllamaEmbeddings
+from langchain_community.vectorstores import Chroma
 
 settings = Settings()
 
@@ -24,7 +27,7 @@ celery_app.conf.beat_schedule = {
 }
 
 
-summarization_service = SummarizationService(OllamaLLM())
+summarization_service = SummarizationService(OllamaLLM(settings.model))
 
 
 @celery_app.task
@@ -44,11 +47,19 @@ def embed_chunk(chunk_id: int):
         chunk = db.query(models.Chunk).get(chunk_id)
         if chunk is None:
             return
-        embeddings = OllamaEmbeddings(model="nomic-embed-text")
-        vector = embeddings.embed_query(chunk.content)
-        emb = models.Embedding(chunk_id=chunk.id, vector=vector)
-        db.add(emb)
-        db.commit()
+        embeddings = OllamaEmbeddings(model=settings.embed_model)
+        persist_dir = Path(__file__).resolve().parents[1] / "data" / "chroma"
+        vectorstore = Chroma(
+            embedding_function=embeddings,
+            persist_directory=str(persist_dir),
+        )
+        metadata = {
+            "chunk_id": chunk.id,
+            "source_path": chunk.file.path if chunk.file else "",
+            "line": chunk.start_line,
+        }
+        vectorstore.add_texts([chunk.content], metadatas=[metadata], ids=[str(chunk.id)])
+        vectorstore.persist()
     finally:
         db.close()
 

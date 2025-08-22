@@ -6,17 +6,19 @@ from langchain_community.llms import Ollama
 from langchain_experimental.sql import SQLDatabaseChain
 
 from ..db import engine
+from ..config import Settings
 
 router = APIRouter(tags=["agent"], prefix="/agent")
 
 _AGENT = None
 _CHAIN = None
+settings = Settings()
 
 def get_agent():
     global _AGENT
     if _AGENT is None:
         db = SQLDatabase(engine)
-        llm = Ollama(model="llama3")
+        llm = Ollama(model=settings.model)
         _AGENT = create_sql_agent(llm=llm, db=db, agent_type="openai-tools")
     return _AGENT
 
@@ -25,7 +27,7 @@ def get_chain():
     global _CHAIN
     if _CHAIN is None:
         db = SQLDatabase(engine)
-        llm = Ollama(model="llama3")
+        llm = Ollama(model=settings.model)
         _CHAIN = SQLDatabaseChain.from_llm(llm, db, return_intermediate_steps=True)
     return _CHAIN
 

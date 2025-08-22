@@ -2,7 +2,6 @@
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
-from pgvector.sqlalchemy import Vector
 
 
 from .db import Base
@@ -45,15 +44,6 @@ class Chunk(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     file = relationship("File")
-
-
-class Embedding(Base):
-    __tablename__ = "embeddings"
-
-    id = Column(Integer, primary_key=True)
-    chunk_id = Column(Integer, ForeignKey("chunks.id"))
-    vector = Column(Vector(1536))
-    chunk = relationship("Chunk")
 
 
 class DailySummary(Base):

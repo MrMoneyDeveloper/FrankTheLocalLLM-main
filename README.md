@@ -29,7 +29,7 @@ You can also manage the stack manually:
 - LangChain integration with a local Ollama model
 - Background tasks using Celery and Redis
 - Example .NET console service with SQLite and Dapper
-- Docker Compose stack including Postgres with pgvector
+- File-based Chroma vector store for embeddings
 - Devcontainer configuration for offline development
 
 Or clone and launch everything in one step:
@@ -45,7 +45,7 @@ errors from the bring‑up process are written to `logs/run_all.log` for
 troubleshooting.
 
 1. The Vue front‑end sends requests to the FastAPI backend under `/api`.
-2. Notes are chunked and embedded into Postgres using pgvector.
+2. Notes are chunked and embedded into a Chroma vector store.
 3. Retrieval endpoints stream answers from the vector store via LangChain.
 4. Background workers summarize entries and maintain backlinks.
 5. The optional .NET console app demonstrates additional data access patterns.
@@ -92,8 +92,8 @@ Run the full stack in one shot using Docker Compose and the provided Makefile:
 make dev
 ```
 
-This launches Postgres with pgvector, Redis, the FastAPI API plus Celery worker,
-an Ollama instance and the Vue front-end. The `dev` target runs database
+This launches Postgres, Redis, the FastAPI API plus Celery worker,
+an Ollama instance, the Vue front-end and persists a Chroma index. The `dev` target runs database
 migrations, seeds a sample Markdown note and opens the UI in your browser.
 
 
@@ -132,7 +132,7 @@ example `llama3`) available.
 ### Retrieval QA
 
 The `/api/qa/stream` endpoint streams answers from a LangChain RetrievalQA chain
-backed by pgvector. Results include markdown formatted citations linking to the
+backed by a Chroma index. Results include markdown formatted citations linking to the
 original note.
 
 
@@ -210,8 +210,7 @@ wiki-style backlinks between notes.
 
 Upload a ZIP archive to `/api/import` containing Markdown or PDF files. The
 server extracts each document, splits it by headings, de-duplicates chunks and
-queues embedding jobs in Celery. Vectors are stored in Postgres using the
-pgvector extension.
+queues embedding jobs in Celery. Vectors are stored in a local Chroma index.
 
 
 

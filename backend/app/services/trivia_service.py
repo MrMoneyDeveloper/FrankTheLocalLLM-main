@@ -7,22 +7,24 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.llms import Ollama
+from ..config import Settings
 
 from . import CachedLLMService
 
 router = APIRouter()
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "trivia.md"
+settings = Settings()
 
 
 class TriviaService(CachedLLMService):
     def __init__(self):
-        super().__init__(Ollama())
+        super().__init__(Ollama(model=settings.model))
         loader = UnstructuredMarkdownLoader(str(DATA_FILE))
         docs = loader.load()
         splitter = RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=50)
         splits = splitter.split_documents(docs)
-        embeddings = OllamaEmbeddings(model="nomic-embed-text")
+        embeddings = OllamaEmbeddings(model=settings.embed_model)
         vectorstore = Chroma.from_documents(splits, embeddings)
         self._chain = RetrievalQA.from_chain_type(llm=self._llm, retriever=vectorstore.as_retriever())
 
