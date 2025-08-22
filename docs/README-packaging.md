@@ -39,4 +39,4 @@ For a containerized deployment you can use the provided `docker-compose.yml`. Bu
 docker compose up --build
 ```
 
-This launches Postgres with pgvector, Redis, the FastAPI API, Celery worker, Ollama and the Vue frontend.
+This launches Postgres, Redis, the FastAPI API, Celery worker, Ollama and the Vue frontend while persisting a Chroma index.

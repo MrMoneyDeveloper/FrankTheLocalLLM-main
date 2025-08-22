@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Body
 from sse_starlette.sse import EventSourceResponse
-from langchain_community.vectorstores import PGVector
+from pathlib import Path
+
+from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
@@ -16,10 +18,12 @@ settings = Settings()
 
 def _chain():
     embeddings = OllamaEmbeddings(model=settings.embed_model)
-    vs = PGVector(
-        connection_string=settings.database_url,
+
+    persist_dir = Path(__file__).resolve().parents[2] / "data" / "chroma"
+    vs = Chroma(
+
         embedding_function=embeddings,
-        collection_name="embeddings",
+        persist_directory=str(persist_dir),
     )
     retriever = vs.as_retriever(search_kwargs={"k": settings.retrieval_k})
     template = (

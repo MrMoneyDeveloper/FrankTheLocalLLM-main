@@ -17,7 +17,6 @@ celery
 redis
 pytest-benchmark
 psycopg2-binary
-pgvector
 sse-starlette
 PyPDF2
 python-multipart
