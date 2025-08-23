@@ -87,6 +87,8 @@ $activate = [IO.Path]::Combine($Root,'.venv','Scripts','Activate.ps1')
 python -m pip install --upgrade pip
 python -m pip install -r backend/requirements.txt
 
+$celeryExe = Join-Path $Root '.venv' 'Scripts' 'celery.exe'
+
 $envPath = Join-Path $Root '.env'
 if (-not (Test-Path $envPath)) {
 @'
@@ -124,18 +126,22 @@ for ($i=0; $i -lt 30; $i++) {
   }
 }
 
-$celery = Start-LoggedProcess -Name 'celery_worker' -FilePath 'celery' -ArgumentList @('-A','backend.app.tasks','worker')
-if ($celery) {
-  $celery.Id | Out-File (Join-Path $LogDir 'celery_worker.pid')
-} else {
-  Write-Error 'Failed to start Celery worker'
-}
+if (Test-Path $celeryExe) {
+  $celery = Start-LoggedProcess -Name 'celery_worker' -FilePath $celeryExe -ArgumentList @('-A','backend.app.tasks','worker')
+  if ($celery) {
+    $celery.Id | Out-File (Join-Path $LogDir 'celery_worker.pid')
+  } else {
+    Write-Error 'Failed to start Celery worker'
+  }
 
-$celeryBeat = Start-LoggedProcess -Name 'celery_beat' -FilePath 'celery' -ArgumentList @('-A','backend.app.tasks','beat')
-if ($celeryBeat) {
-  $celeryBeat.Id | Out-File (Join-Path $LogDir 'celery_beat.pid')
+  $celeryBeat = Start-LoggedProcess -Name 'celery_beat' -FilePath $celeryExe -ArgumentList @('-A','backend.app.tasks','beat')
+  if ($celeryBeat) {
+    $celeryBeat.Id | Out-File (Join-Path $LogDir 'celery_beat.pid')
+  } else {
+    Write-Error 'Failed to start Celery beat'
+  }
 } else {
-  Write-Error 'Failed to start Celery beat'
+  Write-Error 'Celery executable not found in virtual environment'
 }
 
 # .NET console app

@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
     database_url: str = "sqlite:///./app.db"
     model: str = "llama3"
+    model_backend: str = "ollama"
     embed_model: str = "nomic-embed-text"
     retrieval_k: int = 8
     chunk_size: int = 512

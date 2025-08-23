@@ -4,11 +4,11 @@ import datetime
 
 from .config import Settings
 from .db import SessionLocal
-from .llm import OllamaLLM
-from .services.summarization_service import SummarizationService
 from pathlib import Path
 
 from . import models
+from .llm import get_llm
+from .services.summarization_service import SummarizationService
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
 
@@ -27,7 +27,7 @@ celery_app.conf.beat_schedule = {
 }
 
 
-summarization_service = SummarizationService(OllamaLLM(settings.model))
+summarization_service = SummarizationService(get_llm(settings.model, settings.model_backend))
 
 
 @celery_app.task
@@ -44,6 +44,9 @@ def summarize_entries():
 def embed_chunk(chunk_id: int):
     db = SessionLocal()
     try:
+        if settings.model_backend != "ollama":
+            return
+
         chunk = db.query(models.Chunk).get(chunk_id)
         if chunk is None:
             return
