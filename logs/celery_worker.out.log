@@ -1,0 +1,16 @@
+ 
+ -------------- celery@ItSupportPc v5.5.3 (immunity)
+--- ***** ----- 
+-- ******* ---- Windows-10-10.0.19045-SP0 2025-08-23 21:29:19
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         worker:0x19f272a3b60
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 12 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
