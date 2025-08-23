@@ -39,6 +39,26 @@ function Free-Port($port) {
   }
 }
 
+# Helper to launch a process with separate stdout/stderr logs
+function Start-LoggedProcess {
+  param(
+    [string]$Name,
+    [string]$FilePath,
+    [string[]]$ArgumentList,
+    [string]$WorkingDirectory
+  )
+
+  $out = Join-Path $LogDir ("{0}.out.log" -f $Name)
+  $err = Join-Path $LogDir ("{0}.err.log" -f $Name)
+  Remove-Item $out, $err -ErrorAction SilentlyContinue
+
+  $startInfo = @{ FilePath = $FilePath; RedirectStandardOutput = $out; RedirectStandardError = $err; PassThru = $true }
+  if ($ArgumentList) { $startInfo.ArgumentList = $ArgumentList }
+  if ($WorkingDirectory) { $startInfo.WorkingDirectory = $WorkingDirectory }
+
+  return Start-Process @startInfo
+}
+
 Install-IfMissing git 'Git.Git' 'git'
 Install-IfMissing python 'Python.Python.3' 'python'
 Install-IfMissing node 'OpenJS.NodeJS.LTS' 'nodejs'
@@ -49,10 +69,7 @@ Install-IfMissing dotnet 'Microsoft.DotNet.SDK.8' 'dotnet-sdk'
 if (Get-Service redis -ErrorAction SilentlyContinue) {
   Start-Service redis
 } elseif (Need-Cmd 'redis-server') {
-    $redisOut = Join-Path $LogDir 'redis.out.log'
-    $redisErr = Join-Path $LogDir 'redis.err.log'
-    Remove-Item $redisOut, $redisErr -ErrorAction SilentlyContinue
-    Start-Process redis-server -RedirectStandardOutput $redisOut -RedirectStandardError $redisErr
+    Start-LoggedProcess -Name 'redis' -FilePath 'redis-server' | Out-Null
 
 }
 
@@ -60,10 +77,7 @@ if (Get-Service ollama -ErrorAction SilentlyContinue) {
   Start-Service ollama
 } elseif (Need-Cmd 'ollama') {
   Free-Port 11434
-    $ollamaOut = Join-Path $LogDir 'ollama.out.log'
-    $ollamaErr = Join-Path $LogDir 'ollama.err.log'
-    Remove-Item $ollamaOut, $ollamaErr -ErrorAction SilentlyContinue
-    Start-Process ollama -ArgumentList 'serve' -RedirectStandardOutput $ollamaOut -RedirectStandardError $ollamaErr
+    Start-LoggedProcess -Name 'ollama' -FilePath 'ollama' -ArgumentList 'serve' | Out-Null
 
 }
 
@@ -94,10 +108,7 @@ Free-Port 8000
 Free-Port $backendPort
 
 
-$backendOut = Join-Path $LogDir 'backend.out.log'
-$backendErr = Join-Path $LogDir 'backend.err.log'
-Remove-Item $backendOut, $backendErr -ErrorAction SilentlyContinue
-$backend = Start-Process python -ArgumentList @('-m','backend.app.main') -RedirectStandardOutput $backendOut -RedirectStandardError $backendErr -PassThru
+$backend = Start-LoggedProcess -Name 'backend' -FilePath 'python' -ArgumentList @('-m','backend.app.main')
 if ($backend) {
   $backend.Id | Out-File (Join-Path $LogDir 'backend.pid')
 } else {
@@ -113,20 +124,14 @@ for ($i=0; $i -lt 30; $i++) {
   }
 }
 
-$celeryWOut = Join-Path $LogDir 'celery_worker.out.log'
-$celeryWErr = Join-Path $LogDir 'celery_worker.err.log'
-Remove-Item $celeryWOut, $celeryWErr -ErrorAction SilentlyContinue
-$celeryWorker = Start-Process celery -ArgumentList @('-A','backend.app.tasks','worker') -RedirectStandardOutput $celeryWOut -RedirectStandardError $celeryWErr -PassThru
-if ($celeryWorker) {
-  $celeryWorker.Id | Out-File (Join-Path $LogDir 'celery_worker.pid')
+$celery = Start-LoggedProcess -Name 'celery_worker' -FilePath 'celery' -ArgumentList @('-A','backend.app.tasks','worker')
+if ($celery) {
+  $celery.Id | Out-File (Join-Path $LogDir 'celery_worker.pid')
 } else {
   Write-Error 'Failed to start Celery worker'
 }
 
-$celeryBOut = Join-Path $LogDir 'celery_beat.out.log'
-$celeryBErr = Join-Path $LogDir 'celery_beat.err.log'
-Remove-Item $celeryBOut, $celeryBErr -ErrorAction SilentlyContinue
-$celeryBeat = Start-Process celery -ArgumentList @('-A','backend.app.tasks','beat') -RedirectStandardOutput $celeryBOut -RedirectStandardError $celeryBErr -PassThru
+$celeryBeat = Start-LoggedProcess -Name 'celery_beat' -FilePath 'celery' -ArgumentList @('-A','backend.app.tasks','beat')
 if ($celeryBeat) {
   $celeryBeat.Id | Out-File (Join-Path $LogDir 'celery_beat.pid')
 } else {
@@ -134,10 +139,7 @@ if ($celeryBeat) {
 }
 
 # .NET console app
-$dotnetOut = Join-Path $LogDir 'dotnet.out.log'
-$dotnetErr = Join-Path $LogDir 'dotnet.err.log'
-Remove-Item $dotnetOut, $dotnetErr -ErrorAction SilentlyContinue
-$dotnet = Start-Process dotnet -ArgumentList @('run','--project','src/ConsoleApp/ConsoleApp.csproj') -RedirectStandardOutput $dotnetOut -RedirectStandardError $dotnetErr -PassThru
+$dotnet = Start-LoggedProcess -Name 'dotnet' -FilePath 'dotnet' -ArgumentList @('run','--project','src/ConsoleApp/ConsoleApp.csproj')
 if ($dotnet) {
   $dotnet.Id | Out-File (Join-Path $LogDir 'dotnet.pid')
 } else {
@@ -146,10 +148,7 @@ if ($dotnet) {
 
 # Frontend (ESBuild dev server)
 npm --prefix $frontDir install | Out-Null
-$frontOut = Join-Path $LogDir 'frontend.out.log'
-$frontErr = Join-Path $LogDir 'frontend.err.log'
-Remove-Item $frontOut, $frontErr -ErrorAction SilentlyContinue
-$frontend = Start-Process node -WorkingDirectory $frontDir -ArgumentList @('esbuild.config.js','--serve') -RedirectStandardOutput $frontOut -RedirectStandardError $frontErr -PassThru
+$frontend = Start-LoggedProcess -Name 'frontend' -FilePath 'node' -ArgumentList @('esbuild.config.js','--serve') -WorkingDirectory $frontDir
 if ($frontend) {
   $frontend.Id | Out-File (Join-Path $LogDir 'frontend.pid')
 } else {
