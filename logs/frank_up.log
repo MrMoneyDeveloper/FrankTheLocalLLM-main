@@ -2151,3 +2151,79 @@ Frontend URL  : http://localhost:5173
 Windows PowerShell transcript end
 End time: 20250823212916
 **********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250823220120
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM-main/frank_up.ps1
+Process ID: 10800
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM-main\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/23 22:01:20 ===
+
+Killing processes on port 11434: 6240
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 8372
+No process running on port 8000
+Killing processes on port 8001: 1708
+No process running on port 8001
+The property 'Statement' cannot be found on this object. Verify that the property exists.
+At C:\Program Files\nodejs\npm.ps1:30 char:7
++   if ($MyInvocation.Statement) {
++       ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+The property 'Statement' cannot be found on this object. Verify that the property exists.
+At C:\Program Files\nodejs\npm.ps1:30 char:7
++   if ($MyInvocation.Statement) {
++       ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], PropertyNotFoundException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+
+The property 'PipelineElements' cannot be found on this object. Verify that the property exists.
+At C:\Program Files\nodejs\npm.ps1:41 char:3
++   $NPM_NO_REDIRECTS_COMMAND = [Management.Automation.Language.Parser] ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+The property 'PipelineElements' cannot be found on this object. Verify that the property exists.
+At C:\Program Files\nodejs\npm.ps1:41 char:3
++   $NPM_NO_REDIRECTS_COMMAND = [Management.Automation.Language.Parser] ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : PropertyNotFoundStrict
+
+You cannot call a method on a null-valued expression.
+At C:\Program Files\nodejs\npm.ps1:43 char:3
++   $NPM_ARGS = $NPM_NO_REDIRECTS_COMMAND.Substring($MyInvocation.Invoc ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+You cannot call a method on a null-valued expression.
+At C:\Program Files\nodejs\npm.ps1:43 char:3
++   $NPM_ARGS = $NPM_NO_REDIRECTS_COMMAND.Substring($MyInvocation.Invoc ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250823220132
+**********************
