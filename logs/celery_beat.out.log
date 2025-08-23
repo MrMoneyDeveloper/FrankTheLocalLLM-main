@@ -1,0 +1,10 @@
+celery beat v5.5.3 (immunity) is starting.
+__    -    ... __   -        _
+LocalTime -> 2025-08-23 21:29:19
+Configuration ->
+    . broker -> redis://localhost:6379/0
+    . loader -> celery.loaders.app.AppLoader
+    . scheduler -> celery.beat.PersistentScheduler
+    . db -> celerybeat-schedule
+    . logfile -> [stderr]@%WARNING
+    . maxinterval -> 5.00 minutes (300s)
