@@ -6732,3 +6732,217 @@ Press Ctrl+C to stop services.
 Stopping frontend, backend, celery (and user-session ollama if present)...
 /c/Workspace/FrankTheLocalLLM-main/frank_down.sh: line 4: warning: command substitution: ignored null byte in input
 Error on line 1: sleep 1 (exit code 1)
+=== run_all.sh started at Sat, Aug 23, 2025 11:37:14 AM ===
+--- Running frank_up.ps1 ---
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM-main\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/23 11:37:15 ===
+   -    \    |    /    -                                                                                                                           █████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  1024 KB / 2.16 MB  ███████████████████████████▒▒▒  2.00 MB / 2.16 MB  ██████████████████████████████  2.16 MB / 2.16 MB                                                                                                                          ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  0%  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  0%  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  1%  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  2%  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  3%  █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  4%  █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  5%  █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  6%  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  7%  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  8%  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  9%  ███▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  10%  ███▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  11%  ███▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  12%  ███▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  13%  ████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  14%  ████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  16%  █████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  17%  █████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  18%  █████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  19%  ██████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  20%  ██████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  21%  ██████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  22%  ██████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  23%  ███████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  25%  ███████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  26%  ████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  27%  ████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  28%  █████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  30%  █████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  31%  █████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  32%  █████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  33%  ██████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  34%  ██████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  35%  ██████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  36%  ███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  37%  ███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  38%  ███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  39%  ████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  40%  ████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  41%  ████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  42%  ████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  43%  █████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  44%  █████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  45%  █████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  46%  ██████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  47%  ██████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  48%  ██████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  49%  ███████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  50%  ███████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  51%  ███████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  52%  ███████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒  53%  ████████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒  54%  ████████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒  55%  ████████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒  56%  ██████████████████▒▒▒▒▒▒▒▒▒▒▒▒  63%  ███████████████████▒▒▒▒▒▒▒▒▒▒▒  66%  ███████████████████████▒▒▒▒▒▒▒  79%  █████████████████████████████▒  99%  █████████████████████████████▒  99%  ██████████████████████████████  100%                                                                                                                           -    \                                                                                                                         No package found matching input criteria.
+Killing processes on port 11434: 20112
+No process running on port 11434
+Unable to copy 'C:\\Python313\\Lib\\venv\\scripts\\nt\\venvlauncher.exe' to 'C:\\Workspace\\FrankTheLocalLLM-main\\.venv\\Scripts\\python.exe'
+Requirement already satisfied: pip in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (25.2)
+Requirement already satisfied: fastapi in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 1)) (0.116.1)
+Requirement already satisfied: uvicorn in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 2)) (0.35.0)
+Requirement already satisfied: pydantic in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 3)) (2.11.7)
+Requirement already satisfied: pydantic-settings in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 4)) (2.10.1)
+Requirement already satisfied: langchain==0.3.27 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 5)) (0.3.27)
+Requirement already satisfied: langchain-community==0.3.27 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 6)) (0.3.27)
+Requirement already satisfied: langchain-ollama in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 7)) (0.3.6)
+Requirement already satisfied: chromadb in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 8)) (1.0.20)
+Requirement already satisfied: ollama in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 9)) (0.5.3)
+Requirement already satisfied: unstructured in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 10)) (0.18.13)
+Requirement already satisfied: markdown in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 11)) (3.8.2)
+Requirement already satisfied: sqlalchemy in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 12)) (2.0.43)
+Requirement already satisfied: langchain-experimental in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 15)) (0.3.4)
+Requirement already satisfied: celery in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 16)) (5.5.3)
+Requirement already satisfied: redis in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 17)) (6.4.0)
+Requirement already satisfied: pytest-benchmark in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 18)) (5.1.0)
+Requirement already satisfied: psycopg2-binary in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 19)) (2.9.10)
+Requirement already satisfied: sse-starlette in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 20)) (3.0.2)
+Requirement already satisfied: PyPDF2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 21)) (3.0.1)
+Requirement already satisfied: python-multipart in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 22)) (0.0.20)
+Requirement already satisfied: passlib[bcrypt] in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 13)) (1.7.4)
+Requirement already satisfied: python-jose[cryptography] in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from -r backend/requirements.txt (line 14)) (3.5.0)
+Requirement already satisfied: langchain-core<1.0.0,>=0.3.72 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain==0.3.27->-r backend/requirements.txt (line 5)) (0.3.74)
+Requirement already satisfied: langchain-text-splitters<1.0.0,>=0.3.9 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain==0.3.27->-r backend/requirements.txt (line 5)) (0.3.9)
+Requirement already satisfied: langsmith>=0.1.17 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain==0.3.27->-r backend/requirements.txt (line 5)) (0.4.15)
+Requirement already satisfied: requests<3,>=2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain==0.3.27->-r backend/requirements.txt (line 5)) (2.32.5)
+Requirement already satisfied: PyYAML>=5.3 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain==0.3.27->-r backend/requirements.txt (line 5)) (6.0.2)
+Requirement already satisfied: aiohttp<4.0.0,>=3.8.3 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (3.12.15)
+Requirement already satisfied: tenacity!=8.4.0,<10,>=8.1.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (9.1.2)
+Requirement already satisfied: dataclasses-json<0.7,>=0.5.7 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (0.6.7)
+Requirement already satisfied: httpx-sse<1.0.0,>=0.4.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (0.4.1)
+Requirement already satisfied: numpy>=2.1.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (2.3.2)
+Requirement already satisfied: annotated-types>=0.6.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pydantic->-r backend/requirements.txt (line 3)) (0.7.0)
+Requirement already satisfied: pydantic-core==2.33.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pydantic->-r backend/requirements.txt (line 3)) (2.33.2)
+Requirement already satisfied: typing-extensions>=4.12.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pydantic->-r backend/requirements.txt (line 3)) (4.14.1)
+Requirement already satisfied: typing-inspection>=0.4.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pydantic->-r backend/requirements.txt (line 3)) (0.4.1)
+Requirement already satisfied: python-dotenv>=0.21.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pydantic-settings->-r backend/requirements.txt (line 4)) (1.1.1)
+Requirement already satisfied: greenlet>=1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from sqlalchemy->-r backend/requirements.txt (line 12)) (3.2.4)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (2.6.1)
+Requirement already satisfied: aiosignal>=1.4.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (1.4.0)
+Requirement already satisfied: attrs>=17.3.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (25.3.0)
+Requirement already satisfied: frozenlist>=1.1.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (1.7.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (6.6.4)
+Requirement already satisfied: propcache>=0.2.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (0.3.2)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (1.20.1)
+Requirement already satisfied: marshmallow<4.0.0,>=3.18.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from dataclasses-json<0.7,>=0.5.7->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (3.26.1)
+Requirement already satisfied: typing-inspect<1,>=0.4.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from dataclasses-json<0.7,>=0.5.7->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (0.9.0)
+Requirement already satisfied: jsonpatch<2.0,>=1.33 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain-core<1.0.0,>=0.3.72->langchain==0.3.27->-r backend/requirements.txt (line 5)) (1.33)
+Requirement already satisfied: packaging>=23.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langchain-core<1.0.0,>=0.3.72->langchain==0.3.27->-r backend/requirements.txt (line 5)) (25.0)
+Requirement already satisfied: jsonpointer>=1.9 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from jsonpatch<2.0,>=1.33->langchain-core<1.0.0,>=0.3.72->langchain==0.3.27->-r backend/requirements.txt (line 5)) (3.0.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from requests<3,>=2->langchain==0.3.27->-r backend/requirements.txt (line 5)) (3.4.3)
+Requirement already satisfied: idna<4,>=2.5 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from requests<3,>=2->langchain==0.3.27->-r backend/requirements.txt (line 5)) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from requests<3,>=2->langchain==0.3.27->-r backend/requirements.txt (line 5)) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from requests<3,>=2->langchain==0.3.27->-r backend/requirements.txt (line 5)) (2025.8.3)
+Requirement already satisfied: mypy-extensions>=0.3.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from typing-inspect<1,>=0.4.0->dataclasses-json<0.7,>=0.5.7->langchain-community==0.3.27->-r backend/requirements.txt (line 6)) (1.1.0)
+Requirement already satisfied: starlette<0.48.0,>=0.40.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from fastapi->-r backend/requirements.txt (line 1)) (0.47.2)
+Requirement already satisfied: anyio<5,>=3.6.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from starlette<0.48.0,>=0.40.0->fastapi->-r backend/requirements.txt (line 1)) (4.10.0)
+Requirement already satisfied: sniffio>=1.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from anyio<5,>=3.6.2->starlette<0.48.0,>=0.40.0->fastapi->-r backend/requirements.txt (line 1)) (1.3.1)
+Requirement already satisfied: click>=7.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from uvicorn->-r backend/requirements.txt (line 2)) (8.2.1)
+Requirement already satisfied: h11>=0.8 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from uvicorn->-r backend/requirements.txt (line 2)) (0.16.0)
+Requirement already satisfied: httpx>=0.27 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from ollama->-r backend/requirements.txt (line 9)) (0.28.1)
+Requirement already satisfied: build>=1.0.3 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (1.3.0)
+Requirement already satisfied: pybase64>=1.4.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (1.4.2)
+Requirement already satisfied: posthog<6.0.0,>=2.4.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (5.4.0)
+Requirement already satisfied: onnxruntime>=1.14.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (1.22.1)
+Requirement already satisfied: opentelemetry-api>=1.2.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (1.36.0)
+Requirement already satisfied: opentelemetry-exporter-otlp-proto-grpc>=1.2.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (1.36.0)
+Requirement already satisfied: opentelemetry-sdk>=1.2.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (1.36.0)
+Requirement already satisfied: tokenizers>=0.13.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (0.21.4)
+Requirement already satisfied: pypika>=0.48.9 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (0.48.9)
+Requirement already satisfied: tqdm>=4.65.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (4.67.1)
+Requirement already satisfied: overrides>=7.3.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (7.7.0)
+Requirement already satisfied: importlib-resources in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (6.5.2)
+Requirement already satisfied: grpcio>=1.58.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (1.74.0)
+Requirement already satisfied: bcrypt>=4.0.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (4.3.0)
+Requirement already satisfied: typer>=0.9.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (0.16.1)
+Requirement already satisfied: kubernetes>=28.1.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (33.1.0)
+Requirement already satisfied: mmh3>=4.0.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (5.2.0)
+Requirement already satisfied: orjson>=3.9.12 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (3.11.2)
+Requirement already satisfied: rich>=10.11.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (14.1.0)
+Requirement already satisfied: jsonschema>=4.19.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from chromadb->-r backend/requirements.txt (line 8)) (4.25.1)
+Requirement already satisfied: six>=1.5 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from posthog<6.0.0,>=2.4.0->chromadb->-r backend/requirements.txt (line 8)) (1.17.0)
+Requirement already satisfied: python-dateutil>=2.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from posthog<6.0.0,>=2.4.0->chromadb->-r backend/requirements.txt (line 8)) (2.9.0.post0)
+Requirement already satisfied: backoff>=1.10.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from posthog<6.0.0,>=2.4.0->chromadb->-r backend/requirements.txt (line 8)) (2.2.1)
+Requirement already satisfied: distro>=1.5.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from posthog<6.0.0,>=2.4.0->chromadb->-r backend/requirements.txt (line 8)) (1.9.0)
+Requirement already satisfied: filetype in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (1.2.0)
+Requirement already satisfied: python-magic in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (0.4.27)
+Requirement already satisfied: lxml in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: nltk in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (3.9.1)
+Requirement already satisfied: beautifulsoup4 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (4.13.4)
+Requirement already satisfied: emoji in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (2.14.1)
+Requirement already satisfied: python-iso639 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (2025.2.18)
+Requirement already satisfied: langdetect in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (1.0.9)
+Requirement already satisfied: rapidfuzz in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (3.13.0)
+Requirement already satisfied: unstructured-client in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (0.42.3)
+Requirement already satisfied: wrapt in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (1.17.3)
+Requirement already satisfied: psutil in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (7.0.0)
+Requirement already satisfied: python-oxmsg in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (0.0.2)
+Requirement already satisfied: html5lib in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured->-r backend/requirements.txt (line 10)) (1.1)
+Requirement already satisfied: ecdsa!=0.15 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from python-jose[cryptography]->-r backend/requirements.txt (line 14)) (0.19.1)
+Requirement already satisfied: rsa!=4.1.1,!=4.4,<5.0,>=4.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from python-jose[cryptography]->-r backend/requirements.txt (line 14)) (4.9.1)
+Requirement already satisfied: pyasn1>=0.5.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from python-jose[cryptography]->-r backend/requirements.txt (line 14)) (0.6.1)
+Requirement already satisfied: cryptography>=3.4.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from python-jose[cryptography]->-r backend/requirements.txt (line 14)) (45.0.6)
+Requirement already satisfied: billiard<5.0,>=4.2.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from celery->-r backend/requirements.txt (line 16)) (4.2.1)
+Requirement already satisfied: kombu<5.6,>=5.5.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from celery->-r backend/requirements.txt (line 16)) (5.5.4)
+Requirement already satisfied: vine<6.0,>=5.1.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from celery->-r backend/requirements.txt (line 16)) (5.1.0)
+Requirement already satisfied: click-didyoumean>=0.3.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from celery->-r backend/requirements.txt (line 16)) (0.3.1)
+Requirement already satisfied: click-repl>=0.2.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from celery->-r backend/requirements.txt (line 16)) (0.3.0)
+Requirement already satisfied: click-plugins>=1.1.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from celery->-r backend/requirements.txt (line 16)) (1.1.1.2)
+Requirement already satisfied: colorama in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from click>=7.0->uvicorn->-r backend/requirements.txt (line 2)) (0.4.6)
+Requirement already satisfied: amqp<6.0.0,>=5.1.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from kombu<5.6,>=5.5.2->celery->-r backend/requirements.txt (line 16)) (5.3.1)
+Requirement already satisfied: tzdata>=2025.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from kombu<5.6,>=5.5.2->celery->-r backend/requirements.txt (line 16)) (2025.2)
+Requirement already satisfied: pytest>=8.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pytest-benchmark->-r backend/requirements.txt (line 18)) (8.4.1)
+Requirement already satisfied: py-cpuinfo in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pytest-benchmark->-r backend/requirements.txt (line 18)) (9.0.0)
+Requirement already satisfied: pyproject_hooks in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from build>=1.0.3->chromadb->-r backend/requirements.txt (line 8)) (1.2.0)
+Requirement already satisfied: prompt-toolkit>=3.0.36 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from click-repl>=0.2.0->celery->-r backend/requirements.txt (line 16)) (3.0.51)
+Requirement already satisfied: cffi>=1.14 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from cryptography>=3.4.0->python-jose[cryptography]->-r backend/requirements.txt (line 14)) (1.17.1)
+Requirement already satisfied: pycparser in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from cffi>=1.14->cryptography>=3.4.0->python-jose[cryptography]->-r backend/requirements.txt (line 14)) (2.22)
+Requirement already satisfied: httpcore==1.* in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from httpx>=0.27->ollama->-r backend/requirements.txt (line 9)) (1.0.9)
+Requirement already satisfied: jsonschema-specifications>=2023.03.6 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from jsonschema>=4.19.0->chromadb->-r backend/requirements.txt (line 8)) (2025.4.1)
+Requirement already satisfied: referencing>=0.28.4 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from jsonschema>=4.19.0->chromadb->-r backend/requirements.txt (line 8)) (0.36.2)
+Requirement already satisfied: rpds-py>=0.7.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from jsonschema>=4.19.0->chromadb->-r backend/requirements.txt (line 8)) (0.27.0)
+Requirement already satisfied: google-auth>=1.0.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from kubernetes>=28.1.0->chromadb->-r backend/requirements.txt (line 8)) (2.40.3)
+Requirement already satisfied: websocket-client!=0.40.0,!=0.41.*,!=0.42.*,>=0.32.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from kubernetes>=28.1.0->chromadb->-r backend/requirements.txt (line 8)) (1.8.0)
+Requirement already satisfied: requests-oauthlib in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from kubernetes>=28.1.0->chromadb->-r backend/requirements.txt (line 8)) (2.0.0)
+Requirement already satisfied: oauthlib>=3.2.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from kubernetes>=28.1.0->chromadb->-r backend/requirements.txt (line 8)) (3.3.1)
+Requirement already satisfied: durationpy>=0.7 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from kubernetes>=28.1.0->chromadb->-r backend/requirements.txt (line 8)) (0.10)
+Requirement already satisfied: cachetools<6.0,>=2.0.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from google-auth>=1.0.1->kubernetes>=28.1.0->chromadb->-r backend/requirements.txt (line 8)) (5.5.2)
+Requirement already satisfied: pyasn1-modules>=0.2.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from google-auth>=1.0.1->kubernetes>=28.1.0->chromadb->-r backend/requirements.txt (line 8)) (0.4.2)
+Requirement already satisfied: requests-toolbelt>=1.0.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langsmith>=0.1.17->langchain==0.3.27->-r backend/requirements.txt (line 5)) (1.0.0)
+Requirement already satisfied: zstandard>=0.23.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from langsmith>=0.1.17->langchain==0.3.27->-r backend/requirements.txt (line 5)) (0.24.0)
+Requirement already satisfied: coloredlogs in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from onnxruntime>=1.14.1->chromadb->-r backend/requirements.txt (line 8)) (15.0.1)
+Requirement already satisfied: flatbuffers in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from onnxruntime>=1.14.1->chromadb->-r backend/requirements.txt (line 8)) (25.2.10)
+Requirement already satisfied: protobuf in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from onnxruntime>=1.14.1->chromadb->-r backend/requirements.txt (line 8)) (6.32.0)
+Requirement already satisfied: sympy in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from onnxruntime>=1.14.1->chromadb->-r backend/requirements.txt (line 8)) (1.14.0)
+Requirement already satisfied: importlib-metadata<8.8.0,>=6.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from opentelemetry-api>=1.2.0->chromadb->-r backend/requirements.txt (line 8)) (8.7.0)
+Requirement already satisfied: zipp>=3.20 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from importlib-metadata<8.8.0,>=6.0->opentelemetry-api>=1.2.0->chromadb->-r backend/requirements.txt (line 8)) (3.23.0)
+Requirement already satisfied: googleapis-common-protos~=1.57 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from opentelemetry-exporter-otlp-proto-grpc>=1.2.0->chromadb->-r backend/requirements.txt (line 8)) (1.70.0)
+Requirement already satisfied: opentelemetry-exporter-otlp-proto-common==1.36.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from opentelemetry-exporter-otlp-proto-grpc>=1.2.0->chromadb->-r backend/requirements.txt (line 8)) (1.36.0)
+Requirement already satisfied: opentelemetry-proto==1.36.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from opentelemetry-exporter-otlp-proto-grpc>=1.2.0->chromadb->-r backend/requirements.txt (line 8)) (1.36.0)
+Requirement already satisfied: opentelemetry-semantic-conventions==0.57b0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from opentelemetry-sdk>=1.2.0->chromadb->-r backend/requirements.txt (line 8)) (0.57b0)
+Requirement already satisfied: wcwidth in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from prompt-toolkit>=3.0.36->click-repl>=0.2.0->celery->-r backend/requirements.txt (line 16)) (0.2.13)
+Requirement already satisfied: iniconfig>=1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pytest>=8.1->pytest-benchmark->-r backend/requirements.txt (line 18)) (2.1.0)
+Requirement already satisfied: pluggy<2,>=1.5 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pytest>=8.1->pytest-benchmark->-r backend/requirements.txt (line 18)) (1.6.0)
+Requirement already satisfied: pygments>=2.7.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from pytest>=8.1->pytest-benchmark->-r backend/requirements.txt (line 18)) (2.19.2)
+Requirement already satisfied: markdown-it-py>=2.2.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from rich>=10.11.0->chromadb->-r backend/requirements.txt (line 8)) (4.0.0)
+Requirement already satisfied: mdurl~=0.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from markdown-it-py>=2.2.0->rich>=10.11.0->chromadb->-r backend/requirements.txt (line 8)) (0.1.2)
+Requirement already satisfied: huggingface-hub<1.0,>=0.16.4 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from tokenizers>=0.13.2->chromadb->-r backend/requirements.txt (line 8)) (0.34.4)
+Requirement already satisfied: filelock in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from huggingface-hub<1.0,>=0.16.4->tokenizers>=0.13.2->chromadb->-r backend/requirements.txt (line 8)) (3.19.1)
+Requirement already satisfied: fsspec>=2023.5.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from huggingface-hub<1.0,>=0.16.4->tokenizers>=0.13.2->chromadb->-r backend/requirements.txt (line 8)) (2025.7.0)
+Requirement already satisfied: shellingham>=1.3.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from typer>=0.9.0->chromadb->-r backend/requirements.txt (line 8)) (1.5.4)
+Requirement already satisfied: httptools>=0.6.3 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from uvicorn[standard]>=0.18.3->chromadb->-r backend/requirements.txt (line 8)) (0.6.4)
+Requirement already satisfied: watchfiles>=0.13 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from uvicorn[standard]>=0.18.3->chromadb->-r backend/requirements.txt (line 8)) (1.1.0)
+Requirement already satisfied: websockets>=10.4 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from uvicorn[standard]>=0.18.3->chromadb->-r backend/requirements.txt (line 8)) (15.0.1)
+Requirement already satisfied: soupsieve>1.2 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from beautifulsoup4->unstructured->-r backend/requirements.txt (line 10)) (2.7)
+Requirement already satisfied: humanfriendly>=9.1 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from coloredlogs->onnxruntime>=1.14.1->chromadb->-r backend/requirements.txt (line 8)) (10.0)
+Requirement already satisfied: pyreadline3 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from humanfriendly>=9.1->coloredlogs->onnxruntime>=1.14.1->chromadb->-r backend/requirements.txt (line 8)) (3.5.4)
+Requirement already satisfied: webencodings in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from html5lib->unstructured->-r backend/requirements.txt (line 10)) (0.5.1)
+Requirement already satisfied: joblib in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from nltk->unstructured->-r backend/requirements.txt (line 10)) (1.5.1)
+Requirement already satisfied: regex>=2021.8.3 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from nltk->unstructured->-r backend/requirements.txt (line 10)) (2025.7.34)
+Requirement already satisfied: olefile in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from python-oxmsg->unstructured->-r backend/requirements.txt (line 10)) (0.47)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from sympy->onnxruntime>=1.14.1->chromadb->-r backend/requirements.txt (line 8)) (1.3.0)
+Requirement already satisfied: aiofiles>=24.1.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured-client->unstructured->-r backend/requirements.txt (line 10)) (24.1.0)
+Requirement already satisfied: pypdf>=4.0 in c:\workspace\frankthelocalllm-main\.venv\lib\site-packages (from unstructured-client->unstructured->-r backend/requirements.txt (line 10)) (6.0.0)
+Killing processes on port 8000: 8248
+No process running on port 8000
+Killing processes on port 8001: 6276
+No process running on port 8001
+Start-Process : This command cannot be run because "RedirectStandardOutput" and "RedirectStandardError" are same. Give different inputs and Run your 
+command again.
+At C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1:139 char:11
++ $dotnet = Start-Process dotnet -ArgumentList @('run','--project','src ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+ 
+C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1 : Failed to start .NET console app
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,frank_up.ps1
+ 
+VITE_API_BASE=http://localhost:8001
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+Transcript stopped, output file is C:\Workspace\FrankTheLocalLLM-main\logs\frank_up.log
+Logs directory: /c/Workspace/FrankTheLocalLLM-main/logs (backend.log, frontend.log, dotnet.log, etc.)
+--- Ensuring Vite is installed ---
+Vite not found. Attempting installation...
+
+added 149 packages, and audited 150 packages in 14s
+
+38 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Vite installation confirmed.
+--- Checking frontend availability ---
+Frontend not responding on http://localhost:5173. See logs/frontend.log
+Services are running. Choose how to view the UI:
+1) Open http://localhost:5173 in your browser
+2) Run the Tauri desktop app
+Selection [1/2]: Opening browser...
+Press Ctrl+C to stop services.

@@ -3,7 +3,7 @@
 Error: Cannot find module '@vitejs/plugin-vue'
 Require stack:
 - C:\Workspace\FrankTheLocalLLM-main\app\vite.config.js
-- C:\Workspace\FrankTheLocalLLM-main\app\node_modules\vite\dist\node\chunks\dep-Bj7gA1-0.js
+- C:\Workspace\FrankTheLocalLLM-main\node_modules\vite\dist\node\chunks\dep-Bj7gA1-0.js
     at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)
     at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
