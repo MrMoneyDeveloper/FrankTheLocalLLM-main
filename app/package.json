@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "frankthelocalllm-monorepo": "file:..",
     "vue": "^3.5.18"
   },
   "devDependencies": {

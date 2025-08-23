@@ -1,4 +1,0 @@
-INFO:     127.0.0.1:57135 - "GET /api/hello HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57186 - "GET /api HTTP/1.1" 307 Temporary Redirect
-INFO:     127.0.0.1:57186 - "GET /api/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:57186 - "GET /favicon.ico HTTP/1.1" 404 Not Found
