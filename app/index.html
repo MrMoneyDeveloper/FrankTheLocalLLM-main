@@ -55,20 +55,23 @@
     const apiBase = (import.meta.env.VITE_API_BASE ?? 'http://localhost:8001')
       .replace(/\/$/, '')
 
-    fetch(`${apiBase}/status`)
+    const splash = document.getElementById('splash')
+    const statusEl = document.getElementById('status')
+    const hideSplash = () => { splash.style.display = 'none' }
+
+    const controller = new AbortController()
+    setTimeout(() => controller.abort(), 1000)
+
+    fetch(`${apiBase}/status`, { signal: controller.signal })
       .then(r => r.json())
       .then(d => {
-        document.getElementById('status').textContent =
+        statusEl.textContent =
           `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`
       })
       .catch(() => {
-        document.getElementById('status').textContent = 'Backend unavailable'
+        statusEl.textContent = 'Backend unavailable'
       })
-      .finally(() =>
-        setTimeout(() =>
-          document.getElementById('splash').style.display = 'none',
-        1000)
-      )
+      .finally(hideSplash)
 
     if ('serviceWorker' in navigator && import.meta.env.PROD) {
       window.addEventListener('load', () => {

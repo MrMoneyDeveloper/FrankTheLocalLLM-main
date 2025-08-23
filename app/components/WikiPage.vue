@@ -24,9 +24,10 @@ const titles = ref([])
 
 const { data, fetchData } = useFetch('/entries')
 
-onMounted(async () => {
-  await fetchData()
-  titles.value = (data.value || []).map(e => e.content.split('\n')[0])
+onMounted(() => {
+  fetchData().then(() => {
+    titles.value = (data.value || []).map(e => e.content.split('\n')[0])
+  })
 })
 
 window.addEventListener('keydown', e => {
