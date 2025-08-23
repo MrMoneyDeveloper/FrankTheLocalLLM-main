@@ -51,6 +51,14 @@ trap "$ROOT/frank_down.sh" EXIT
 
 
 
+# Ensure Yarn is available and install dependencies via workspaces
+if ! command -v yarn >/dev/null 2>&1; then
+  echo "--- Yarn not found. Installing globally ---"
+  npm install -g yarn
+fi
+echo "--- Installing workspace dependencies with Yarn ---"
+(cd "$ROOT" && yarn install)
+
 if [[ $PLATFORM == "ubuntu" ]]; then
   echo "--- Running frank_up.sh ---"
   "$ROOT/frank_up.sh"
@@ -61,25 +69,6 @@ fi
 
 echo "Logs directory: $LOG_DIR (backend.log, frontend.log, dotnet.log, etc.)"
 
-
-# Ensure Vite is installed for the frontend
-echo "--- Ensuring Vite is installed ---"
-if ! npm --prefix app ls vite >/dev/null 2>&1; then
-  echo "Vite not found. Attempting installation..."
-  set +e
-  npm --prefix app install vite
-  vite_status=$?
-  set -e
-  if [[ $vite_status -ne 0 ]]; then
-    echo "Vite installation failed. Check logs for details." >&2
-  elif ! npm --prefix app ls vite >/dev/null 2>&1; then
-    echo "Vite still missing after installation attempt." >&2
-  else
-    echo "Vite installation confirmed."
-  fi
-else
-  echo "Vite already installed."
-fi
 
 # Verify frontend dev server is responding
 echo "--- Checking frontend availability ---"
