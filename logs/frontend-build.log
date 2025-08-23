@@ -1,0 +1,13 @@
+
+> app@1.0.0 build
+> vite build
+
+[36mvite v7.1.3 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 16 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                 [39m[1m[2m 1.26 kB[22m[1m[22m[2m │ gzip:  0.62 kB[22m
+[2mdist/[22m[35massets/index-0Xbm3Tvl.css  [39m[1m[2m 7.97 kB[22m[1m[22m[2m │ gzip:  2.26 kB[22m
+[2mdist/[22m[36massets/index-D65tqKZC.js   [39m[1m[2m71.41 kB[22m[1m[22m[2m │ gzip: 28.14 kB[22m
+[32m✓ built in 1.97s[39m

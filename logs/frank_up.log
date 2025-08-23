@@ -1928,3 +1928,68 @@ Frontend URL  : http://localhost:5173
 Windows PowerShell transcript end
 End time: 20250823120614
 **********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250823130950
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM-main/frank_up.ps1
+Process ID: 11532
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM-main\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/23 13:09:50 ===
+
+Killing processes on port 11434: 16060
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 6840
+No process running on port 8000
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '8001'.  Verify the value of the property and retry."
+No process running on port 8001
+PS>TerminatingError(Invoke-WebRequest): "Unable to connect to the remote server"
+PS>TerminatingError(Invoke-WebRequest): "Unable to connect to the remote server"
+Start-Process : This command cannot be run because "RedirectStandardOutput" and "RedirectStandardError" are same. Give 
+different inputs and Run your command again.
+At C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1:139 char:11
++ $dotnet = Start-Process dotnet -ArgumentList @('run','--project','src ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+Start-Process : This command cannot be run because "RedirectStandardOutput" and "RedirectStandardError" are same. Give different inputs and Run your
+command again.
+At C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1:139 char:11
++ $dotnet = Start-Process dotnet -ArgumentList @('run','--project','src ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1 : Failed to start .NET console app
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,frank_up.ps1
+C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1 : Failed to start .NET console app
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,frank_up.ps1
+
+VITE_API_BASE=http://localhost:8001
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '5173'.  Verify the value of the property and retry."
+No process running on port 5173
+Running frontend: npm run dev
+OS            : Windows
+Backend URL   : http://localhost:8001/api
+Frontend URL  : http://localhost:5173
+**********************
+Windows PowerShell transcript end
+End time: 20250823131041
+**********************
