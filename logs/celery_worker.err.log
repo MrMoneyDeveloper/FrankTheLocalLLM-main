@@ -1,10 +1,88 @@
-[2025-08-22 20:59:26,899: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:41:27,708: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 2.00 seconds... (1/100)
 
-[2025-08-22 20:59:33,428: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:41:34,111: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 4.00 seconds... (2/100)
 
-[2025-08-22 20:59:35,781: ERROR/SpawnPoolWorker-3] Pool process <billiard.pool.Worker object at 0x000002945A92E120> error: OSError(9, 'The handle is invalid', None, 6, None)
+[2025-08-22 22:41:34,545: ERROR/SpawnPoolWorker-4] Pool process <billiard.pool.Worker object at 0x0000025AA3FEE120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-22 22:41:34,545: ERROR/SpawnPoolWorker-4] Pool process <billiard.pool.Worker object at 0x0000025AA3FEE120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-22 22:41:34,643: ERROR/SpawnPoolWorker-6] Pool process <billiard.pool.Worker object at 0x000001801A03E120> error: OSError(9, 'The handle is invalid', None, 6, None)
 Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
@@ -43,46 +121,7 @@ Traceback (most recent call last):
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 7, in getvalue
 OSError: [WinError 6] The handle is invalid
-[2025-08-22 20:59:35,695: ERROR/SpawnPoolWorker-9] Pool process <billiard.pool.Worker object at 0x0000024111B2E120> error: PermissionError(13, 'Access is denied', None, 5, None)
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
-    ready, req = _receive(1.0)
-                 ~~~~~~~~^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
-    return True, loads(get_payload())
-                       ~~~~~~~~~~~^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
-    with self._rlock:
-         ^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
-    return self._semlock.__enter__()
-           ~~~~~~~~~~~~~~~~~~~~~~~^^
-PermissionError: [WinError 5] Access is denied
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
-    req = wait_for_job()
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
-    raise SystemExit(EX_FAILURE)
-SystemExit: 1
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
-    sys.exit(self.workloop(pid=pid))
-             ~~~~~~~~~~~~~^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
-    self._ensure_messages_consumed(completed=completed)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
-    if self.on_ready_counter.value >= completed:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<string>", line 3, in getvalue
-PermissionError: [WinError 5] Access is denied
-[2025-08-22 20:59:35,781: ERROR/SpawnPoolWorker-3] Pool process <billiard.pool.Worker object at 0x000002945A92E120> error: OSError(9, 'The handle is invalid', None, 6, None)
+[2025-08-22 22:41:34,643: ERROR/SpawnPoolWorker-6] Pool process <billiard.pool.Worker object at 0x000001801A03E120> error: OSError(9, 'The handle is invalid', None, 6, None)
 Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
@@ -121,500 +160,303 @@ Traceback (most recent call last):
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 7, in getvalue
 OSError: [WinError 6] The handle is invalid
-[2025-08-22 20:59:35,695: ERROR/SpawnPoolWorker-9] Pool process <billiard.pool.Worker object at 0x0000024111B2E120> error: PermissionError(13, 'Access is denied', None, 5, None)
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
-    ready, req = _receive(1.0)
-                 ~~~~~~~~^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
-    return True, loads(get_payload())
-                       ~~~~~~~~~~~^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
-    with self._rlock:
-         ^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
-    return self._semlock.__enter__()
-           ~~~~~~~~~~~~~~~~~~~~~~~^^
-PermissionError: [WinError 5] Access is denied
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
-    req = wait_for_job()
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
-    raise SystemExit(EX_FAILURE)
-SystemExit: 1
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
-    sys.exit(self.workloop(pid=pid))
-             ~~~~~~~~~~~~~^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
-    self._ensure_messages_consumed(completed=completed)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
-    if self.on_ready_counter.value >= completed:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<string>", line 3, in getvalue
-PermissionError: [WinError 5] Access is denied
-[2025-08-22 20:59:35,808: ERROR/SpawnPoolWorker-4] Pool process <billiard.pool.Worker object at 0x0000026EC703E120> error: PermissionError(13, 'Access is denied', None, 5, None)
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
-    ready, req = _receive(1.0)
-                 ~~~~~~~~^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
-    return True, loads(get_payload())
-                       ~~~~~~~~~~~^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
-    with self._rlock:
-         ^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
-    return self._semlock.__enter__()
-           ~~~~~~~~~~~~~~~~~~~~~~~^^
-PermissionError: [WinError 5] Access is denied
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
-    req = wait_for_job()
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
-    raise SystemExit(EX_FAILURE)
-SystemExit: 1
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
-    sys.exit(self.workloop(pid=pid))
-             ~~~~~~~~~~~~~^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
-    self._ensure_messages_consumed(completed=completed)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
-    if self.on_ready_counter.value >= completed:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<string>", line 3, in getvalue
-PermissionError: [WinError 5] Access is denied
-[2025-08-22 20:59:35,808: ERROR/SpawnPoolWorker-4] Pool process <billiard.pool.Worker object at 0x0000026EC703E120> error: PermissionError(13, 'Access is denied', None, 5, None)
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
-    ready, req = _receive(1.0)
-                 ~~~~~~~~^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
-    return True, loads(get_payload())
-                       ~~~~~~~~~~~^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
-    with self._rlock:
-         ^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
-    return self._semlock.__enter__()
-           ~~~~~~~~~~~~~~~~~~~~~~~^^
-PermissionError: [WinError 5] Access is denied
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
-    req = wait_for_job()
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
-    raise SystemExit(EX_FAILURE)
-SystemExit: 1
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
-    sys.exit(self.workloop(pid=pid))
-             ~~~~~~~~~~~~~^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
-    self._ensure_messages_consumed(completed=completed)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
-    if self.on_ready_counter.value >= completed:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<string>", line 3, in getvalue
-PermissionError: [WinError 5] Access is denied
-[2025-08-22 20:59:35,988: ERROR/MainProcess] Process 'SpawnPoolWorker-9' pid:11296 exited with 'exitcode 1'
-[2025-08-22 20:59:36,025: ERROR/MainProcess] Process 'SpawnPoolWorker-4' pid:11696 exited with 'exitcode 1'
-[2025-08-22 20:59:36,026: ERROR/MainProcess] Process 'SpawnPoolWorker-3' pid:2440 exited with 'exitcode 1'
-[2025-08-22 20:59:41,482: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:41:35,146: ERROR/MainProcess] Process 'SpawnPoolWorker-6' pid:22792 exited with 'exitcode 1'
+[2025-08-22 22:41:35,182: ERROR/MainProcess] Process 'SpawnPoolWorker-4' pid:2852 exited with 'exitcode 1'
+[2025-08-22 22:41:42,164: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 6.00 seconds... (3/100)
 
-[2025-08-22 20:59:42,107: ERROR/SpawnPoolWorker-15] Pool process <billiard.pool.Worker object at 0x000001D386DBE120> error: PermissionError(13, 'Access is denied', None, 5, None)
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
-    ready, req = _receive(1.0)
-                 ~~~~~~~~^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
-    return True, loads(get_payload())
-                       ~~~~~~~~~~~^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
-    with self._rlock:
-         ^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
-    return self._semlock.__enter__()
-           ~~~~~~~~~~~~~~~~~~~~~~~^^
-PermissionError: [WinError 5] Access is denied
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
-    req = wait_for_job()
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
-    raise SystemExit(EX_FAILURE)
-SystemExit: 1
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
-    sys.exit(self.workloop(pid=pid))
-             ~~~~~~~~~~~~~^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
-    self._ensure_messages_consumed(completed=completed)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
-    if self.on_ready_counter.value >= completed:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<string>", line 3, in getvalue
-PermissionError: [WinError 5] Access is denied
-[2025-08-22 20:59:42,107: ERROR/SpawnPoolWorker-15] Pool process <billiard.pool.Worker object at 0x000001D386DBE120> error: PermissionError(13, 'Access is denied', None, 5, None)
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
-    ready, req = _receive(1.0)
-                 ~~~~~~~~^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
-    return True, loads(get_payload())
-                       ~~~~~~~~~~~^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
-    with self._rlock:
-         ^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
-    return self._semlock.__enter__()
-           ~~~~~~~~~~~~~~~~~~~~~~~^^
-PermissionError: [WinError 5] Access is denied
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
-    req = wait_for_job()
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
-    raise SystemExit(EX_FAILURE)
-SystemExit: 1
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
-    sys.exit(self.workloop(pid=pid))
-             ~~~~~~~~~~~~~^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
-    self._ensure_messages_consumed(completed=completed)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
-    if self.on_ready_counter.value >= completed:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<string>", line 3, in getvalue
-PermissionError: [WinError 5] Access is denied
-[2025-08-22 20:59:42,482: ERROR/MainProcess] Process 'SpawnPoolWorker-15' pid:11536 exited with 'exitcode 1'
-[2025-08-22 20:59:51,532: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:41:52,216: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 8.00 seconds... (4/100)
 
-[2025-08-22 21:00:03,582: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:42:04,265: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 10.00 seconds... (5/100)
 
-[2025-08-22 21:00:17,637: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:42:18,321: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 12.00 seconds... (6/100)
 
-[2025-08-22 21:00:33,657: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:42:34,379: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 14.00 seconds... (7/100)
 
-[2025-08-22 21:00:51,713: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:42:52,437: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 16.00 seconds... (8/100)
 
-[2025-08-22 21:01:11,740: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:43:12,495: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 18.00 seconds... (9/100)
 
-[2025-08-22 21:01:33,787: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:43:34,560: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 20.00 seconds... (10/100)
 
-[2025-08-22 21:01:57,850: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:43:58,617: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 22.00 seconds... (11/100)
 
-[2025-08-22 21:02:23,912: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:44:24,681: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 24.00 seconds... (12/100)
 
-[2025-08-22 21:02:51,975: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:44:52,739: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 26.00 seconds... (13/100)
 
-[2025-08-22 21:03:22,040: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:45:22,813: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 28.00 seconds... (14/100)
 
-[2025-08-22 21:03:54,097: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:45:54,852: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 30.00 seconds... (15/100)
 
-[2025-08-22 21:04:28,160: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:46:28,888: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:05:04,188: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:47:04,933: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:05:40,255: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:47:40,962: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:06:16,322: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:48:16,998: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:06:52,387: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:48:53,034: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:07:28,450: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:49:29,090: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:08:04,518: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:50:05,128: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:08:40,580: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:50:41,169: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:09:16,693: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:51:17,204: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:09:52,756: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:51:53,244: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:10:28,828: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:52:29,285: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:11:04,855: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:53:05,318: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:11:40,920: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:53:41,353: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:12:17,037: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:54:17,391: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:12:53,155: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:54:53,431: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:13:29,278: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:55:29,473: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:14:05,406: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:56:05,510: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:14:41,539: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:56:41,547: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:15:17,679: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:57:17,566: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:15:53,825: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:57:53,590: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:16:29,937: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:58:29,626: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:17:06,076: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:59:05,667: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:17:42,206: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 22:59:41,707: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:18:18,302: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:00:17,742: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:18:54,438: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:00:53,775: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:19:30,574: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:01:29,802: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:20:06,717: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:02:05,842: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:20:42,815: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:02:41,888: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:21:18,947: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:03:17,924: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:21:55,057: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:03:53,961: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:22:31,135: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:04:29,999: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:23:07,258: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:05:06,040: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:23:43,379: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:05:42,074: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:24:19,495: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:06:18,115: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:24:55,629: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:06:54,141: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:25:31,771: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:07:30,178: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:26:07,908: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:08:06,215: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:26:44,046: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:08:42,252: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:27:20,136: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:09:18,286: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:27:56,254: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:09:54,334: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:28:32,383: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:10:30,370: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:29:08,518: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:11:06,400: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:29:44,619: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:11:42,438: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:30:20,761: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:12:18,474: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:30:56,900: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:12:54,506: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:31:33,041: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:13:30,549: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:32:09,184: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:14:06,586: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:32:45,289: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:14:42,622: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:33:21,408: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:15:18,656: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:33:57,522: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:15:54,692: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:34:33,642: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:16:30,717: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:35:09,750: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:17:06,763: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:35:45,874: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:17:42,807: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:36:22,003: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:18:18,850: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:36:58,068: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:18:54,885: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:37:34,129: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:19:30,927: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:38:10,202: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:20:06,961: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:38:46,273: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:20:42,992: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:39:22,338: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:21:19,033: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:39:58,396: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:21:55,072: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:40:34,463: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:22:31,119: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:41:10,524: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:23:07,158: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:41:46,554: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:23:43,185: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:42:22,619: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:24:19,223: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:42:58,652: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:24:55,262: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:43:34,719: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:25:31,299: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:44:10,787: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:26:07,328: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:44:46,852: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:26:43,365: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:45:22,915: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:27:19,389: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:45:58,984: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:27:55,426: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:46:35,054: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:28:31,464: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:47:11,122: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:29:07,502: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:47:47,181: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:29:43,539: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:48:23,240: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:30:19,566: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:48:59,307: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:30:55,605: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:49:35,342: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:31:31,641: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:50:11,374: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:32:07,678: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:50:47,438: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:32:43,703: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:51:23,502: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:33:19,737: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:51:59,569: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:33:55,775: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:52:35,633: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:34:31,801: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:53:11,699: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:35:07,838: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:53:47,768: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:35:43,876: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:54:23,834: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:36:19,912: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:54:59,913: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+[2025-08-22 23:36:55,949: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
 Trying again in 32.00 seconds... (16/100)
 
-[2025-08-22 21:55:35,980: CRITICAL/MainProcess] Unrecoverable error: OperationalError('Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.')
+[2025-08-22 23:37:31,989: CRITICAL/MainProcess] Unrecoverable error: OperationalError('Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.')
 Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 951, in create_channel
     return self._avail_channels.pop()
@@ -732,7 +574,7 @@ Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\kombu\connection.py", line 476, in _reraise_as_library_errors
     raise ConnectionError(str(exc)) from exc
 kombu.exceptions.OperationalError: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
-[2025-08-22 21:55:36,033: ERROR/SpawnPoolWorker-10] Pool process <billiard.pool.Worker object at 0x0000015ECA1EE120> error: PermissionError(13, 'Access is denied', None, 5, None)
+[2025-08-22 23:37:31,998: ERROR/SpawnPoolWorker-7] Pool process <billiard.pool.Worker object at 0x0000023BF861E120> error: PermissionError(13, 'Access is denied', None, 5, None)
 Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
@@ -771,7 +613,7 @@ Traceback (most recent call last):
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 3, in getvalue
 PermissionError: [WinError 5] Access is denied
-[2025-08-22 21:55:36,033: ERROR/SpawnPoolWorker-11] Pool process <billiard.pool.Worker object at 0x00000253F344E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+[2025-08-22 23:37:31,998: ERROR/SpawnPoolWorker-7] Pool process <billiard.pool.Worker object at 0x0000023BF861E120> error: PermissionError(13, 'Access is denied', None, 5, None)
 Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
@@ -810,7 +652,7 @@ Traceback (most recent call last):
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 3, in getvalue
 PermissionError: [WinError 5] Access is denied
-[2025-08-22 21:55:36,033: ERROR/SpawnPoolWorker-12] Pool process <billiard.pool.Worker object at 0x0000021701E7E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+[2025-08-22 23:37:31,998: ERROR/SpawnPoolWorker-9] Pool process <billiard.pool.Worker object at 0x00000202A833E120> error: PermissionError(13, 'Access is denied', None, 5, None)
 Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
@@ -849,7 +691,7 @@ Traceback (most recent call last):
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 3, in getvalue
 PermissionError: [WinError 5] Access is denied
-[2025-08-22 21:55:36,033: ERROR/SpawnPoolWorker-10] Pool process <billiard.pool.Worker object at 0x0000015ECA1EE120> error: PermissionError(13, 'Access is denied', None, 5, None)
+[2025-08-22 23:37:31,998: ERROR/SpawnPoolWorker-11] Pool process <billiard.pool.Worker object at 0x0000020C3E2AE120> error: PermissionError(13, 'Access is denied', None, 5, None)
 Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
@@ -888,7 +730,7 @@ Traceback (most recent call last):
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 3, in getvalue
 PermissionError: [WinError 5] Access is denied
-[2025-08-22 21:55:36,033: ERROR/SpawnPoolWorker-11] Pool process <billiard.pool.Worker object at 0x00000253F344E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+[2025-08-22 23:37:31,999: ERROR/SpawnPoolWorker-10] Pool process <billiard.pool.Worker object at 0x000001A07B88E120> error: PermissionError(13, 'Access is denied', None, 5, None)
 Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
@@ -927,7 +769,163 @@ Traceback (most recent call last):
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 3, in getvalue
 PermissionError: [WinError 5] Access is denied
-[2025-08-22 21:55:36,033: ERROR/SpawnPoolWorker-12] Pool process <billiard.pool.Worker object at 0x0000021701E7E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+[2025-08-22 23:37:31,998: ERROR/SpawnPoolWorker-12] Pool process <billiard.pool.Worker object at 0x00000244E82DE120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-22 23:37:31,998: ERROR/SpawnPoolWorker-9] Pool process <billiard.pool.Worker object at 0x00000202A833E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-22 23:37:31,998: ERROR/SpawnPoolWorker-11] Pool process <billiard.pool.Worker object at 0x0000020C3E2AE120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-22 23:37:31,999: ERROR/SpawnPoolWorker-10] Pool process <billiard.pool.Worker object at 0x000001A07B88E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 118, in __exit__
+    return self._semlock.__exit__(*args)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+OSError: [WinError 6] The handle is invalid
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-22 23:37:31,998: ERROR/SpawnPoolWorker-12] Pool process <billiard.pool.Worker object at 0x00000244E82DE120> error: PermissionError(13, 'Access is denied', None, 5, None)
 Traceback (most recent call last):
   File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
     ready, req = _receive(1.0)
