@@ -143,34 +143,6 @@ if ($dotnet) {
   Write-Error 'Failed to start .NET console app'
 }
 
-$nodeModules = Join-Path $Root 'node_modules'
-if (-not (Test-Path $nodeModules)) {
-  $npmOut = Join-Path $LogDir 'npm_install.out.log'
-  $npmErr = Join-Path $LogDir 'npm_install.err.log'
-  Start-Process npm -ArgumentList 'ci' -WorkingDirectory $Root -RedirectStandardOutput $npmOut -RedirectStandardError $npmErr -NoNewWindow -Wait
-}
-
-$appNodeModules = Join-Path $frontDir 'node_modules'
-if (-not (Test-Path $appNodeModules)) {
-  $npmAppOut = Join-Path $LogDir 'app_npm_install.out.log'
-  $npmAppErr = Join-Path $LogDir 'app_npm_install.err.log'
-  Start-Process npm -ArgumentList 'install' -WorkingDirectory $frontDir -RedirectStandardOutput $npmAppOut -RedirectStandardError $npmAppErr -NoNewWindow -Wait
-}
-
-$env:VITE_API_BASE = "http://localhost:$backendPort"
-Write-Output ("VITE_API_BASE={0}" -f $env:VITE_API_BASE)
-Free-Port 5173
-$frontendOut = Join-Path $LogDir 'frontend.out.log'
-$frontendErr = Join-Path $LogDir 'frontend.err.log'
-Write-Output 'Running frontend: npm run dev'
-$frontend = Start-Process -FilePath "cmd.exe" -ArgumentList "/c","npm","run","dev" -WorkingDirectory $frontDir -RedirectStandardOutput $frontendOut -RedirectStandardError $frontendErr -PassThru
-
-if ($frontend) {
-  $frontend.Id | Out-File (Join-Path $LogDir 'frontend.pid')
-} else {
-  Write-Error 'Failed to start frontend'
-}
-
 Write-Output 'OS            : Windows'
 Write-Output ("Backend URL   : http://localhost:{0}/api" -f $backendPort)
 Write-Output 'Frontend URL  : http://localhost:5173'

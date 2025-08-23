@@ -163,21 +163,6 @@ nohup dotnet run --project src/ConsoleApp/ConsoleApp.csproj > logs/dotnet.log 2>
 echo $! > logs/dotnet.pid
 
 
-# --- Start frontend dev server ---
-log "Starting frontend dev server"
-if [[ ! -d node_modules ]]; then
-  npm ci
-fi
-if [[ ! -d app/node_modules ]]; then
-  npm --prefix app install
-fi
-free_port 5173
-VITE_API_BASE="http://localhost:${BACKEND_PORT}"
-echo "VITE_API_BASE=$VITE_API_BASE"
-echo "Running frontend: npm --prefix app run dev"
-VITE_API_BASE="$VITE_API_BASE" nohup npm --prefix app run dev > logs/frontend.log 2>&1 &
-echo $! > logs/frontend.pid
-
 # --- Summary ---
 log "Summary"
 echo "OS            : Ubuntu"
@@ -187,9 +172,8 @@ echo "Redis         : $(redis-server --version 2>/dev/null | awk '{print $3}' ||
 echo "Ollama        : $(ollama --version 2>/dev/null || echo n/a)"
 echo "Model         : ${MODEL:-llama3}"
 echo "Backend URL   : http://localhost:${BACKEND_PORT}/api"
-echo "Frontend URL  : http://localhost:5173"
 
-echo "PIDs          : backend($(cat logs/backend.pid)), celery_worker($(cat logs/celery_worker.pid)), celery_beat($(cat logs/celery_beat.pid)), frontend($(cat logs/frontend.pid))"
+echo "PIDs          : backend($(cat logs/backend.pid)), celery_worker($(cat logs/celery_worker.pid)), celery_beat($(cat logs/celery_beat.pid))"
 [[ -f logs/ollama.pid ]] && echo "Ollama PID    : $(cat logs/ollama.pid) (user session)"
 
 log "Health checks"
@@ -199,4 +183,4 @@ curl -fsS "http://localhost:${BACKEND_PORT}/api/trivia?q=What%20is%20the%20large
 
 set -e
 
-echo -e "\nAll set. Open: http://localhost:5173"
+echo -e "\nBackend ready. Start the frontend separately on http://localhost:5173"

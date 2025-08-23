@@ -79,9 +79,6 @@ fi
   $PYTHON_BIN "$ROOT/backend/app/manage.py" migrate
 ) 2>&1 | tee -a "$LOG_DIR/backend-build.log" || true
 
-echo "--- Building frontend ---"
-npm --prefix app run build 2>&1 | tee "$LOG_DIR/frontend-build.log" || true
-
 if [[ $PLATFORM == "ubuntu" ]]; then
   echo "--- Running frank_up.sh ---"
   "$ROOT/frank_up.sh"
@@ -90,7 +87,15 @@ else
   powershell.exe -ExecutionPolicy Bypass -File "$ROOT/frank_up.ps1"
 fi
 
-echo "Logs directory: $LOG_DIR (backend.log, frontend.log, dotnet.log, etc.)"
+# ensure frontend deps are installed
+npm --prefix "$ROOT/app" install
+# start the dev server in the background with logs
+npm --prefix "$ROOT/app" run dev \
+  >"$LOG_DIR/frontend.out.log" 2>"$LOG_DIR/frontend.err.log" &
+FRONTEND_PID=$!
+echo "$FRONTEND_PID" > "$LOG_DIR/frontend.pid"
+
+echo "Logs directory: $LOG_DIR (backend.log, frontend.out.log, frontend.err.log, dotnet.log, etc.)"
 
 
 # Verify frontend dev server is responding
@@ -105,7 +110,7 @@ for i in {1..15}; do
   sleep 1
 done
 if [[ -z $frontend_up ]]; then
-  echo "Frontend not responding on http://localhost:5173. See logs/frontend.log" >&2
+  echo "Frontend not responding on http://localhost:5173. See $LOG_DIR/frontend.out.log and $LOG_DIR/frontend.err.log" >&2
 fi
 
 
