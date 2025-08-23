@@ -2,7 +2,7 @@
 # FrankTheLocalLLM
 
 This repository contains a minimal front‑end built with Vue.js and Tailwind CSS plus a FastAPI backend and a .NET console application.
-FrankTheLocalLLM combines a Vue.js + Tailwind front‑end with a FastAPI backend and a small .NET console application. It demonstrates how to run a local language‑model driven notes app with background processing and optional desktop packaging.
+FrankTheLocalLLM combines a Vue.js + Tailwind front‑end with a FastAPI backend and a small .NET console application. The frontend is bundled with ESBuild, a minimalist and extremely fast bundler and minifier. It demonstrates how to run a local language‑model driven notes app with background processing and optional desktop packaging.
 
 ## Quick Start
 
@@ -54,18 +54,18 @@ troubleshooting.
 ## Documentation
 
 
-1. Install the Vue.js front-end dependencies and start the Vite dev server:
+1. Install the Vue.js front-end dependencies and start the ESBuild dev server:
     ```bash
     cd app
     npm install
     npm run dev
     ```
-    Vite prints the local URL (defaults to `http://localhost:5173`) with hot reloading.
+    ESBuild serves the app at `http://localhost:5173` and rebuilds on save.
     To build a static bundle instead:
     ```bash
     npm run build
     cd dist
-    python -m http.server 8080
+    node ../server.js
     ```
     then open `http://localhost:8080`.
  - [Local Development Guide](docs/README-local-dev.md) explains how to run everything unpackaged.
@@ -194,7 +194,7 @@ To build and launch all parts of the project at once run:
 ./run_all.sh
 ```
 
-The script sequentially builds the .NET console app, installs Python dependencies, launches the FastAPI API and starts the Vue.js Vite dev server on port 5173. Use `./run_logged.sh` to run the same process with output logged to `run.log`. The backend server stops automatically when you exit the dev server.
+The script sequentially builds the .NET console app, installs Python dependencies, launches the FastAPI API and starts the Vue.js ESBuild dev server on port 5173. Use `./run_logged.sh` to run the same process with output logged to `run.log`. The backend server stops automatically when you exit the dev server.
 On Windows run the commands from `run_all.sh` one by one in PowerShell (first `cd app`, then `npm install && npm run dev`) or execute the script in WSL. Running them in order ensures all dependencies are restored.
 
 

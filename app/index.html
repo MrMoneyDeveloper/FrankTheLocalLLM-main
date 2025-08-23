@@ -23,7 +23,7 @@
 
   <div id="app" class="w-full h-screen"></div>
 
-  <script type="module" src="app.js"></script>
+  <script type="module" src="dist/bundle.js"></script>
   <script type="module">
     const chip = document.getElementById('mode-chip')
     const modal = document.getElementById('mode-modal')
@@ -52,7 +52,8 @@
       })
     }
 
-    const apiBase = (import.meta.env.VITE_API_BASE ?? 'http://localhost:8001')
+    const env = (typeof import.meta !== 'undefined' && import.meta.env) || {}
+    const apiBase = (env.VITE_API_BASE || 'http://localhost:8001')
       .replace(/\/$/, '')
 
     const splash = document.getElementById('splash')
@@ -73,7 +74,7 @@
       })
       .finally(hideSplash)
 
-    if ('serviceWorker' in navigator && import.meta.env.PROD) {
+    if ('serviceWorker' in navigator && env.PROD) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').then(reg => {
           if (reg.waiting) notifyUpdate(reg.waiting)
