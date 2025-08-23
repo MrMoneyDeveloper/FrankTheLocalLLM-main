@@ -1,0 +1,279 @@
+[2025-08-23 22:01:41,361: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 2.00 seconds... (1/100)
+
+[2025-08-23 22:01:46,041: ERROR/SpawnPoolWorker-1] Pool process <billiard.pool.Worker object at 0x000001F74101E120> error: OSError(9, 'The handle is invalid', None, 6, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 7, in getvalue
+OSError: [WinError 6] The handle is invalid
+[2025-08-23 22:01:46,048: ERROR/SpawnPoolWorker-2] Pool process <billiard.pool.Worker object at 0x000001D1AD60E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-23 22:01:46,050: ERROR/SpawnPoolWorker-3] Pool process <billiard.pool.Worker object at 0x0000028ECCF2E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-23 22:01:46,041: ERROR/SpawnPoolWorker-1] Pool process <billiard.pool.Worker object at 0x000001F74101E120> error: OSError(9, 'The handle is invalid', None, 6, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 7, in getvalue
+OSError: [WinError 6] The handle is invalid
+[2025-08-23 22:01:46,048: ERROR/SpawnPoolWorker-2] Pool process <billiard.pool.Worker object at 0x000001D1AD60E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-23 22:01:46,050: ERROR/SpawnPoolWorker-3] Pool process <billiard.pool.Worker object at 0x0000028ECCF2E120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-23 22:01:46,219: ERROR/MainProcess] Process 'SpawnPoolWorker-3' pid:22448 exited with 'exitcode 1'
+[2025-08-23 22:01:46,219: ERROR/MainProcess] Process 'SpawnPoolWorker-2' pid:23372 exited with 'exitcode 1'
+[2025-08-23 22:01:46,220: ERROR/MainProcess] Process 'SpawnPoolWorker-1' pid:23392 exited with 'exitcode 1'
+[2025-08-23 22:01:47,864: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 4.00 seconds... (2/100)
+
+[2025-08-23 22:01:55,887: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 6.00 seconds... (3/100)
+
+[2025-08-23 22:02:06,010: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 8.00 seconds... (4/100)
+
+[2025-08-23 22:02:18,065: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 10.00 seconds... (5/100)
+
+[2025-08-23 22:02:32,129: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 12.00 seconds... (6/100)
+
+[2025-08-23 22:02:48,194: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 14.00 seconds... (7/100)
+
+[2025-08-23 22:03:06,275: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 16.00 seconds... (8/100)
+
+[2025-08-23 22:03:26,385: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 18.00 seconds... (9/100)
+
+[2025-08-23 22:03:48,451: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 20.00 seconds... (10/100)
+
+                             [2025-08-23 22:02:06,119: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-23 22:02:42,170: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-23 22:03:18,235: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
+[2025-08-23 22:03:54,323: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 32.00 seconds... (16/100)
+
