@@ -1,9 +1,6 @@
 INFO:__main__:Starting FrankTheLocalLLM on 0.0.0.0:8001
-ERROR:__main__:Cannot bind to 0.0.0.0:8001 - [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
-ERROR:__main__:Cannot bind to 0.0.0.0:8001 - [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
-WARNING:__main__:Port 8001 busy, switching to 8002
-INFO:__main__:FrankTheLocalLLM bound to 0.0.0.0:8002
-INFO:     Started server process [9848]
+INFO:__main__:FrankTheLocalLLM bound to 0.0.0.0:8001
+INFO:     Started server process [6756]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
