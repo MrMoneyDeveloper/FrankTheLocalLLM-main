@@ -20,7 +20,7 @@ The script will:
 
 1. Build and run the .NET console application if `dotnet` is available.
 2. Install Python dependencies from `backend/requirements.txt` and start the FastAPI API on port 8001.
-3. Install Node dependencies and start the Vue.js Vite dev server on port 5173.
+3. Install Node dependencies and start the Vue.js ESBuild dev server on port 5173.
 4. Automatically open the UI in your default browser.
 
 
@@ -45,7 +45,7 @@ npm run dev
 # build a static bundle instead:
 npm run build
 cd dist
-python -m http.server 8080
+node ../server.js
 
 
 # .NET console (optional)

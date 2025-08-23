@@ -143,6 +143,18 @@ if ($dotnet) {
   Write-Error 'Failed to start .NET console app'
 }
 
+# Frontend (ESBuild dev server)
+npm --prefix $frontDir install | Out-Null
+$frontOut = Join-Path $LogDir 'frontend.out.log'
+$frontErr = Join-Path $LogDir 'frontend.err.log'
+Remove-Item $frontOut, $frontErr -ErrorAction SilentlyContinue
+$frontend = Start-Process node -WorkingDirectory $frontDir -ArgumentList @('esbuild.config.js','--serve') -RedirectStandardOutput $frontOut -RedirectStandardError $frontErr -WindowStyle Hidden -PassThru
+if ($frontend) {
+  $frontend.Id | Out-File (Join-Path $LogDir 'frontend.pid')
+} else {
+  Write-Error 'Failed to start frontend'
+}
+
 Write-Output 'OS            : Windows'
 Write-Output ("Backend URL   : http://localhost:{0}/api" -f $backendPort)
 Write-Output 'Frontend URL  : http://localhost:5173'

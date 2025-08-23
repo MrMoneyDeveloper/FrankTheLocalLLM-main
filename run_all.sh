@@ -82,18 +82,18 @@ fi
 if [[ $PLATFORM == "ubuntu" ]]; then
   echo "--- Running frank_up.sh ---"
   "$ROOT/frank_up.sh"
+
+  echo "--- Installing frontend dependencies ---"
+  npm --prefix "$ROOT/app" install
+  echo "--- Starting ESBuild dev server ---"
+  node "$ROOT/app/esbuild.config.js" --serve \
+    >"$LOG_DIR/frontend.out.log" 2>"$LOG_DIR/frontend.err.log" &
+  FRONTEND_PID=$!
+  echo "$FRONTEND_PID" > "$LOG_DIR/frontend.pid"
 else
   echo "--- Running frank_up.ps1 ---"
   powershell.exe -ExecutionPolicy Bypass -File "$ROOT/frank_up.ps1"
 fi
-
-# ensure frontend deps are installed
-npm --prefix "$ROOT/app" install
-# start the dev server in the background with logs
-npm --prefix "$ROOT/app" run dev \
-  >"$LOG_DIR/frontend.out.log" 2>"$LOG_DIR/frontend.err.log" &
-FRONTEND_PID=$!
-echo "$FRONTEND_PID" > "$LOG_DIR/frontend.pid"
 
 echo "Logs directory: $LOG_DIR (backend.log, frontend.out.log, frontend.err.log, dotnet.log, etc.)"
 

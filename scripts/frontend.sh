@@ -5,13 +5,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/common.sh"
 
 FRONTEND_PORT="${FRONTEND_PORT:-5173}"
-BACKEND_PORT="${BACKEND_PORT:-8001}"
-VITE_API_BASE="${VITE_API_BASE:-http://localhost:${BACKEND_PORT}/api}"
 
 usage() {
   cat <<'USAGE'
-Usage: FRONTEND_PORT=5173 BACKEND_PORT=8001 bash scripts/frontend.sh [--no-install]
-Starts Vite dev server in app/ with VITE_API_BASE.
+Usage: FRONTEND_PORT=5173 bash scripts/frontend.sh [--no-install]
+Starts ESBuild dev server in app/.
 USAGE
 }
 
@@ -27,10 +25,10 @@ if ! $NO_INSTALL; then
   ( cd "${ROOT_DIR}/app" && npm install >"${LOG_DIR}/npm.app.out.log" 2>"${LOG_DIR}/npm.app.err.log" )
 fi
 
-log "Starting Vite on :${FRONTEND_PORT} (VITE_API_BASE=${VITE_API_BASE})"
+log "Starting ESBuild on :${FRONTEND_PORT}"
 (
   cd "${ROOT_DIR}/app"
-  VITE_API_BASE="${VITE_API_BASE}" npm run dev -- --host 0.0.0.0 --port "${FRONTEND_PORT}" \
+  PORT="${FRONTEND_PORT}" node esbuild.config.js --serve \
     >"${LOG_DIR}/frontend.out.log" 2>"${LOG_DIR}/frontend.err.log" &
   echo $! > "${LOG_DIR}/frontend.pid"
 )
