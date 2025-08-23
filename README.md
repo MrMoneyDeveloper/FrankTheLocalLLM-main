@@ -15,6 +15,12 @@ so other operating systems require a different setup:
 ./run_all.sh
 ```
 
+If the system Python is outdated, upgrade `pip` beforehand to avoid modification errors:
+
+```bash
+python -m pip install --upgrade pip
+```
+
 You can also manage the stack manually:
 
 ```bash
@@ -198,12 +204,14 @@ The script sequentially builds the .NET console app, installs Python dependencie
 On Windows run the commands from `run_all.sh` one by one in PowerShell (first `cd app`, then `npm install && npm run dev`) or execute the script in WSL. Running them in order ensures all dependencies are restored.
 
 
-Background tasks that summarize entries can be started separately using
+Background tasks that summarize entries can be started separately. Ensure a Redis
+server is reachable on `localhost:6379` and launch the worker and beat processes:
 
 ```bash
-celery -A backend.app.tasks worker --beat
+celery -A backend.app.tasks worker
+celery -A backend.app.tasks beat
 ```
-The worker also schedules a nightly digest summarizing new chunks and maintains
+The worker schedules a nightly digest summarizing new chunks and maintains
 wiki-style backlinks between notes.
 
 ### Importing Data

@@ -76,7 +76,7 @@ fi
   source "$VENV_ACTIVATE"
   pip install --upgrade pip
   pip install -r "$ROOT/backend/requirements.txt"
-  $PYTHON_BIN "$ROOT/backend/app/manage.py" migrate
+  $PYTHON_BIN -m backend.app.manage migrate
 ) 2>&1 | tee -a "$LOG_DIR/backend-build.log" || true
 
 if [[ $PLATFORM == "ubuntu" ]]; then
