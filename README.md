@@ -110,14 +110,23 @@ A simple FastAPI backend is located in the `backend/` directory. The configurati
 ### Setup
 
 1. Install Python 3.11 or newer.
-2. Install dependencies:
+2. Upgrade `pip` and install dependencies:
    ```bash
+   python -m pip install --upgrade pip
    pip install -r backend/requirements.txt
    ```
 3. Run the server:
    ```bash
    python -m backend.app.main
    ```
+
+When running management commands such as database migrations, invoke them as modules:
+
+```bash
+python -m backend.app.manage <command>
+```
+
+Executing `manage.py` directly can trigger an "attempted relative import with no known parent package" error.
 
 The server exposes a sample endpoint at `/api/hello` returning a welcome message.
 
@@ -205,14 +214,18 @@ On Windows run the commands from `run_all.sh` one by one in PowerShell (first `c
 
 
 Background tasks that summarize entries can be started separately. Ensure a Redis
-server is reachable on `localhost:6379` and launch the worker and beat processes:
+server is running and reachable on `redis://localhost:6379/0`, then launch the worker
+and beat processes in separate terminals:
 
 ```bash
 celery -A backend.app.tasks worker
 celery -A backend.app.tasks beat
 ```
 The worker schedules a nightly digest summarizing new chunks and maintains
-wiki-style backlinks between notes.
+wiki-style backlinks between notes. On Windows the combined `celery -B` mode is
+unsupported; starting the worker and beat separately avoids errors. If the
+logs show connection refusals to Redis, ensure the Redis server is running or
+update `REDIS_URL` to point to an accessible broker.
 
 ### Importing Data
 
