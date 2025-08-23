@@ -59,6 +59,29 @@ fi
 echo "--- Installing workspace dependencies with Yarn ---"
 (cd "$ROOT" && yarn install)
 
+echo "--- Building .NET console application ---"
+dotnet build "$ROOT/src/ConsoleAppSolution.sln" -c Release 2>&1 | tee "$LOG_DIR/dotnet-build.log" || true
+
+echo "--- Building Python backend ---"
+if [[ $PLATFORM == "windows" ]]; then
+  PYTHON_BIN="python"
+  VENV_ACTIVATE="$ROOT/.venv/Scripts/activate"
+else
+  PYTHON_BIN="python3"
+  VENV_ACTIVATE="$ROOT/.venv/bin/activate"
+fi
+(
+  [ -d "$ROOT/.venv" ] || $PYTHON_BIN -m venv "$ROOT/.venv"
+  # shellcheck disable=SC1090
+  source "$VENV_ACTIVATE"
+  pip install --upgrade pip
+  pip install -r "$ROOT/backend/requirements.txt"
+  $PYTHON_BIN "$ROOT/backend/app/manage.py" migrate
+) 2>&1 | tee -a "$LOG_DIR/backend-build.log" || true
+
+echo "--- Building frontend ---"
+npm --prefix app run build 2>&1 | tee "$LOG_DIR/frontend-build.log" || true
+
 if [[ $PLATFORM == "ubuntu" ]]; then
   echo "--- Running frank_up.sh ---"
   "$ROOT/frank_up.sh"
