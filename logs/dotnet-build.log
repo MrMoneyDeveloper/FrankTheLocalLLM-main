@@ -2,14 +2,14 @@
   All projects are up-to-date for restore.
   Domain -> C:\Workspace\FrankTheLocalLLM-main\src\Domain\bin\Release\net8.0\Domain.dll
   Infrastructure -> C:\Workspace\FrankTheLocalLLM-main\src\Infrastructure\bin\Release\net8.0\Infrastructure.dll
-  Infrastructure.Tests -> C:\Workspace\FrankTheLocalLLM-main\src\Infrastructure.Tests\bin\Release\net8.0\Infrastructure.Tests.dll
   ConsoleApp -> C:\Workspace\FrankTheLocalLLM-main\src\ConsoleApp\bin\Release\net8.0\ConsoleApp.dll
+  Infrastructure.Tests -> C:\Workspace\FrankTheLocalLLM-main\src\Infrastructure.Tests\bin\Release\net8.0\Infrastructure.Tests.dll
   Benchmarks -> C:\Workspace\FrankTheLocalLLM-main\src\Benchmarks\bin\Release\net8.0\Benchmarks.dll
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.77
+Time Elapsed 00:00:05.01
 
 Workload updates are available. Run `dotnet workload list` for more information.

@@ -2482,3 +2482,86 @@ Frontend URL  : http://localhost:5173
 Windows PowerShell transcript end
 End time: 20250824212624
 **********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250824215216
+Username: ITSUPPORTPC\itsup
+RunAs User: ITSUPPORTPC\itsup
+Configuration Name: 
+Machine: ITSUPPORTPC (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:/Workspace/FrankTheLocalLLM-main/frank_up.ps1
+Process ID: 18364
+PSVersion: 5.1.19041.6216
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6216
+BuildVersion: 10.0.19041.6216
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Workspace\FrankTheLocalLLM-main\logs\frank_up.log
+=== frank_up.ps1 started at 2025/08/24 21:52:16 ===
+
+Killing processes on port 11434: 6240
+No process running on port 11434
+
+
+
+Killing processes on port 8000: 8136
+No process running on port 8000
+PS>TerminatingError(Get-NetTCPConnection): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: No MSFT_NetTCPConnection objects found with property 'LocalPort' equal to '8001'.  Verify the value of the property and retry."
+No process running on port 8001
+PS>TerminatingError(Invoke-WebRequest): "Unable to connect to the remote server"
+PS>TerminatingError(): "Cannot overwrite variable host because it is read-only or constant."
+Cannot overwrite variable host because it is read-only or constant.
+At C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1:142 char:7
++   if (Test-Tcp 'localhost' 6379) { $redisOk = $true; break }
++       ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (host:String) [], SessionStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable
+Cannot overwrite variable host because it is read-only or constant.
+At C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1:142 char:7
++   if (Test-Tcp 'localhost' 6379) { $redisOk = $true; break }
++       ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (host:String) [], SessionStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable
+
+WARNING: Redis not reachable (try 1/3). Attempting restartâ€¦
+PS>TerminatingError(): "Cannot overwrite variable host because it is read-only or constant."
+Cannot overwrite variable host because it is read-only or constant.
+At C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1:142 char:7
++   if (Test-Tcp 'localhost' 6379) { $redisOk = $true; break }
++       ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (host:String) [], SessionStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable
+Cannot overwrite variable host because it is read-only or constant.
+At C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1:142 char:7
++   if (Test-Tcp 'localhost' 6379) { $redisOk = $true; break }
++       ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (host:String) [], SessionStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable
+
+WARNING: Redis not reachable (try 2/3). Attempting restartâ€¦
+PS>TerminatingError(): "Cannot overwrite variable host because it is read-only or constant."
+Cannot overwrite variable host because it is read-only or constant.
+At C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1:142 char:7
++   if (Test-Tcp 'localhost' 6379) { $redisOk = $true; break }
++       ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (host:String) [], SessionStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable
+Cannot overwrite variable host because it is read-only or constant.
+At C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1:142 char:7
++   if (Test-Tcp 'localhost' 6379) { $redisOk = $true; break }
++       ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (host:String) [], SessionStateUnauthorizedAccessException
+    + FullyQualifiedErrorId : VariableNotWritable
+
+WARNING: Redis not reachable (try 3/3). Attempting restartâ€¦
+C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1 : Redis unavailable after 3 tries. Shutting down.
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,frank_up.ps1
+C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1 : Redis unavailable after 3 tries. Shutting down.
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,frank_up.ps1
+
