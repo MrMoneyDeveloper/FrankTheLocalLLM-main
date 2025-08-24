@@ -40,6 +40,70 @@ if [[ $PLATFORM == "ubuntu" && $EUID -ne 0 ]]; then
   fi
 fi
 
+REQUIRED_CMDS=(dotnet python3 node yarn redis-server celery ollama)
+
+declare -A UBUNTU_PACKAGES=(
+  [dotnet]=dotnet-sdk-8.0
+  [python3]=python3
+  [node]=nodejs
+  [yarn]=yarn
+  [redis-server]=redis-server
+  [celery]=celery
+  [ollama]=ollama
+)
+
+declare -A WINDOWS_PACKAGES=(
+  [dotnet]=Microsoft.DotNet.SDK.8
+  [python3]=Python.Python.3
+  [node]=OpenJS.NodeJS
+  [yarn]=Yarn.Yarn
+  [redis-server]=Redis.Redis
+  [celery]=celery
+  [ollama]=ollama
+)
+
+install_cmd() {
+  local cmd=$1
+  local pkg
+  if [[ $PLATFORM == "ubuntu" ]]; then
+    pkg=${UBUNTU_PACKAGES[$cmd]:-$cmd}
+  else
+    pkg=${WINDOWS_PACKAGES[$cmd]:-$cmd}
+  fi
+
+  for attempt in 1 2 3; do
+    if command -v "$cmd" >/dev/null 2>&1; then
+      return 0
+    fi
+    echo "$cmd not found. Attempting to install ($attempt/3)..."
+    if [[ $PLATFORM == "ubuntu" ]]; then
+      if [[ -z "${APT_UPDATED:-}" ]]; then
+        apt-get update -y >/dev/null 2>&1 || true
+        APT_UPDATED=1
+      fi
+      apt-get install -y "$pkg" >/dev/null 2>&1 || true
+    else
+      if command -v winget >/dev/null 2>&1; then
+        winget install -e --id "$pkg" -h >/dev/null 2>&1 || true
+      elif command -v choco >/dev/null 2>&1; then
+        choco install -y "$pkg" >/dev/null 2>&1 || true
+      else
+        echo "No supported package manager found on Windows" >&2
+        break
+      fi
+    fi
+  done
+
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "ERROR: Required command '$cmd' not found after installation attempts" >&2
+    exit 1
+  fi
+}
+
+for cmd in "${REQUIRED_CMDS[@]}"; do
+  install_cmd "$cmd"
+done
+
 free_port() {
   local port=$1
   if command -v lsof >/dev/null 2>&1 && lsof -ti tcp:"$port" >/dev/null 2>&1; then
