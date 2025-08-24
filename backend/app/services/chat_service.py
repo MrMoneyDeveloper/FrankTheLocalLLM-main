@@ -4,7 +4,7 @@ from pathlib import Path
 import json
 
 from fastapi import APIRouter, Body, HTTPException
-from langchain_community.llms import Ollama
+from ..llm import OllamaLLM
 from ..config import Settings
 
 router = APIRouter(tags=["chat"], prefix="/chat")
@@ -14,12 +14,12 @@ _CACHE_FILE = Path(__file__).resolve().parents[1] / "data" / "chat_cache.json"
 
 
 class ChatService:
-    _llm: Ollama | None = None
+    _llm: OllamaLLM | None = None
     _cache: dict[str, str] | None = None
 
     def __init__(self) -> None:
         if self._llm is None:
-            self._llm = Ollama(model=settings.model)
+            self._llm = OllamaLLM(model=settings.model)
         if self._cache is None:
             self._cache = _load_cache()
 

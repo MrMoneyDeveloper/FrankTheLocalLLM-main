@@ -130,49 +130,60 @@ for ($i=0; $i -lt 30; $i++) {
   }
 }
 
-function Test-Tcp($host, $port, $timeoutSec=3) {
-  try { ($c = New-Object Net.Sockets.TcpClient).BeginConnect($host,$port,$null,$null) | Out-Null
-        $ok = ($c.Client.Poll($timeoutSec*1000000,[Net.Sockets.SelectMode]::SelectWrite) -or $c.Connected)
-        $c.Close(); return $ok } catch { return $false }
-}
+function Test-Port($host,$port){ try{ (New-Object Net.Sockets.TcpClient).Connect($host,$port) ; return $true } catch { return $false } }
 
 # Wait for Redis (3 tries)
 $redisOk = $false
 for ($i=1; $i -le 3; $i++) {
-  if (Test-Tcp 'localhost' 6379) { $redisOk = $true; break }
-  Write-Warning "Redis not reachable (try $i/3). Attempting restart…"
-  if (Get-Service redis -ErrorAction SilentlyContinue) { Restart-Service redis -ErrorAction SilentlyContinue }
-  Start-Sleep -Seconds 2
+    if (Test-Port 'localhost' 6379) { $redisOk = $true; break }
+    Write-Warning "Redis not reachable (try $i/3). Restarting..."
+    if (Get-Service redis -ErrorAction SilentlyContinue) {
+        Restart-Service redis -ErrorAction SilentlyContinue
+    } else {
+        Start-Process redis-server | Out-Null
+    }
+    Start-Sleep -Seconds 2
 }
 if (-not $redisOk) {
-  Write-Error "Redis unavailable after 3 tries. Shutting down."
-  & "$Root\frank_down.sh"
-  exit 1
+    Write-Error "Redis unavailable after 3 tries"
+    & "$Root\frank_down.sh"
+    exit 1
 }
 
-function Test-Ollama($timeoutSec=3) {
-  try {
-    $resp = Invoke-WebRequest -UseBasicParsing -TimeoutSec $timeoutSec "http://localhost:11434"
-    return $resp.StatusCode -ge 200 -and $resp.StatusCode -lt 500
-  } catch { return $false }
+function Test-Ollama() {
+    try {
+        (Invoke-WebRequest -UseBasicParsing "http://localhost:11434" -TimeoutSec 3) | Out-Null
+        return $true
+    }
+    catch { return $false }
 }
 
 # Ensure Ollama running (3 tries)
 $ollamaOk = $false
 for ($i=1; $i -le 3; $i++) {
-  if (Test-Ollama) { $ollamaOk = $true; break }
-  Write-Warning "Ollama not responding (try $i/3). Restarting…"
-  if (Get-Service ollama -ErrorAction SilentlyContinue) {
-    Restart-Service ollama -ErrorAction SilentlyContinue
-  } else {
-    Start-Process -FilePath 'ollama' -ArgumentList 'serve' | Out-Null
-  }
-  Start-Sleep -Seconds 2
+    if (Test-Ollama) { $ollamaOk = $true; break }
+    Write-Warning "Ollama not responding (try $i/3). Restarting…"
+    if (Get-Service ollama -ErrorAction SilentlyContinue) {
+        Restart-Service ollama -ErrorAction SilentlyContinue
+    } else {
+        Start-Process -FilePath 'ollama' -ArgumentList 'serve' -ErrorAction SilentlyContinue | Out-Null
+    }
+    Start-Sleep -Seconds 2
 }
+
+# If still not responding, attempt reinstall once via winget
 if (-not $ollamaOk) {
-  Write-Error "Ollama failed after 3 tries. Shutting down stack."
-  & "$Root\frank_down.sh"
-  exit 1
+    Write-Warning "Ollama still not responding. Attempting reinstall..."
+    Start-Process winget -ArgumentList 'install --id=Ollama.Ollama -e --silent' -Wait
+    Start-Process -FilePath 'ollama' -ArgumentList 'serve' -ErrorAction SilentlyContinue | Out-Null
+    Start-Sleep -Seconds 5
+    if (Test-Ollama) { $ollamaOk = $true }
+}
+
+if (-not $ollamaOk) {
+    Write-Error "Ollama unavailable after reinstall attempt. Shutting down."
+    & "$Root\frank_down.sh"
+    exit 1
 }
 
 if (Test-Path $CeleryExe) {

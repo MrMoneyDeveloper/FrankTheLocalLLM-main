@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body, HTTPException, Depends
 from langchain_community.agent_toolkits.sql.base import create_sql_agent
 from langchain_community.utilities import SQLDatabase
-from langchain_community.llms import Ollama
+from ..llm import OllamaLLM
 from ..config import Settings
 
 from ..db import engine
@@ -13,7 +13,7 @@ settings = Settings()
 
 class SQLService(CachedLLMService):
     def __init__(self):
-        super().__init__(Ollama(model=settings.model))
+        super().__init__(OllamaLLM(model=settings.model))
         self._db = SQLDatabase(engine)
         self._agent = create_sql_agent(llm=self._llm, db=self._db, agent_type="openai-tools")
 

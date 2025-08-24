@@ -4,11 +4,11 @@ import json
 from pathlib import Path
 
 from celery import Celery
-from langchain_community.llms import Ollama
 
 from .db import SessionLocal
 from .models import User
 from .config import Settings
+from .llm import OllamaLLM
 
 celery_app = Celery("worker", broker="redis://localhost:6379/0")
 settings = Settings()
@@ -47,7 +47,7 @@ def summarize_new_users():
     if not users:
         return "No new users"
 
-    llm = Ollama(model=settings.model)
+    llm = OllamaLLM(model=settings.model)
     content = "\n".join(u.username for u in users)
     summary = llm.invoke(f"Summarize the following new users:\n{content}")
 
