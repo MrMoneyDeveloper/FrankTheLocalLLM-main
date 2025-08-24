@@ -4,6 +4,8 @@ using Dapper;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Logging.Abstractions;
+using System.Reflection;
 using Xunit;
 
 public class SchemaMigrationTests
@@ -30,8 +32,10 @@ public class SchemaMigrationTests
         var factory = new SqliteConnectionFactory(connString);
         var db = new LoggingDataAccess(factory);
         await db.InitializeAsync();
-        var entryRepo = new EntryRepository(db);
+        var entryRepo = new EntryRepository(db, NullLogger<EntryRepository>.Instance);
         await entryRepo.InitializeAsync();
+        typeof(UserRepository).GetField("_schemaEnsured", BindingFlags.NonPublic | BindingFlags.Static)!
+            .SetValue(null, false);
         var userRepo = new UserRepository(db);
         await userRepo.InitializeAsync();
 
