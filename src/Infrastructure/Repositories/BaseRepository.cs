@@ -31,10 +31,10 @@ public abstract class BaseRepository<T> where T : BaseEntity
         var props = typeof(T).GetProperties()
             .Where(p => p.Name != nameof(BaseEntity.Id))
             .ToArray();
-        var columns = string.Join(", ", props.Select(p => ToSnakeCase(p.Name)));
+        var columns = string.Join(", ", props.Select(p => $"\"{ToSnakeCase(p.Name)}\""));
         var parameters = string.Join(", ", props.Select(p => $"@{p.Name}"));
         _insertSql = $"INSERT INTO {tableName} ({columns}) VALUES ({parameters}); SELECT last_insert_rowid();";
-        var sets = string.Join(", ", props.Select(p => $"{ToSnakeCase(p.Name)} = @{p.Name}"));
+        var sets = string.Join(", ", props.Select(p => $"\"{ToSnakeCase(p.Name)}\" = @{p.Name}"));
         _updateSql = $"UPDATE {tableName} SET {sets} WHERE id = @Id";
     }
 
