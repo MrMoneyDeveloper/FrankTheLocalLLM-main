@@ -130,7 +130,7 @@ for ($i=0; $i -lt 30; $i++) {
   }
 }
 
-function Test-Port($hostname,$portNumber){ try{ (New-Object Net.Sockets.TcpClient).Connect($hostname,$portNumber) ; return $true } catch { return $false } }
+function Test-Port($hostname, $port){ try{ (New-Object Net.Sockets.TcpClient).Connect($hostname,$port) ; return $true } catch { return $false } }
 
 # Wait for Redis (3 tries)
 $redisOk = $false
