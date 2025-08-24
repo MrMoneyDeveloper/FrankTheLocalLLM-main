@@ -11,6 +11,7 @@ var configuration = new ConfigurationBuilder()
     .Build();
 
 var services = new ServiceCollection();
+services.AddLogging();
 
 var connectionString = configuration.GetConnectionString("Default") ?? "Data Source=app.db";
 services.AddSingleton(new SqliteConnectionFactory(connectionString));
