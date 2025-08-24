@@ -11510,3 +11510,7 @@ C:\Workspace\FrankTheLocalLLM-main\frank_up.ps1 : Redis unavailable after 3 trie
 Error on line 72: "$@" (exit code 1)
 Stopping frontend, backend, celery (and user-session ollama if present)...
 /c/Workspace/FrankTheLocalLLM-main/frank_down.sh: line 4: warning: command substitution: ignored null byte in input
+--- Install dependencies ---
+--- Install dependencies ---
+--- Install dependencies ---
+--- Install dependencies ---
