@@ -1,30 +1,25 @@
-from typing import Protocol
+import time
+import logging
+import requests
+from langchain_ollama import OllamaLLM as LangchainOllama
 
-from .config import Settings
+class OllamaLLM:
+    def __init__(self, model: str = "llama3", retries: int = 3, backoff: float = 2.0):
+        self.model = model
+        last_err = None
+        for i in range(retries):
+            try:
+                r = requests.get("http://localhost:11434", timeout=5)
+                r.raise_for_status()
+                self._client = LangchainOllama(model=self.model)
+                logging.info("Ollama connected on attempt %d", i+1)
+                return
+            except Exception as e:  # pragma: no cover - network errors
+                last_err = e
+                logging.warning("Ollama connect failed (attempt %d/%d): %s", i+1, retries, e)
+                time.sleep(backoff)
+        logging.error("Ollama unavailable after %d attempts: %s", retries, last_err)
+        raise RuntimeError(f"Ollama unavailable: {last_err}")
 
-
-class LLMClient(Protocol):
-    """Interface for language model clients."""
-
-    def invoke(self, prompt: str) -> str:  # pragma: no cover - interface
-        ...
-
-
-class DummyLLM:
-    """Fallback LLM implementation used when no backend is available."""
-
-    def invoke(self, prompt: str) -> str:  # pragma: no cover - runtime call
-        return "LLM backend not configured"
-
-
-def get_llm(model: str | None = None, backend: str | None = None) -> LLMClient:
-    """Return an LLM client for the configured backend."""
-    settings = Settings()
-    backend = backend or settings.model_backend
-    model_name = model or settings.model
-
-    if backend == "ollama":
-        from langchain_ollama import OllamaLLM as LangchainOllama
-
-        return LangchainOllama(model=model_name)
-    return DummyLLM()
+    def invoke(self, prompt: str) -> str:
+        return self._client.invoke(prompt)

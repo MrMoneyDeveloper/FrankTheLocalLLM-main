@@ -11,6 +11,11 @@ New-Item -ItemType Directory -Force -Path $LogDir | Out-Null
 Start-Transcript -Path $LogFile -Append
 Write-Output ("=== frank_up.ps1 started at {0} ===" -f (Get-Date))
 
+# Resolve venv binaries explicitly
+$venvBin = Join-Path $Root '.venv\Scripts'
+$PythonExe = Join-Path $venvBin 'python.exe'
+$CeleryExe = Join-Path $venvBin 'celery.exe'
+
 function Need-Cmd ($cmd) { Get-Command $cmd -ErrorAction SilentlyContinue }
 
 function Install-IfMissing ($cmd, $wingetId, $chocoPkg) {
@@ -84,18 +89,17 @@ if (Get-Service ollama -ErrorAction SilentlyContinue) {
 python -m venv .venv
 $activate = [IO.Path]::Combine($Root,'.venv','Scripts','Activate.ps1')
 . $activate
-python -m pip install --upgrade pip
-python -m pip install -r backend/requirements.txt
-
-$celeryExe = Join-Path $Root '.venv' 'Scripts' 'celery.exe'
+& $PythonExe -m pip install --upgrade pip
+& $PythonExe -m pip install -r backend/requirements.txt
 
 $envPath = Join-Path $Root '.env'
 if (-not (Test-Path $envPath)) {
 @'
 PORT=8001
-REDIS_URL=redis://localhost:6379/0
 DATABASE_URL=sqlite:///./app.db
 MODEL=llama3
+CELERY_BROKER_URL=redis://localhost:6379/0
+CELERY_RESULT_BACKEND=redis://localhost:6379/0
 DEBUG=false
 '@ | Set-Content $envPath
 }
@@ -110,7 +114,7 @@ Free-Port 8000
 Free-Port $backendPort
 
 
-$backend = Start-LoggedProcess -Name 'backend' -FilePath 'python' -ArgumentList @('-m','backend.app.main')
+$backend = Start-LoggedProcess -Name 'backend' -FilePath $PythonExe -ArgumentList @('-m','backend.app.main')
 if ($backend) {
   $backend.Id | Out-File (Join-Path $LogDir 'backend.pid')
 } else {
@@ -126,15 +130,60 @@ for ($i=0; $i -lt 30; $i++) {
   }
 }
 
-if (Test-Path $celeryExe) {
-  $celery = Start-LoggedProcess -Name 'celery_worker' -FilePath $celeryExe -ArgumentList @('-A','backend.app.tasks','worker')
+function Test-Tcp($host, $port, $timeoutSec=3) {
+  try { ($c = New-Object Net.Sockets.TcpClient).BeginConnect($host,$port,$null,$null) | Out-Null
+        $ok = ($c.Client.Poll($timeoutSec*1000000,[Net.Sockets.SelectMode]::SelectWrite) -or $c.Connected)
+        $c.Close(); return $ok } catch { return $false }
+}
+
+# Wait for Redis (3 tries)
+$redisOk = $false
+for ($i=1; $i -le 3; $i++) {
+  if (Test-Tcp 'localhost' 6379) { $redisOk = $true; break }
+  Write-Warning "Redis not reachable (try $i/3). Attempting restart…"
+  if (Get-Service redis -ErrorAction SilentlyContinue) { Restart-Service redis -ErrorAction SilentlyContinue }
+  Start-Sleep -Seconds 2
+}
+if (-not $redisOk) {
+  Write-Error "Redis unavailable after 3 tries. Shutting down."
+  & "$Root\frank_down.sh"
+  exit 1
+}
+
+function Test-Ollama($timeoutSec=3) {
+  try {
+    $resp = Invoke-WebRequest -UseBasicParsing -TimeoutSec $timeoutSec "http://localhost:11434"
+    return $resp.StatusCode -ge 200 -and $resp.StatusCode -lt 500
+  } catch { return $false }
+}
+
+# Ensure Ollama running (3 tries)
+$ollamaOk = $false
+for ($i=1; $i -le 3; $i++) {
+  if (Test-Ollama) { $ollamaOk = $true; break }
+  Write-Warning "Ollama not responding (try $i/3). Restarting…"
+  if (Get-Service ollama -ErrorAction SilentlyContinue) {
+    Restart-Service ollama -ErrorAction SilentlyContinue
+  } else {
+    Start-Process -FilePath 'ollama' -ArgumentList 'serve' | Out-Null
+  }
+  Start-Sleep -Seconds 2
+}
+if (-not $ollamaOk) {
+  Write-Error "Ollama failed after 3 tries. Shutting down stack."
+  & "$Root\frank_down.sh"
+  exit 1
+}
+
+if (Test-Path $CeleryExe) {
+  $celery = Start-LoggedProcess -Name 'celery_worker' -FilePath $CeleryExe -ArgumentList @('-A','backend.app.tasks','worker')
   if ($celery) {
     $celery.Id | Out-File (Join-Path $LogDir 'celery_worker.pid')
   } else {
     Write-Error 'Failed to start Celery worker'
   }
 
-  $celeryBeat = Start-LoggedProcess -Name 'celery_beat' -FilePath $celeryExe -ArgumentList @('-A','backend.app.tasks','beat')
+  $celeryBeat = Start-LoggedProcess -Name 'celery_beat' -FilePath $CeleryExe -ArgumentList @('-A','backend.app.tasks','beat')
   if ($celeryBeat) {
     $celeryBeat.Id | Out-File (Join-Path $LogDir 'celery_beat.pid')
   } else {
@@ -153,7 +202,8 @@ if ($dotnet) {
 }
 
 # Frontend (ESBuild dev server)
-npm --prefix $frontDir install | Out-Null
+$NpmCmd = Join-Path $env:ProgramFiles 'nodejs\npm.cmd'
+& $NpmCmd --prefix $frontDir install | Out-Null
 $frontend = Start-LoggedProcess -Name 'frontend' -FilePath 'node' -ArgumentList @('esbuild.config.js','--serve') -WorkingDirectory $frontDir
 if ($frontend) {
   $frontend.Id | Out-File (Join-Path $LogDir 'frontend.pid')

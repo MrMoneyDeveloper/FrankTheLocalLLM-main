@@ -126,7 +126,7 @@ fi
 # Verify Celery worker and beat are running
 for pid_file in "$LOG_DIR/celery_worker.pid" "$LOG_DIR/celery_beat.pid"; do
   if [[ ! -s $pid_file ]] || ! kill -0 "$(cat "$pid_file")" >/dev/null 2>&1; then
-    echo "Required Celery process missing: $pid_file" >&2
+    echo "Required Celery process missing: $pid_file. See logs/celery_worker.err.log and logs/celery_worker.out.log" >&2
     exit 1
   fi
 done

@@ -1,11 +1,11 @@
 from sqlalchemy.orm import Session
 
-from ..llm import LLMClient
+from ..llm import OllamaLLM
 from . import CachedLLMService
 from ..models import Entry
 
 class SummarizationService(CachedLLMService):
-    def __init__(self, llm: LLMClient):
+    def __init__(self, llm: OllamaLLM):
         super().__init__(llm)
 
     def summarize_pending_entries(self, db: Session) -> None:
