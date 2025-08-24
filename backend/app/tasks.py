@@ -1,20 +1,24 @@
+import os
+import datetime
 from celery import Celery
 from celery.schedules import crontab
-import datetime
 
 from .config import Settings
 from .db import SessionLocal
 from pathlib import Path
 
 from . import models
-from .llm import get_llm
+from .llm import OllamaLLM
 from .services.summarization_service import SummarizationService
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.vectorstores import Chroma
 
 settings = Settings()
 
-celery_app = Celery("worker", broker=settings.redis_url)
+BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0")
+RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:6379/0")
+
+celery_app = Celery("backend", broker=BROKER_URL, backend=RESULT_BACKEND)
 celery_app.conf.beat_schedule = {
     "summarize-entries": {
         "task": "app.tasks.summarize_entries",
@@ -26,9 +30,7 @@ celery_app.conf.beat_schedule = {
     },
 }
 
-
-summarization_service = SummarizationService(get_llm(settings.model, settings.model_backend))
-
+summarization_service = SummarizationService(OllamaLLM(settings.model))
 
 @celery_app.task
 def summarize_entries():
@@ -39,14 +41,10 @@ def summarize_entries():
     finally:
         db.close()
 
-
 @celery_app.task
 def embed_chunk(chunk_id: int):
     db = SessionLocal()
     try:
-        if settings.model_backend != "ollama":
-            return
-
         chunk = db.query(models.Chunk).get(chunk_id)
         if chunk is None:
             return
@@ -68,11 +66,9 @@ def embed_chunk(chunk_id: int):
     finally:
         db.close()
 
-
 def _extract_links(text: str) -> list[str]:
     import re
     return re.findall(r"\[\[(.+?)\]\]", text)
-
 
 @celery_app.task
 def daily_digest():
@@ -90,7 +86,6 @@ def daily_digest():
         _update_backlinks(db, chunks)
     finally:
         db.close()
-
 
 def _update_backlinks(db, chunks):
     for chunk in chunks:

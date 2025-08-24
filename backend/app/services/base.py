@@ -7,7 +7,6 @@ from typing import Any, Callable
 
 from sqlalchemy.orm import Session
 
-from ..llm import LLMClient
 
 class UnitOfWork:
     """Collects database changes and flushes them on teardown."""
@@ -46,7 +45,7 @@ def get_uow(db: Session) -> UnitOfWork:
 class CachedLLMService(ABC):
     """Mixin for services that interact with an LLM with LRU caching."""
 
-    def __init__(self, llm: LLMClient, cache_size: int = 128) -> None:
+    def __init__(self, llm: Any, cache_size: int = 128) -> None:
         self._llm = llm
         self._hit = False
 
