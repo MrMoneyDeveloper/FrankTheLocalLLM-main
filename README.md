@@ -6,13 +6,13 @@ FrankTheLocalLLM combines a Vue.js + Tailwind front‑end with a FastAPI backend
 
 ## Quick Start
 
-Clone the repository and launch everything with a single command. The wrapper
-script boots all services via `frank_up.sh` and cleans up with `frank_down.sh`
-when you exit. The bootstrap script currently targets Ubuntu or WSL environments,
-so other operating systems require a different setup:
+Clone the repository and launch everything with a single command. The `run_all.sh`
+script installs dependencies and starts each component (Redis, .NET, backend,
+Celery, front-end and Ollama) in sequence, logging output under `logs/`. On
+Windows run it from a Git Bash or WSL shell:
 
 ```bash
-./run_all.sh
+bash run_all.sh
 ```
 
 If the system Python is outdated, upgrade `pip` beforehand to avoid modification errors:
@@ -21,12 +21,8 @@ If the system Python is outdated, upgrade `pip` beforehand to avoid modification
 python -m pip install --upgrade pip
 ```
 
-You can also manage the stack manually:
-
-```bash
-./frank_up.sh   # start services
-./frank_down.sh # stop services
-```
+You can also manage the stack manually with the scripts under `scripts/` or stop
+processes using `./frank_down.sh`.
 
 ## Features
 
@@ -44,11 +40,10 @@ Or clone and launch everything in one step:
 ```
 ## Process Overview
 
-`run_all.sh` delegates to `frank_up.sh` which installs dependencies and launches
-
-the FastAPI backend, Celery worker and Vue.js front‑end. All output and any
-errors from the bring‑up process are written to `logs/run_all.log` for
-troubleshooting.
+`run_all.sh` orchestrates modular scripts to install dependencies and launch the
+FastAPI backend, Celery worker and beat, the Vue.js front‑end, the .NET console
+app and Ollama. All output from the orchestration is written to
+`logs/run_all.log` for troubleshooting.
 
 1. The Vue front‑end sends requests to the FastAPI backend under `/api`.
 2. Notes are chunked and embedded into a Chroma vector store.
