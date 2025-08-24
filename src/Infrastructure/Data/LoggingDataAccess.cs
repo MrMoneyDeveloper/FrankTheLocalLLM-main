@@ -33,6 +33,14 @@ public class LoggingDataAccess
             await ((SqliteConnection)connection).OpenAsync();
             using var transaction = connection.BeginTransaction();
 
+            await EnsureColumnAsync(connection, "entries", "title",
+                "TEXT NOT NULL DEFAULT ''");
+            await EnsureColumnAsync(connection, "entries", "\"group\"",
+                "TEXT NOT NULL DEFAULT ''");
+            await EnsureColumnAsync(connection, "entries", "summary",
+                "TEXT NOT NULL DEFAULT ''");
+            await EnsureColumnAsync(connection, "entries", "is_summarised",
+                "INTEGER NOT NULL DEFAULT 0");
             await EnsureColumnAsync(connection, "entries", "tags",
                 "TEXT NOT NULL DEFAULT ''");
             await EnsureColumnAsync(connection, "entries", "created_at",
@@ -55,7 +63,8 @@ public class LoggingDataAccess
     {
         var rows = (await conn.QueryAsync($"PRAGMA table_info({table});")).ToList();
         if (!rows.Any()) return;
-        var exists = rows.Any(r => string.Equals((string)r.name, column, StringComparison.OrdinalIgnoreCase));
+        var columnName = column.Trim('"');
+        var exists = rows.Any(r => string.Equals((string)r.name, columnName, StringComparison.OrdinalIgnoreCase));
         if (exists) return;
         try
         {

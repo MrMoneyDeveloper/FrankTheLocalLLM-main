@@ -12,9 +12,9 @@ Start-Transcript -Path $LogFile -Append
 Write-Output ("=== frank_up.ps1 started at {0} ===" -f (Get-Date))
 
 # Resolve venv binaries explicitly
-$venvBin = Join-Path $Root '.venv\Scripts'
-$PythonExe = Join-Path $venvBin 'python.exe'
-$CeleryExe = Join-Path $venvBin 'celery.exe'
+$venvScripts = Join-Path (Join-Path $Root '.venv') 'Scripts'
+$PythonExe = Join-Path $venvScripts 'python.exe'
+$CeleryExe = Join-Path $venvScripts 'celery.exe'
 
 function Need-Cmd ($cmd) { Get-Command $cmd -ErrorAction SilentlyContinue }
 
@@ -71,11 +71,11 @@ Install-IfMissing redis-server 'Microsoft.OpenSource.Redis' 'redis-64'
 Install-IfMissing ollama 'Ollama.Ollama' 'ollama'
 Install-IfMissing dotnet 'Microsoft.DotNet.SDK.8' 'dotnet-sdk'
 
+$redisExe = Join-Path $env:ProgramFiles 'Redis\redis-server.exe'
 if (Get-Service redis -ErrorAction SilentlyContinue) {
   Start-Service redis
-} elseif (Need-Cmd 'redis-server') {
-    Start-LoggedProcess -Name 'redis' -FilePath 'redis-server' | Out-Null
-
+} elseif (Test-Path $redisExe) {
+  Start-LoggedProcess -Name 'redis' -FilePath $redisExe | Out-Null
 }
 
 if (Get-Service ollama -ErrorAction SilentlyContinue) {
@@ -130,7 +130,7 @@ for ($i=0; $i -lt 30; $i++) {
   }
 }
 
-function Test-Port($host,$port){ try{ (New-Object Net.Sockets.TcpClient).Connect($host,$port) ; return $true } catch { return $false } }
+function Test-Port($hostname,$portNumber){ try{ (New-Object Net.Sockets.TcpClient).Connect($hostname,$portNumber) ; return $true } catch { return $false } }
 
 # Wait for Redis (3 tries)
 $redisOk = $false
@@ -139,8 +139,8 @@ for ($i=1; $i -le 3; $i++) {
     Write-Warning "Redis not reachable (try $i/3). Restarting..."
     if (Get-Service redis -ErrorAction SilentlyContinue) {
         Restart-Service redis -ErrorAction SilentlyContinue
-    } else {
-        Start-Process redis-server | Out-Null
+    } elseif (Test-Path $redisExe) {
+        Start-Process $redisExe | Out-Null
     }
     Start-Sleep -Seconds 2
 }
@@ -187,7 +187,7 @@ if (-not $ollamaOk) {
 }
 
 if (Test-Path $CeleryExe) {
-  $celery = Start-LoggedProcess -Name 'celery_worker' -FilePath $CeleryExe -ArgumentList @('-A','backend.app.tasks','worker')
+  $celery = Start-LoggedProcess -Name 'celery_worker' -FilePath $CeleryExe -ArgumentList @('-A','backend.app.tasks','worker','--pool=solo')
   if ($celery) {
     $celery.Id | Out-File (Join-Path $LogDir 'celery_worker.pid')
   } else {

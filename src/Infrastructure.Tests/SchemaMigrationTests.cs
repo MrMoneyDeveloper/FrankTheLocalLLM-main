@@ -44,6 +44,10 @@ public class SchemaMigrationTests
             .ToList();
 
         Assert.Contains("email", userCols);
+        Assert.Contains("title", entryCols);
+        Assert.Contains("group", entryCols);
+        Assert.Contains("summary", entryCols);
+        Assert.Contains("is_summarised", entryCols);
         Assert.Contains("tags", entryCols);
         Assert.Contains("created_at", entryCols);
     }

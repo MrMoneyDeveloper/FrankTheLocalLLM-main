@@ -15,7 +15,7 @@ public class EntryQueryBuilder
 
     public (string Sql, DynamicParameters Parameters) Build()
     {
-        var sb = new StringBuilder("SELECT id as Id, user_id as UserId, content as Content, tags as Tags, created_at as CreatedAt FROM entries");
+        var sb = new StringBuilder("SELECT id as Id, user_id as UserId, title as Title, \"group\" as Group, content as Content, summary as Summary, is_summarised as IsSummarised, tags as Tags, created_at as CreatedAt FROM entries");
         var conditions = new List<string>();
         var parameters = new DynamicParameters();
         if (_options.Tags != null && _options.Tags.Any())
@@ -41,7 +41,7 @@ public class EntryQueryBuilder
         }
         if (!string.IsNullOrEmpty(_options.Text))
         {
-            conditions.Add("content LIKE @text");
+            conditions.Add("(title LIKE @text OR content LIKE @text)");
             parameters.Add("text", $"%{_options.Text}%");
         }
 

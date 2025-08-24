@@ -17,23 +17,38 @@ public class EntryRepository : BaseRepository<Entry>, IEntryRepository
         var sql = @"CREATE TABLE IF NOT EXISTS entries (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER NOT NULL,
+            title TEXT NOT NULL DEFAULT '',
+            ""group"" TEXT NOT NULL DEFAULT '',
             content TEXT NOT NULL,
+            summary TEXT NOT NULL DEFAULT '',
+            is_summarised INTEGER NOT NULL DEFAULT 0,
             tags TEXT,
             created_at TEXT NOT NULL,
             FOREIGN KEY(user_id) REFERENCES users(id)
         );";
         await _db.ExecuteAsync(sql);
 
-        // Handle databases created before the user_id column existed. In
-        // older revisions entries were stored without linking back to the
-        // user, so queries against the user_stats view would fail. Ensure the
-        // column is present before continuing.
         var check = "SELECT COUNT(*) FROM pragma_table_info('entries') WHERE name = @Name";
+
         if (await _db.ExecuteScalarAsync<long>(check, new { Name = "user_id" }) == 0)
         {
-            // Add the column with a NULL default to avoid errors when existing
-            // rows are present. New inserts will supply a valid user id.
             await _db.ExecuteAsync("ALTER TABLE entries ADD COLUMN user_id INTEGER;");
+        }
+        if (await _db.ExecuteScalarAsync<long>(check, new { Name = "title" }) == 0)
+        {
+            await _db.ExecuteAsync("ALTER TABLE entries ADD COLUMN title TEXT NOT NULL DEFAULT '';");
+        }
+        if (await _db.ExecuteScalarAsync<long>(check, new { Name = "group" }) == 0)
+        {
+            await _db.ExecuteAsync("ALTER TABLE entries ADD COLUMN \"group\" TEXT NOT NULL DEFAULT '';");
+        }
+        if (await _db.ExecuteScalarAsync<long>(check, new { Name = "summary" }) == 0)
+        {
+            await _db.ExecuteAsync("ALTER TABLE entries ADD COLUMN summary TEXT NOT NULL DEFAULT '';");
+        }
+        if (await _db.ExecuteScalarAsync<long>(check, new { Name = "is_summarised" }) == 0)
+        {
+            await _db.ExecuteAsync("ALTER TABLE entries ADD COLUMN is_summarised INTEGER NOT NULL DEFAULT 0;");
         }
     }
 

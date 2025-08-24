@@ -8,7 +8,12 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS entries (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
+    title TEXT NOT NULL DEFAULT '',
+    "group" TEXT NOT NULL DEFAULT '',
     content TEXT NOT NULL,
+    summary TEXT NOT NULL DEFAULT '',
+    is_summarised INTEGER NOT NULL DEFAULT 0,
+    tags TEXT,
     created_at TEXT NOT NULL,
     FOREIGN KEY(user_id) REFERENCES users(id)
 );
