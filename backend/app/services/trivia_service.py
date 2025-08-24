@@ -6,7 +6,7 @@ from langchain_community.document_loaders import UnstructuredMarkdownLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
-from langchain_community.llms import Ollama
+from ..llm import OllamaLLM
 from ..config import Settings
 
 from . import CachedLLMService
@@ -19,7 +19,7 @@ settings = Settings()
 
 class TriviaService(CachedLLMService):
     def __init__(self):
-        super().__init__(Ollama(model=settings.model))
+        super().__init__(OllamaLLM(model=settings.model))
         loader = UnstructuredMarkdownLoader(str(DATA_FILE))
         docs = loader.load()
         splitter = RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=50)

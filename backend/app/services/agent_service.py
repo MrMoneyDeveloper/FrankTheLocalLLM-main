@@ -2,8 +2,8 @@
 from fastapi import APIRouter, HTTPException, Body
 from langchain_community.agent_toolkits.sql.base import create_sql_agent
 from langchain_community.utilities import SQLDatabase
-from langchain_community.llms import Ollama
 from langchain_experimental.sql import SQLDatabaseChain
+from ..llm import OllamaLLM
 
 from ..db import engine
 from ..config import Settings
@@ -18,7 +18,7 @@ def get_agent():
     global _AGENT
     if _AGENT is None:
         db = SQLDatabase(engine)
-        llm = Ollama(model=settings.model)
+        llm = OllamaLLM(model=settings.model)
         _AGENT = create_sql_agent(llm=llm, db=db, agent_type="openai-tools")
     return _AGENT
 
@@ -27,7 +27,7 @@ def get_chain():
     global _CHAIN
     if _CHAIN is None:
         db = SQLDatabase(engine)
-        llm = Ollama(model=settings.model)
+        llm = OllamaLLM(model=settings.model)
         _CHAIN = SQLDatabaseChain.from_llm(llm, db, return_intermediate_steps=True)
     return _CHAIN
 

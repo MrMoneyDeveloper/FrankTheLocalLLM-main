@@ -30,13 +30,20 @@ celery_app.conf.beat_schedule = {
     },
 }
 
-summarization_service = SummarizationService(OllamaLLM(settings.model))
+_summarization_service: SummarizationService | None = None
+
+
+def _get_summarization_service() -> SummarizationService:
+    global _summarization_service
+    if _summarization_service is None:
+        _summarization_service = SummarizationService(OllamaLLM(settings.model))
+    return _summarization_service
 
 @celery_app.task
 def summarize_entries():
     db = SessionLocal()
     try:
-        summarization_service.summarize_pending_entries(db)
+        _get_summarization_service().summarize_pending_entries(db)
         db.commit()
     finally:
         db.close()
@@ -79,7 +86,8 @@ def daily_digest():
         if not chunks:
             return
         combined = "\n".join(c.content for c in chunks)
-        summary = summarization_service.llm_invoke(f"Summarize in <=200 words:\n{combined}")
+        service = _get_summarization_service()
+        summary = service.llm_invoke(f"Summarize in <=200 words:\n{combined}")
         tokens = len(summary.split())
         db.add(models.DailySummary(summary=summary.strip(), token_count=tokens))
         db.commit()

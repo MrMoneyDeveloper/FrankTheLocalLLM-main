@@ -7,8 +7,9 @@ from langchain_community.embeddings import OllamaEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.streaming_aiter import AsyncIteratorCallbackHandler
-from langchain_community.llms import Ollama
 import asyncio
+
+from ..llm import OllamaLLM
 
 from ..config import Settings
 
@@ -31,7 +32,7 @@ def _chain():
         "{source_path}#{line}.\n{question}"
     )
     prompt = PromptTemplate.from_template(template)
-    llm = Ollama(model=settings.model, streaming=True)
+    llm = OllamaLLM(model=settings.model, streaming=True)
     return RetrievalQA.from_chain_type(
         llm=llm,
         retriever=retriever,
