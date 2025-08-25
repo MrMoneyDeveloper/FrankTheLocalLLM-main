@@ -11520,3 +11520,260 @@ Stopping frontend, backend, celery (and user-session ollama if present)...
 --- Install dependencies ---
 --- Install dependencies ---
 --- Install dependencies ---
+--- Install dependencies ---
+Step 'Install dependencies' failed with exit code 0
+==> /c/Workspace/FrankTheLocalLLM-main/logs/app_npm_install.err.log <==
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/backend.err.log <==
+INFO:__main__:Starting FrankTheLocalLLM on 0.0.0.0:8001
+INFO:__main__:FrankTheLocalLLM bound to 0.0.0.0:8001
+INFO:     Started server process [18604]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/celery.err.log <==
+C:\Workspace\FrankTheLocalLLM\backend\app\llm.py:16: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  self._client = Ollama(model=model)
+Usage: celery worker [OPTIONS]
+Try 'celery worker --help' for help.
+
+Error: Invalid value for '-B' / '--beat': -B option does not work on Windows.  Please run celery beat as a separate service.
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/celery_beat.err.log <==
+[2025-08-24 21:25:00,942: ERROR/MainProcess] beat: Connection error: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.. Trying again in 2.0 seconds...
+[2025-08-24 21:25:07,485: ERROR/MainProcess] beat: Connection error: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.. Trying again in 4.0 seconds...
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/celery_worker.err.log <==
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-24 21:25:06,803: ERROR/SpawnPoolWorker-4] Pool process <billiard.pool.Worker object at 0x0000028373FBE120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-24 21:25:06,803: ERROR/SpawnPoolWorker-4] Pool process <billiard.pool.Worker object at 0x0000028373FBE120> error: PermissionError(13, 'Access is denied', None, 5, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 3, in getvalue
+PermissionError: [WinError 5] Access is denied
+[2025-08-24 21:25:06,847: ERROR/SpawnPoolWorker-1] Pool process <billiard.pool.Worker object at 0x0000017640DAE120> error: OSError(9, 'The handle is invalid', None, 6, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 7, in getvalue
+OSError: [WinError 6] The handle is invalid
+[2025-08-24 21:25:06,847: ERROR/SpawnPoolWorker-1] Pool process <billiard.pool.Worker object at 0x0000017640DAE120> error: OSError(9, 'The handle is invalid', None, 6, None)
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 473, in receive
+    ready, req = _receive(1.0)
+                 ~~~~~~~~^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 445, in _recv
+    return True, loads(get_payload())
+                       ~~~~~~~~~~~^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\queues.py", line 394, in get_payload
+    with self._rlock:
+         ^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\synchronize.py", line 115, in __enter__
+    return self._semlock.__enter__()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+PermissionError: [WinError 5] Access is denied
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 351, in workloop
+    req = wait_for_job()
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 480, in receive
+    raise SystemExit(EX_FAILURE)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 292, in __call__
+    sys.exit(self.workloop(pid=pid))
+             ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 396, in workloop
+    self._ensure_messages_consumed(completed=completed)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Workspace\FrankTheLocalLLM-main\.venv\Lib\site-packages\billiard\pool.py", line 406, in _ensure_messages_consumed
+    if self.on_ready_counter.value >= completed:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 7, in getvalue
+OSError: [WinError 6] The handle is invalid
+[2025-08-24 21:25:07,406: ERROR/MainProcess] Process 'SpawnPoolWorker-5' pid:17204 exited with 'exitcode 1'
+[2025-08-24 21:25:07,417: ERROR/MainProcess] Process 'SpawnPoolWorker-4' pid:2372 exited with 'exitcode 1'
+[2025-08-24 21:25:07,417: ERROR/MainProcess] Process 'SpawnPoolWorker-3' pid:8696 exited with 'exitcode 1'
+[2025-08-24 21:25:07,418: ERROR/MainProcess] Process 'SpawnPoolWorker-2' pid:9476 exited with 'exitcode 1'
+[2025-08-24 21:25:07,418: ERROR/MainProcess] Process 'SpawnPoolWorker-1' pid:15776 exited with 'exitcode 1'
+[2025-08-24 21:25:07,879: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 4.00 seconds... (2/100)
+
+[2025-08-24 21:25:09,841: ERROR/MainProcess] Process 'SpawnPoolWorker-17' pid:17648 exited with 'exitcode 3221225786'
+[2025-08-24 21:25:09,842: ERROR/MainProcess] Process 'SpawnPoolWorker-16' pid:10880 exited with 'exitcode 3221225786'
+[2025-08-24 21:25:11,449: ERROR/MainProcess] Process 'SpawnPoolWorker-19' pid:16344 exited with 'exitcode 3221225786'
+[2025-08-24 21:25:11,450: ERROR/MainProcess] Process 'SpawnPoolWorker-18' pid:7024 exited with 'exitcode 3221225786'
+[2025-08-24 21:25:13,060: ERROR/MainProcess] Process 'SpawnPoolWorker-21' pid:16732 exited with 'exitcode 3221225786'
+[2025-08-24 21:25:13,060: ERROR/MainProcess] Process 'SpawnPoolWorker-20' pid:13064 exited with 'exitcode 3221225786'
+[2025-08-24 21:25:15,471: ERROR/MainProcess] Process 'SpawnPoolWorker-23' pid:20868 exited with 'exitcode 3221225786'
+[2025-08-24 21:25:15,481: ERROR/MainProcess] Process 'SpawnPoolWorker-22' pid:13704 exited with 'exitcode 3221225786'
+[2025-08-24 21:25:15,900: ERROR/MainProcess] consumer: Cannot connect to redis://localhost:6379/0: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it..
+Trying again in 6.00 seconds... (3/100)
+
+[2025-08-24 21:25:19,488: ERROR/MainProcess] Process 'SpawnPoolWorker-25' pid:20072 exited with 'exitcode 3221225786'
+[2025-08-24 21:25:19,500: ERROR/MainProcess] Process 'SpawnPoolWorker-24' pid:17036 exited with 'exitcode 3221225786'
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/dotnet.err.log <==
+Unhandled exception. Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'NOT NULL constraint failed: entries.title'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteScalar()
+   at System.Data.Common.DbCommand.ExecuteScalarAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.ExecuteScalarImplAsync[T](IDbConnection cnn, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 1241
+   at Infrastructure.Data.LoggingDataAccess.ExecuteScalarAsync[T](String sql, Object param) in C:\Workspace\FrankTheLocalLLM-main\src\Infrastructure\Data\LoggingDataAccess.cs:line 108
+   at Infrastructure.Repositories.BaseRepository`1.AddAsync(T entity) in C:\Workspace\FrankTheLocalLLM-main\src\Infrastructure\Repositories\BaseRepository.cs:line 56
+   at Program.<Main>$(String[] args) in C:\Workspace\FrankTheLocalLLM-main\src\ConsoleApp\Program.cs:line 74
+   at Program.<Main>(String[] args)
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/frontend.err.log <==
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/frontend_build.err.log <==
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/install_deps.err.log <==
+[2025-08-25 11:40:02] dotnet already installed
+[2025-08-25 11:40:02] python3 already installed
+[2025-08-25 11:40:02] node already installed
+[2025-08-25 11:40:02] npm already installed
+[2025-08-25 11:40:02] redis-server not found. Attempting install
+[2025-08-25 11:40:07] ERROR: Required command 'redis-server' not installed
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/npm_install.err.log <==
+
+==> /c/Workspace/FrankTheLocalLLM-main/logs/ollama.err.log <==
+Error: listen tcp 127.0.0.1:11434: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.

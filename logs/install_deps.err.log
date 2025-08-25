@@ -1,6 +1,6 @@
-[2025-08-25 11:14:38] dotnet already installed
-[2025-08-25 11:14:38] python3 already installed
-[2025-08-25 11:14:38] node already installed
-[2025-08-25 11:14:38] npm already installed
-[2025-08-25 11:14:38] redis-server not found. Attempting install
-[2025-08-25 11:14:43] ERROR: Required command 'redis-server' not installed
+[2025-08-25 11:40:02] dotnet already installed
+[2025-08-25 11:40:02] python3 already installed
+[2025-08-25 11:40:02] node already installed
+[2025-08-25 11:40:02] npm already installed
+[2025-08-25 11:40:02] redis-server not found. Attempting install
+[2025-08-25 11:40:07] ERROR: Required command 'redis-server' not installed
