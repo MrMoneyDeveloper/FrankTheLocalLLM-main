@@ -23,7 +23,16 @@ run_step "Start Redis" bash "${ROOT}/scripts/run_redis.sh"
 run_step "Start backend" bash "${ROOT}/scripts/run_backend.sh"
 run_step "Start Celery worker" bash "${ROOT}/scripts/run_celery_worker.sh"
 run_step "Start Celery beat" bash "${ROOT}/scripts/run_celery_beat.sh"
+
+# check Celery logs for Redis connection or permission errors
+sleep 10
+if grep -Eiq 'PermissionError|[Cc]onnection.*[Rr]edis' "${LOG_DIR}/celery_worker.err.log" "${LOG_DIR}/celery_beat.err.log"; then
+  echo "Celery startup failed due to Redis connection or permission error" >&2
+  kill $(cat "${LOG_DIR}/celery_worker.pid" 2>/dev/null) $(cat "${LOG_DIR}/celery_beat.pid" 2>/dev/null) 2>/dev/null || true
+  exit 1
+fi
 run_step ".NET build and app" bash "${ROOT}/scripts/run_net.sh"
 run_step "Start frontend" bash "${ROOT}/scripts/run_frontend.sh"
+run_step "Start Ollama" bash "${ROOT}/scripts/run_ollama.sh"
 
 echo "All components started successfully."
