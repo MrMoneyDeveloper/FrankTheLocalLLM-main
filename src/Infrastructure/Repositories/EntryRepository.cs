@@ -1,3 +1,4 @@
+using System;
 using Dapper;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -62,6 +63,31 @@ public class EntryRepository : BaseRepository<Entry>, IEntryRepository
         if (await _db.ExecuteScalarAsync<long>(check, new { Name = "created_at" }) == 0)
         {
             await _db.ExecuteAsync("ALTER TABLE entries ADD COLUMN created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ'));");
+        }
+
+        if (await _db.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM entries") == 0)
+        {
+            try
+            {
+                await _db.ExecuteAsync(
+                    @"INSERT INTO entries (user_id, title, [group], content, summary, is_summarised, tags, created_at)
+                      VALUES (@UserId, @Title, @Group, @Content, @Summary, @IsSummarised, @Tags, @CreatedAt)",
+                    new
+                    {
+                        UserId = 1,
+                        Title = "Welcome",
+                        Group = "General",
+                        Content = "This is your first entry.",
+                        Summary = string.Empty,
+                        IsSummarised = false,
+                        Tags = string.Empty,
+                        CreatedAt = DateTime.UtcNow
+                    });
+            }
+            catch (SqliteException ex)
+            {
+                _logger.LogError(ex, "Failed to insert default entry");
+            }
         }
     }
 

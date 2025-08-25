@@ -1,112 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Frank The Local LLM</title>
-</head>
-<body class="bg-gray-100">
-  <div id="mode-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden">
-    <div class="bg-white p-4 rounded shadow">
-      <p class="mb-2">Open in Desktop window or Browser tab?</p>
-      <div class="mb-2">
-        <label class="mr-4"><input type="radio" name="mode" value="desktop" class="mr-1">Desktop</label>
-        <label><input type="radio" name="mode" value="browser" class="mr-1">Browser</label>
-      </div>
-      <button id="mode-confirm" class="bg-blue-500 text-white px-3 py-1 rounded">OK</button>
-    </div>
-  </div>
-  <div id="mode-chip" class="fixed top-2 right-2 bg-gray-200 px-2 py-1 rounded text-sm cursor-pointer"></div>
-  <div id="splash" class="absolute inset-0 flex items-center justify-center bg-gray-100">
-    <div id="status">Starting...</div>
-  </div>
-
-  <div id="app" class="w-full h-screen"></div>
-
-  <script type="module" src="dist/bundle.js"></script>
-  <script type="module">
-    const chip = document.getElementById('mode-chip')
-    const modal = document.getElementById('mode-modal')
-    const confirmBtn = document.getElementById('mode-confirm')
-
-    const currentMode = location.protocol === 'tauri:' ? 'desktop' : 'browser'
-    chip.textContent = currentMode.charAt(0).toUpperCase() + currentMode.slice(1)
-
-    chip.addEventListener('click', () => {
-      if (window.__TAURI__) {
-        window.__TAURI__.invoke('toggle_mode').then(() => location.reload())
-      }
-    })
-
-    if (!localStorage.getItem('mode-chosen')) {
-      modal.classList.remove('hidden')
-      const input = modal.querySelector(`input[value="${currentMode}"]`)
-      if (input) input.checked = true
-      confirmBtn.addEventListener('click', () => {
-        const choice = modal.querySelector('input[name=mode]:checked').value
-        localStorage.setItem('mode-chosen', 'true')
-        modal.classList.add('hidden')
-        if (choice !== currentMode && window.__TAURI__) {
-          window.__TAURI__.invoke('toggle_mode').then(() => location.reload())
-        }
-      })
-    }
-
-    const env = (typeof import.meta !== 'undefined' && import.meta.env) || {}
-    const apiBase = (env.VITE_API_BASE || 'http://localhost:8001')
-      .replace(/\/$/, '')
-
-    const splash = document.getElementById('splash')
-    const statusEl = document.getElementById('status')
-    const hideSplash = () => { splash.style.display = 'none' }
-
-    const controller = new AbortController()
-    setTimeout(() => controller.abort(), 1000)
-
-    fetch(`${apiBase}/status`, { signal: controller.signal })
-      .then(r => r.json())
-      .then(d => {
-        statusEl.textContent =
-          `LLM loaded: ${d.llm_loaded}, docs indexed: ${d.docs_indexed}`
-      })
-      .catch(() => {
-        statusEl.textContent = 'Backend unavailable'
-      })
-      .finally(hideSplash)
-
-    if ('serviceWorker' in navigator && env.PROD) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(reg => {
-          if (reg.waiting) notifyUpdate(reg.waiting)
-
-          reg.addEventListener('updatefound', () => {
-            const newWorker = reg.installing
-            newWorker.addEventListener('statechange', () => {
-              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                notifyUpdate(newWorker)
-              }
-            })
-          })
-        })
-      })
-
-      let refreshing = false
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (refreshing) return
-        refreshing = true
-        window.location.reload()
-      })
-    }
-
-    function notifyUpdate (worker) {
-      const n = document.createElement('div')
-      n.className = 'fixed bottom-2 right-2 bg-blue-500 text-white px-3 py-2 rounded cursor-pointer'
-      n.textContent = 'Update available - click to reload'
-      n.addEventListener('click', () => {
-        worker.postMessage({ type: 'SKIP_WAITING' })
-      })
-      document.body.appendChild(n)
-    }
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

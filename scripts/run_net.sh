@@ -9,8 +9,15 @@ OUT_LOG="${LOG_DIR}/dotnet.out.log"
 ERR_LOG="${LOG_DIR}/dotnet.err.log"
 exec >"${OUT_LOG}" 2>"${ERR_LOG}"
 
+DB_FILE="${ROOT_DIR}/app.db"
+APP_FILE="${ROOT_DIR}/app"
+if [[ -f "${APP_FILE}" || -f "${DB_FILE}" ]]; then
+  log "Removing stale SQLite DB ..."
+  rm -f "${APP_FILE}" "${DB_FILE}"
+fi
+
 log "Building .NET solution"
 dotnet build "${ROOT_DIR}/src/ConsoleAppSolution.sln"
 
 log "Running console application"
-dotnet run --project "${ROOT_DIR}/src/ConsoleApp/ConsoleApp.csproj"
+dotnet run --project "${ROOT_DIR}/src/ConsoleApp/ConsoleApp.csproj" --configuration Release

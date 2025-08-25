@@ -14,7 +14,7 @@ ERR_LOG="${LOG_DIR}/frontend.err.log"
 log "Starting frontend"
 (
   cd "${ROOT_DIR}/app" && \
-  node esbuild.config.js --serve >>"${OUT_LOG}" 2>>"${ERR_LOG}" &
+  npm run dev >>"${OUT_LOG}" 2>>"${ERR_LOG}" &
   echo $! > "${LOG_DIR}/frontend.pid"
 )
 
