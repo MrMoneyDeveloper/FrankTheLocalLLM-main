@@ -21,3 +21,9 @@ dotnet build "${ROOT_DIR}/src/ConsoleAppSolution.sln"
 
 log "Running console application"
 dotnet run --project "${ROOT_DIR}/src/ConsoleApp/ConsoleApp.csproj" --configuration Release
+
+# Detect schema mismatch error
+if grep -q 'NOT NULL constraint failed: entries.title' "${ERR_LOG}" 2>/dev/null; then
+  log "Schema mismatch detected in .NET console output"
+  exit 1
+fi
