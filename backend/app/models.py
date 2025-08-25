@@ -21,7 +21,10 @@ class Entry(Base):
     group = Column(String, nullable=True)
     content = Column(String, nullable=False)
     summary = Column(String, nullable=True)
-    summarized = Column(Boolean, default=False)
+    # Align column name with the .NET application's schema which expects
+    # ``is_summarised``.  Expose it in Python as ``summarized`` to keep the
+    # existing API and model attribute names stable.
+    summarized = Column("is_summarised", Boolean, default=False)
 
 
 class File(Base):
