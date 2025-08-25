@@ -67,17 +67,23 @@ function Start-LoggedProcess {
 Install-IfMissing git 'Git.Git' 'git'
 Install-IfMissing python 'Python.Python.3' 'python'
 Install-IfMissing node 'OpenJS.NodeJS.LTS' 'nodejs'
-Install-IfMissing redis-server 'Microsoft.OpenSource.Redis' 'redis-64'
 Install-IfMissing ollama 'Ollama.Ollama' 'ollama'
 Install-IfMissing dotnet 'Microsoft.DotNet.SDK.8' 'dotnet-sdk'
 
+
 $redisExe = Join-Path $env:ProgramFiles 'Redis\redis-server.exe'
+$redisService = $null
 if (Get-Service redis -ErrorAction SilentlyContinue) {
-  Start-Service redis
+  $redisService = 'redis'
+} elseif (Get-Service RedisLocal -ErrorAction SilentlyContinue) {
+  $redisService = 'RedisLocal'
+}
+
+if ($redisService) {
+  Start-Service $redisService
 } elseif (Test-Path $redisExe) {
   Start-LoggedProcess -Name 'redis' -FilePath $redisExe | Out-Null
 }
-
 if (Get-Service ollama -ErrorAction SilentlyContinue) {
   Start-Service ollama
 } elseif (Need-Cmd 'ollama') {
@@ -137,8 +143,8 @@ $redisOk = $false
 for ($i=1; $i -le 3; $i++) {
     if (Test-Port 'localhost' 6379) { $redisOk = $true; break }
     Write-Warning "Redis not reachable (try $i/3). Restarting..."
-    if (Get-Service redis -ErrorAction SilentlyContinue) {
-        Restart-Service redis -ErrorAction SilentlyContinue
+    if ($redisService -and (Get-Service $redisService -ErrorAction SilentlyContinue)) {
+        Restart-Service $redisService -ErrorAction SilentlyContinue
     } elseif (Test-Path $redisExe) {
         Start-Process $redisExe | Out-Null
     }
