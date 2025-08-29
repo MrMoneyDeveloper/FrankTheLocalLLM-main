@@ -46,22 +46,69 @@ function Free-Port($port) {
 
 # Helper to launch a process with separate stdout/stderr logs
 function Start-LoggedProcess {
+  [CmdletBinding()]
   param(
-    [string]$Name,
-    [string]$FilePath,
+    [Parameter(Mandatory)] [string]$Name,
+    [Parameter(Mandatory)] [string]$FilePath,
     [string[]]$ArgumentList,
-    [string]$WorkingDirectory
+    [string]$WorkingDirectory,
+    [switch]$SingleLog
   )
 
   $out = Join-Path $LogDir ("{0}.out.log" -f $Name)
   $err = Join-Path $LogDir ("{0}.err.log" -f $Name)
   Remove-Item $out, $err -ErrorAction SilentlyContinue
 
+  if ($SingleLog.IsPresent) {
+    # Start-Process cannot redirect both streams to the same file.
+    # Use a wrapper PowerShell command to merge all streams.
+    $log = Join-Path $LogDir ("{0}.log" -f $Name)
+    Remove-Item $log -ErrorAction SilentlyContinue
+
+    $quotedExe = '"' + $FilePath + '"'
+    $argsText = if ($ArgumentList -and $ArgumentList.Length -gt 0) {
+      ($ArgumentList | ForEach-Object { if ($_ -match '\s' -or $_ -match '"') { '"' + ($_ -replace '"','\"') + '"' } else { $_ } }) -join ' '
+    } else { '' }
+    $cmd = if ($argsText) { "& $quotedExe $argsText *>> '" + $log + "' 2>&1" } else { "& $quotedExe *>> '" + $log + "' 2>&1" }
+
+    $psi = @{ FilePath = 'powershell'; ArgumentList = @('-NoLogo','-NoProfile','-Command', $cmd); PassThru = $true }
+    if ($WorkingDirectory) { $psi.WorkingDirectory = $WorkingDirectory }
+    return Start-Process @psi
+  }
+
   $startInfo = @{ FilePath = $FilePath; RedirectStandardOutput = $out; RedirectStandardError = $err; PassThru = $true }
   if ($ArgumentList) { $startInfo.ArgumentList = $ArgumentList }
   if ($WorkingDirectory) { $startInfo.WorkingDirectory = $WorkingDirectory }
 
   return Start-Process @startInfo
+}
+
+# Helper: dump last N lines of process logs
+function Show-ProcessLogs {
+  param(
+    [Parameter(Mandatory)] [string]$Name,
+    [int]$Lines = 200
+  )
+  $out = Join-Path $LogDir ("{0}.out.log" -f $Name)
+  $err = Join-Path $LogDir ("{0}.err.log" -f $Name)
+  if (Test-Path $out) {
+    Write-Output ("---- {0} stdout (last {1}) ----" -f $Name, $Lines)
+    Get-Content $out -Tail $Lines | Write-Output
+  }
+  if (Test-Path $err) {
+    Write-Output ("---- {0} stderr (last {1}) ----" -f $Name, $Lines)
+    Get-Content $err -Tail $Lines | Write-Output
+  }
+}
+
+# Lightweight TCP test (declared early so we can use it before other definitions)
+function Test-Tcp($hostname, $port){
+  try {
+    $c = New-Object Net.Sockets.TcpClient
+    $c.Connect($hostname,$port)
+    $c.Dispose()
+    return $true
+  } catch { return $false }
 }
 
 Install-IfMissing git 'Git.Git' 'git'
@@ -121,19 +168,65 @@ Free-Port $backendPort
 
 
 $backend = Start-LoggedProcess -Name 'backend' -FilePath $PythonExe -ArgumentList @('-m','backend.app.main')
-if ($backend) {
-  $backend.Id | Out-File (Join-Path $LogDir 'backend.pid')
-} else {
+if (-not $backend) {
   Write-Error 'Failed to start backend'
+  Show-ProcessLogs -Name 'backend' -Lines 200
+  & "$Root\frank_down.sh"
+  exit 1
 }
 
-for ($i=0; $i -lt 30; $i++) {
+# Immediately write PID and verify the process exists
+$backendPid = $backend.Id
+$backendPid | Out-File (Join-Path $LogDir 'backend.pid')
+Start-Sleep -Milliseconds 200
+if (-not (Get-Process -Id $backendPid -ErrorAction SilentlyContinue)) {
+  Write-Error 'Backend process is not running right after start.'
+  Show-ProcessLogs -Name 'backend' -Lines 200
+  & "$Root\frank_down.sh"
+  exit 1
+}
+
+# Gate on TCP readiness to avoid noisy HTTP errors
+$tcpReady = $false
+for ($i=1; $i -le 20; $i++) {
+  if (Test-Tcp 'localhost' $backendPort) { $tcpReady = $true; break }
+  if (-not (Get-Process -Id $backendPid -ErrorAction SilentlyContinue)) {
+    Write-Error 'Backend process exited before opening TCP port.'
+    Show-ProcessLogs -Name 'backend' -Lines 200
+    & "$Root\frank_down.sh"
+    exit 1
+  }
+  Start-Sleep -Milliseconds 500
+}
+if (-not $tcpReady) {
+  Write-Error ("Backend TCP port {0} did not open in time." -f $backendPort)
+  Show-ProcessLogs -Name 'backend' -Lines 200
+  & "$Root\frank_down.sh"
+  exit 1
+}
+
+# Hardened HTTP health probe with short timeouts
+$httpOk = $false
+for ($i=1; $i -le 20; $i++) {
   try {
-    Invoke-WebRequest -UseBasicParsing ("http://localhost:{0}/api/hello" -f $backendPort) | Out-Null
+    Invoke-WebRequest -UseBasicParsing -TimeoutSec 2 ("http://localhost:{0}/api/hello" -f $backendPort) | Out-Null
+    $httpOk = $true
     break
   } catch {
+    if (-not (Get-Process -Id $backendPid -ErrorAction SilentlyContinue)) {
+      Write-Error 'Backend process exited during HTTP health check.'
+      Show-ProcessLogs -Name 'backend' -Lines 200
+      & "$Root\frank_down.sh"
+      exit 1
+    }
     Start-Sleep -Seconds 1
   }
+}
+if (-not $httpOk) {
+  Write-Error 'Backend HTTP health check failed after 20 attempts.'
+  Show-ProcessLogs -Name 'backend' -Lines 200
+  & "$Root\frank_down.sh"
+  exit 1
 }
 
 function Test-Port($hostname, $port){ try{ (New-Object Net.Sockets.TcpClient).Connect($hostname,$port) ; return $true } catch { return $false } }
@@ -146,7 +239,7 @@ for ($i=1; $i -le 3; $i++) {
     if ($redisService -and (Get-Service $redisService -ErrorAction SilentlyContinue)) {
         Restart-Service $redisService -ErrorAction SilentlyContinue
     } elseif (Test-Path $redisExe) {
-        Start-Process $redisExe | Out-Null
+        Start-LoggedProcess -Name 'redis' -FilePath $redisExe | Out-Null
     }
     Start-Sleep -Seconds 2
 }
@@ -172,7 +265,7 @@ for ($i=1; $i -le 3; $i++) {
     if (Get-Service ollama -ErrorAction SilentlyContinue) {
         Restart-Service ollama -ErrorAction SilentlyContinue
     } else {
-        Start-Process -FilePath 'ollama' -ArgumentList 'serve' -ErrorAction SilentlyContinue | Out-Null
+        Start-LoggedProcess -Name 'ollama' -FilePath 'ollama' -ArgumentList 'serve' | Out-Null
     }
     Start-Sleep -Seconds 2
 }
@@ -181,7 +274,7 @@ for ($i=1; $i -le 3; $i++) {
 if (-not $ollamaOk) {
     Write-Warning "Ollama still not responding. Attempting reinstall..."
     Start-Process winget -ArgumentList 'install --id=Ollama.Ollama -e --silent' -Wait
-    Start-Process -FilePath 'ollama' -ArgumentList 'serve' -ErrorAction SilentlyContinue | Out-Null
+    Start-LoggedProcess -Name 'ollama' -FilePath 'ollama' -ArgumentList 'serve' | Out-Null
     Start-Sleep -Seconds 5
     if (Test-Ollama) { $ollamaOk = $true }
 }
@@ -193,18 +286,34 @@ if (-not $ollamaOk) {
 }
 
 if (Test-Path $CeleryExe) {
+  # Celery worker (force solo pool on Windows)
   $celery = Start-LoggedProcess -Name 'celery_worker' -FilePath $CeleryExe -ArgumentList @('-A','backend.app.tasks','worker','--pool=solo')
-  if ($celery) {
-    $celery.Id | Out-File (Join-Path $LogDir 'celery_worker.pid')
-  } else {
+  if (-not $celery) {
     Write-Error 'Failed to start Celery worker'
+  } else {
+    $celeryPid = $celery.Id
+    Start-Sleep -Milliseconds 200
+    if (Get-Process -Id $celeryPid -ErrorAction SilentlyContinue) {
+      $celeryPid | Out-File (Join-Path $LogDir 'celery_worker.pid')
+    } else {
+      Write-Error 'Celery worker process exited immediately after start'
+      Show-ProcessLogs -Name 'celery_worker' -Lines 200
+    }
   }
 
+  # Celery beat
   $celeryBeat = Start-LoggedProcess -Name 'celery_beat' -FilePath $CeleryExe -ArgumentList @('-A','backend.app.tasks','beat')
-  if ($celeryBeat) {
-    $celeryBeat.Id | Out-File (Join-Path $LogDir 'celery_beat.pid')
-  } else {
+  if (-not $celeryBeat) {
     Write-Error 'Failed to start Celery beat'
+  } else {
+    $celeryBeatPid = $celeryBeat.Id
+    Start-Sleep -Milliseconds 200
+    if (Get-Process -Id $celeryBeatPid -ErrorAction SilentlyContinue) {
+      $celeryBeatPid | Out-File (Join-Path $LogDir 'celery_beat.pid')
+    } else {
+      Write-Error 'Celery beat process exited immediately after start'
+      Show-ProcessLogs -Name 'celery_beat' -Lines 200
+    }
   }
 } else {
   Write-Error 'Celery executable not found in virtual environment'
@@ -218,14 +327,21 @@ if ($dotnet) {
   Write-Error 'Failed to start .NET console app'
 }
 
-# Frontend (ESBuild dev server)
+# Frontend (Vite dev server) with separate logs + guards
 $NpmCmd = Join-Path $env:ProgramFiles 'nodejs\npm.cmd'
 & $NpmCmd --prefix $frontDir install | Out-Null
-$frontend = Start-LoggedProcess -Name 'frontend' -FilePath 'node' -ArgumentList @('esbuild.config.js','--serve') -WorkingDirectory $frontDir
-if ($frontend) {
-  $frontend.Id | Out-File (Join-Path $LogDir 'frontend.pid')
-} else {
+$frontend = Start-LoggedProcess -Name 'frontend' -FilePath $NpmCmd -ArgumentList @('run','dev') -WorkingDirectory $frontDir
+if (-not $frontend) {
   Write-Error 'Failed to start frontend'
+} else {
+  $frontendPid = $frontend.Id
+  Start-Sleep -Milliseconds 200
+  if (Get-Process -Id $frontendPid -ErrorAction SilentlyContinue) {
+    $frontendPid | Out-File (Join-Path $LogDir 'frontend.pid')
+  } else {
+    Write-Error 'Frontend process exited immediately after start'
+    Show-ProcessLogs -Name 'frontend' -Lines 200
+  }
 }
 
 Write-Output 'OS            : Windows'
