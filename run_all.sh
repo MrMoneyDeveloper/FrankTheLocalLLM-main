@@ -47,7 +47,11 @@ if grep -Eiq 'PermissionError|[Cc]onnection.*[Rr]edis' "${LOG_DIR}/celery_worker
   kill $(cat "${LOG_DIR}/celery_worker.pid" 2>/dev/null) $(cat "${LOG_DIR}/celery_beat.pid" 2>/dev/null) 2>/dev/null || true
   exit 1
 fi
-run_step ".NET build and app" bash "${ROOT}/scripts/run_net.sh"
+if [[ "${SKIP_DOTNET:-1}" != "1" ]]; then
+  run_step ".NET build and app" bash "${ROOT}/scripts/run_net.sh"
+else
+  echo "Skipping .NET console app (SKIP_DOTNET=1)"
+fi
 run_step "Start frontend" bash "${ROOT}/scripts/run_frontend.sh"
 run_step "Start Ollama" bash "${ROOT}/scripts/run_ollama.sh"
 
