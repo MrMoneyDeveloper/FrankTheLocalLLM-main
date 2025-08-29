@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+gradio
+python-dotenv
+chromadb
+requests
+APScheduler
+pydantic>=2
+

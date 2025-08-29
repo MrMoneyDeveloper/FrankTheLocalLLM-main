@@ -1,6 +1,48 @@
 
 # FrankTheLocalLLM
 
+## Lite: Python‑Only, Local‑Only Mode (Fast start)
+
+This repo now includes a self‑contained Python‑only variant that uses Ollama locally (no .NET, no Node/Vue, no Redis/Celery). It runs offline after the first model pulls, persists to SQLite/FS and Chroma, auto‑handles ports, and can be packaged into a single Windows `.exe`.
+
+What you get:
+- FastAPI backend (chat, ingest, search) and Gradio UI
+- Ollama for chat and embeddings (default `llama3.1` + `nomic-embed-text`)
+- Persistent Chroma index under `lite/data/chroma`
+- First‑run bootstrap: verifies Ollama, pulls models, creates folders
+- Port cleanup or auto‑increment to avoid conflicts
+- Single command to install & run
+
+Quick Start (Lite)
+- Install Ollama and start it once in a terminal: `ollama serve`
+- Optionally pre‑pull models: `ollama pull llama3.1` and `ollama pull nomic-embed-text`
+- Run the app:
+  - Windows PowerShell: `./scripts/run.ps1`
+  - Linux/macOS: `bash ./scripts/run.sh`
+
+Endpoints and UI
+- UI launches on an available port starting at 7860 (e.g. http://127.0.0.1:7860)
+- Backend health: http://127.0.0.1:8001/health (auto‑increments if busy)
+- Chat: POST http://127.0.0.1:8001/chat {"prompt":"..."}
+- Search: GET http://127.0.0.1:8001/search?q=...&k=5
+- Ingest: POST http://127.0.0.1:8001/ingest (multipart .txt)
+
+Configuration
+- Copy `lite/.env.example` to `lite/.env` to override defaults
+- Key vars: `APP_PORT`, `CHAT_MODEL`, `EMBED_MODEL`, `CHROMA_DIR`, `DATA_DIR`
+
+Packaging (Windows .exe)
+- From a PowerShell in repo root (after the app has run successfully once):
+  - `./.venv/Scripts/pip install pyinstaller`
+  - Package the single‑process launcher (starts API + UI):
+    `./.venv/Scripts/pyinstaller --onefile --name LocalLLM-lite lite/src/launcher.py`
+  - The binary appears under `dist/LocalLLM-lite.exe`
+
+Notes
+- The original multi‑stack remains intact; the Lite mode is isolated under `lite/`
+- No external services are required. Everything runs locally after initial model pulls.
+
+
 This repository contains a minimal front‑end built with Vue.js and Tailwind CSS plus a FastAPI backend and a .NET console application.
 FrankTheLocalLLM combines a Vue.js + Tailwind front‑end with a FastAPI backend and a small .NET console application. The frontend is bundled with ESBuild, a minimalist and extremely fast bundler and minifier. It demonstrates how to run a local language‑model driven notes app with background processing and optional desktop packaging.
 
