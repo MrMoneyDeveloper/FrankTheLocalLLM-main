@@ -5,7 +5,8 @@ $pkgs = @{
   'python' = 'Python.Python.3'
   'node' = 'OpenJS.NodeJS'
   'npm' = 'OpenJS.NodeJS'
-  'redis-server' = 'Redis.Redis'
+  # Prefer Memurai on Windows as a Redis-compatible server
+  'redis-server' = 'Memurai.Memurai'
   'celery' = 'celery'
   'ollama' = 'ollama'
 }

@@ -28,6 +28,7 @@ if [[ "${PING_RESULT}" != "PONG" ]]; then
       systemctl start redis-server || true
       ;;
     CYGWIN*|MINGW*|MSYS*)
+      powershell.exe -Command "Start-Service Memurai" || \
       powershell.exe -Command "Start-Service RedisLocal" || \
       powershell.exe -Command "Start-Service redis" || true
       ;;

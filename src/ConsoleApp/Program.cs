@@ -72,7 +72,7 @@ if (stats != null)
 }
 
 // `entryRepo` was initialized earlier. Use it now to insert and query entries.
-var entryId = await entryRepo.AddAsync(new Entry { UserId = userId, Content = "First post", Tags = "intro,example", CreatedAt = DateTime.UtcNow });
+var entryId = await entryRepo.AddAsync(new Entry { UserId = userId, Title = "First post", Content = "First post", Tags = "intro,example", CreatedAt = DateTime.UtcNow });
 Console.WriteLine($"Inserted Entry with Id {entryId}");
 
 var options = new EntryQueryOptions { Tags = new[] { "intro" } };

@@ -124,6 +124,8 @@ if (Get-Service redis -ErrorAction SilentlyContinue) {
   $redisService = 'redis'
 } elseif (Get-Service RedisLocal -ErrorAction SilentlyContinue) {
   $redisService = 'RedisLocal'
+} elseif (Get-Service Memurai -ErrorAction SilentlyContinue) {
+  $redisService = 'Memurai'
 }
 
 if ($redisService) {
@@ -132,11 +134,16 @@ if ($redisService) {
   Start-LoggedProcess -Name 'redis' -FilePath $redisExe | Out-Null
 }
 if (Get-Service ollama -ErrorAction SilentlyContinue) {
-  Start-Service ollama
+  if (-not (Get-Service ollama | Where-Object { $_.Status -eq 'Running' })) {
+    Start-Service ollama -ErrorAction SilentlyContinue
+  }
 } elseif (Need-Cmd 'ollama') {
-  Free-Port 11434
+  $reachable = $false
+  try { Invoke-WebRequest -UseBasicParsing -TimeoutSec 2 'http://127.0.0.1:11434' | Out-Null; $reachable = $true } catch { $reachable = $false }
+  if (-not $reachable) {
+    Free-Port 11434
     Start-LoggedProcess -Name 'ollama' -FilePath 'ollama' -ArgumentList 'serve' | Out-Null
-
+  }
 }
 
 python -m venv .venv
