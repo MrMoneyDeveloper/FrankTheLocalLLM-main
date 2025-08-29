@@ -19,6 +19,10 @@ BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0")
 RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:6379/0")
 
 celery_app = Celery("backend", broker=BROKER_URL, backend=RESULT_BACKEND)
+# Enable eager mode when requested to avoid needing Redis/worker in local dev
+if os.getenv("CELERY_TASK_ALWAYS_EAGER", "").lower() in {"1", "true", "yes"}:
+    celery_app.conf.task_always_eager = True
+    celery_app.conf.task_eager_propagates = True
 celery_app.conf.beat_schedule = {
     "summarize-entries": {
         "task": "app.tasks.summarize_entries",

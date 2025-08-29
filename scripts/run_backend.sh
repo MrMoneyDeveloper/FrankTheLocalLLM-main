@@ -10,9 +10,14 @@ ERR_LOG="${LOG_DIR}/backend.err.log"
 PING_LOG="${LOG_DIR}/backend_ping.log"
 
 ensure_venv
+# Load environment file if present
+set -a
+source "${ROOT_DIR}/.env" 2>/dev/null || true
+set +a
+
 export REDIS_URL="${REDIS_URL:-redis://127.0.0.1:6379/0}"
-export CELERY_BROKER_URL="${REDIS_URL}"
-export CELERY_RESULT_BACKEND="${REDIS_URL}"
+export CELERY_BROKER_URL="${CELERY_BROKER_URL:-$REDIS_URL}"
+export CELERY_RESULT_BACKEND="${CELERY_RESULT_BACKEND:-$REDIS_URL}"
 pip install -r "${ROOT_DIR}/backend/requirements.txt" >>"${OUT_LOG}" 2>>"${ERR_LOG}"
 python -m backend.app.manage migrate >>"${OUT_LOG}" 2>>"${ERR_LOG}"
 

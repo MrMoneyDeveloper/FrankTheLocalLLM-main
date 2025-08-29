@@ -15,8 +15,8 @@ have_cmd ollama || die "ollama not installed"
 : >"${PING_LOG}"
 : >"${STAT_LOG}"
 
-# Skip startup if Ollama already responds on the default port
-if curl -fsS --max-time 1 http://127.0.0.1:11434/ >/dev/null 2>&1; then
+# Skip startup if Ollama already responds on the default port (any HTTP status is fine)
+if curl -sS --max-time 1 http://127.0.0.1:11434/ >/dev/null 2>&1; then
   echo "Ollama API already responding on 11434; skipping startup" | tee -a "${STAT_LOG}"
   exit 0
 fi

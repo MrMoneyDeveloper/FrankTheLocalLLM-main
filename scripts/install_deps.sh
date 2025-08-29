@@ -24,6 +24,19 @@ case "$(uname)" in
 
 REQUIRED_CMDS=(dotnet python3 node npm redis-server celery ollama)
 
+# Allow a simplified mode where Redis/Celery are skipped
+if [[ "${SKIP_REDIS:-0}" == "1" ]]; then
+  REQUIRED_CMDS=(dotnet python3 node npm celery ollama)
+fi
+if [[ "${SKIP_CELERY:-0}" == "1" ]]; then
+  # Celery is installed via pip in the backend requirements; a system binary is not required
+  if [[ "${SKIP_REDIS:-0}" == "1" ]]; then
+    REQUIRED_CMDS=(dotnet python3 node npm ollama)
+  else
+    REQUIRED_CMDS=(dotnet python3 node npm redis-server ollama)
+  fi
+fi
+
 declare -A LINUX_PKGS=(
   [dotnet]=dotnet-sdk-8.0
   [python3]=python3

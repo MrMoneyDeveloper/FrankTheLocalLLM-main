@@ -6,6 +6,14 @@ LOG_DIR="${ROOT}/logs"
 mkdir -p "${LOG_DIR}"
 exec > >(tee -a "${LOG_DIR}/run_all.log") 2>&1
 
+# Load optional environment toggles
+if [[ -f "${ROOT}/.env" ]]; then
+  set -a
+  # shellcheck disable=SC1090
+  source "${ROOT}/.env"
+  set +a
+fi
+
 run_step() {
   local name="$1"; shift
   echo "--- ${name} ---"
@@ -17,12 +25,20 @@ run_step() {
   fi
 }
 
-run_step "Install dependencies" bash "${ROOT}/scripts/install_deps.sh"
 run_step "Write .env" bash "${ROOT}/scripts/ensure_env.sh"
-run_step "Start Redis" bash "${ROOT}/scripts/run_redis.sh"
+run_step "Install dependencies" bash "${ROOT}/scripts/install_deps.sh"
+if [[ "${SKIP_REDIS:-0}" != "1" ]]; then
+  run_step "Start Redis" bash "${ROOT}/scripts/run_redis.sh"
+else
+  echo "Skipping Redis startup (SKIP_REDIS=1)"
+fi
 run_step "Start backend" bash "${ROOT}/scripts/run_backend.sh"
-run_step "Start Celery worker" bash "${ROOT}/scripts/run_celery_worker.sh"
-run_step "Start Celery beat" bash "${ROOT}/scripts/run_celery_beat.sh"
+if [[ "${SKIP_CELERY:-0}" != "1" ]]; then
+  run_step "Start Celery worker" bash "${ROOT}/scripts/run_celery_worker.sh"
+  run_step "Start Celery beat" bash "${ROOT}/scripts/run_celery_beat.sh"
+else
+  echo "Skipping Celery worker/beat (SKIP_CELERY=1)"
+fi
 
 # check Celery logs for Redis connection or permission errors
 sleep 10
