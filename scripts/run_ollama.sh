@@ -15,9 +15,18 @@ have_cmd ollama || die "ollama not installed"
 : >"${PING_LOG}"
 : >"${STAT_LOG}"
 
-if lsof -ti tcp:11434 >/dev/null 2>&1; then
-  echo "Port 11434 already in use, skipping Ollama startup" | tee -a "${STAT_LOG}"
+# Skip startup if Ollama already responds on the default port
+if curl -fsS --max-time 1 http://127.0.0.1:11434/ >/dev/null 2>&1; then
+  echo "Ollama API already responding on 11434; skipping startup" | tee -a "${STAT_LOG}"
   exit 0
+fi
+
+# Secondary check using lsof when available (Linux/macOS)
+if command -v lsof >/dev/null 2>&1; then
+  if lsof -ti tcp:11434 >/dev/null 2>&1; then
+    echo "Port 11434 already in use, skipping Ollama startup" | tee -a "${STAT_LOG}"
+    exit 0
+  fi
 fi
 
 log "Starting ollama serve"

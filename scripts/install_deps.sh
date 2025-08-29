@@ -39,13 +39,28 @@ declare -A WINDOWS_PKGS=(
   [python3]=Python.Python.3
   [node]=OpenJS.NodeJS
   [npm]=OpenJS.NodeJS
-  [redis-server]=Redis.Redis
+  # Use Memurai on Windows as a Redis-compatible server
+  [redis-server]=Memurai.Memurai
   [celery]=celery
   [ollama]=ollama
 )
 
+# On Windows, Memurai installs as a Windows service, not a 'redis-server' binary.
+# Treat presence of the service as satisfying the 'redis-server' dependency.
+memurai_service_present() {
+  if [[ "$PLATFORM" != windows ]]; then return 1; fi
+  powershell.exe -NoProfile -Command "if (Get-Service Memurai -ErrorAction SilentlyContinue) { exit 0 } else { exit 1 }" \
+    >/dev/null 2>&1
+}
+
 install_cmd() {
   local cmd="$1" pkg
+  # Pre-check: allow Memurai service to satisfy 'redis-server' on Windows
+  if [[ "$PLATFORM" == windows && "$cmd" == 'redis-server' ]] && memurai_service_present; then
+    log "Memurai service found (satisfies redis-server)"
+    return
+  fi
+
   if have_cmd "$cmd"; then
     log "$cmd already installed"
     return
@@ -72,7 +87,13 @@ install_cmd() {
       fi
     done
   fi
-  have_cmd "$cmd" || die "Required command '$cmd' not installed"
+  # Post-check: either the command exists or Memurai service satisfies redis-server on Windows
+  if have_cmd "$cmd"; then return; fi
+  if [[ "$PLATFORM" == windows && "$cmd" == 'redis-server' ]] && memurai_service_present; then
+    log "Memurai service is present after install attempts"
+    return
+  fi
+  die "Required command '$cmd' not installed"
 }
 
 for cmd in "${REQUIRED_CMDS[@]}"; do
