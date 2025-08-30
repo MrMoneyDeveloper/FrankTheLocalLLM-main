@@ -32,10 +32,23 @@ python -m pip install -r lite/requirements.txt
 # ensure .env
 [ -f lite/.env ] || cp lite/.env.example lite/.env
 
-# check ollama
+# check/start ollama
 if ! command -v ollama >/dev/null 2>&1; then
-  echo "ERROR: 'ollama' not found. Install from https://ollama.com and run 'ollama serve'." >&2
+  echo "ERROR: 'ollama' not found. Install from https://ollama.com." >&2
   exit 1
+fi
+
+# Is Ollama API responding? if not, start it
+if ! curl -fsS http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
+  echo "Starting Ollama (serve) in background..."
+  ( ollama serve >/dev/null 2>&1 & ) || true
+  # Wait up to 20s for readiness
+  for i in $(seq 1 40); do
+    if curl -fsS http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
+      break
+    fi
+    sleep 0.5
+  done
 fi
 
 # bootstrap + run single process (API + UI)

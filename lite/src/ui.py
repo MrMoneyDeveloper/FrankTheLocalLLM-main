@@ -1,5 +1,6 @@
 import os
 import gradio as gr
+from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 from .ollama_client import chat as ollama_chat
 from .vectorstore import query as vs_query
@@ -27,6 +28,21 @@ def build_ui():
             q = gr.Textbox(label="Query")
             res = gr.JSON(label="Top Matches")
             gr.Button("Search").click(fn=search_docs, inputs=q, outputs=res)
+    # Serve a minimal PWA manifest to silence 404s from some browsers
+    @demo.app.get("/manifest.json")
+    def manifest():  # type: ignore
+        return JSONResponse(
+            {
+                "name": "Frank Local LLM",
+                "short_name": "Frank",
+                "start_url": "/",
+                "display": "standalone",
+                "background_color": "#ffffff",
+                "theme_color": "#0ea5e9",
+                "icons": [],
+            },
+            media_type="application/manifest+json",
+        )
     return demo
 
 
@@ -41,5 +57,4 @@ if __name__ == "__main__":
         ui_port = find_available_port(ui_port)
     except Exception:
         pass
-    demo.launch(server_name="127.0.0.1", server_port=ui_port, show_error=True)
-
+    demo.launch(server_name="127.0.0.1", server_port=ui_port, show_error=True, inbrowser=True)

@@ -17,6 +17,16 @@ Local notes + retrieval with Ollama, FastAPI, Gradio, and a persistent Chroma st
   - Windows PowerShell: `./scripts/run.ps1`
   - Linux/macOS: `bash ./scripts/run.sh`
 
+## One-Command Launcher: `runall`
+- Cross-platform convenience wrappers are provided at repo root:
+  - Unix/Git Bash: `./runall`
+  - Windows PowerShell: `./runall.ps1`
+- What `runall` does:
+  - Creates/activates `.venv` and installs `lite/requirements.txt`
+  - Ensures `lite/.env` exists (copies from `.env.example`)
+  - Starts Ollama locally if it’s not already running
+  - Boots the backend and UI; opens your browser to the UI tab automatically
+
 ## UI and API
 - UI: http://127.0.0.1:7860 (auto‑increments if busy)
 - Health: http://127.0.0.1:8001/health (auto‑increments if busy)

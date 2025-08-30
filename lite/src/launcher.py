@@ -44,9 +44,8 @@ def main():
         pass
     demo = build_ui()
     print(f"UI running at http://127.0.0.1:{ui_port}")
-    demo.launch(server_name="127.0.0.1", server_port=ui_port, show_error=True)
+    demo.launch(server_name="127.0.0.1", server_port=ui_port, show_error=True, inbrowser=True)
 
 
 if __name__ == "__main__":
     main()
-
