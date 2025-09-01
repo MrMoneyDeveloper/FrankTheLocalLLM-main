@@ -6,4 +6,5 @@ chromadb
 requests
 APScheduler
 pydantic>=2
-
+pyarrow
+pandas

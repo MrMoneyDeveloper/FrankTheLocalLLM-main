@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;" />
+    <title>Local Notes + LLM</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <div class="section">
+          <h3>Groups</h3>
+          <div id="groups"></div>
+          <div class="row">
+            <input id="newGroupName" placeholder="New group name" />
+            <button id="createGroupBtn">Add</button>
+          </div>
+        </div>
+        <div class="section">
+          <h3>All Notes</h3>
+          <div id="notesList"></div>
+          <div class="row">
+            <button id="createNoteBtn">New Note</button>
+          </div>
+        </div>
+        <div class="section">
+          <h3>Settings</h3>
+          <div id="settings"></div>
+        </div>
+      </aside>
+      <main id="main">
+        <div id="tabbar"></div>
+        <div id="editor"></div>
+      </main>
+      <aside id="minihub">
+        <div class="section">
+          <h3>Note Actions</h3>
+          <div class="row">
+            <select id="moveToGroup"></select>
+            <button id="moveToGroupBtn">Move/Add</button>
+          </div>
+          <div class="row">
+            <button id="duplicateNoteBtn">Duplicate</button>
+            <button id="openWindowBtn">Open Window</button>
+          </div>
+        </div>
+        <div class="section">
+          <h3>In-note Search</h3>
+          <div class="row">
+            <input id="noteSearchQuery" placeholder="Find in note..." />
+            <button id="noteSearchPrev">Prev</button>
+            <button id="noteSearchNext">Next</button>
+          </div>
+        </div>
+        <div class="section">
+          <h3>LLM Search</h3>
+          <div class="row">
+            <select id="llmScope">
+              <option value="note">This note</option>
+              <option value="groups">Selected groups</option>
+              <option value="all">All notes</option>
+            </select>
+          </div>
+          <div class="row">
+            <input id="dateStart" type="date" />
+            <input id="dateEnd" type="date" />
+          </div>
+          <div class="row">
+            <input id="llmQuery" placeholder="Ask..." />
+            <button id="runLlm">Run</button>
+          </div>
+          <div id="llmResults"></div>
+          <div id="indexStatus"></div>
+        </div>
+      </aside>
+    </div>
+    <script src="app.js"></script>
+  </body>
+  </html>
+

@@ -22,9 +22,13 @@ def add_documents(docs: list):
     _collection.add(ids=ids, documents=texts, metadatas=metas, embeddings=embs)
 
 
-def query(q: str, k: int = 5):
+def query(q: str, k: int = 5, note_ids: list | None = None):
     em = embed_texts([q])[0]
-    res = _collection.query(query_embeddings=[em], n_results=k)
+    where = None
+    if note_ids:
+        # Filter by allowed note_ids in metadata
+        where = {"note_id": {"$in": note_ids}}
+    res = _collection.query(query_embeddings=[em], n_results=k, where=where)
     out = []
     docs = res.get("documents", [[]])[0]
     metas = res.get("metadatas", [[]])[0]
@@ -32,4 +36,3 @@ def query(q: str, k: int = 5):
     for doc, meta, dist in zip(docs, metas, dists):
         out.append({"text": doc, "meta": meta, "distance": dist})
     return out
-

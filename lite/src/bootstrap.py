@@ -5,6 +5,7 @@ import sys
 import shutil
 from dotenv import load_dotenv
 from .ollama_client import ensure_ollama_up, pull_model
+from .storage.config import ensure_storage_dirs
 
 load_dotenv()
 
@@ -16,6 +17,11 @@ def ensure_dirs():
         os.getenv("CHROMA_DIR", "./lite/data/chroma"),
     ]:
         os.makedirs(p, exist_ok=True)
+    # Ensure note/meta dirs as well
+    try:
+        ensure_storage_dirs()
+    except Exception:
+        pass
 
 
 def ensure_ollama_models():
@@ -63,4 +69,3 @@ def find_available_port(start: int, host: str = "127.0.0.1", max_tries: int = 50
 def bootstrap():
     ensure_dirs()
     ensure_ollama_models()
-
