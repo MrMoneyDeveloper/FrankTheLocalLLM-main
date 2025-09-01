@@ -11,13 +11,18 @@ Local notes + retrieval with Ollama, FastAPI, and a persistent Chroma store. Opt
 - First-run bootstrap: verifies Ollama, pulls models, creates folders
 - Port cleanup or auto-increment to avoid conflicts
 
-## Quick Start (Backend + Electron)
+## Quick Start (One Command)
 - Start Ollama: `ollama serve`
-- Optional first pull: `ollama pull llama3.1` and `ollama pull nomic-embed-text`
-- Run the backend once to set up env
+- Then run the launcher (sets up venv, installs deps, ensures .env, starts backend + UI):
+  - Windows: `./runall.ps1`
+  - macOS/Linux: `./runall`
+
+## Manual Setup & Run
+- Start Ollama: `ollama serve`
+- Install Python deps and launch backend + UI:
   - Windows PowerShell: `./scripts/run.ps1`
   - Linux/macOS: `bash ./scripts/run.sh`
-- Start the Electron app
+- Optional: Start the Electron app (desktop UI):
   - `cd electron && npm install && npm run start`
 
 ## One-Command Launcher: `runall`
@@ -47,10 +52,18 @@ Local notes + retrieval with Ollama, FastAPI, and a persistent Chroma store. Opt
 - Electron reads `APP_HOST`/`APP_PORT` to reach the backend, or will attempt to spawn the backend using your Python.
 
 ## Packaging (Windows .exe)
-- After a successful run:
+
+Two options depending on which UI you want to ship:
+
+- Python (FastAPI + Gradio UI) single-file exe:
   - `./.venv/Scripts/pip install pyinstaller`
   - `./.venv/Scripts/pyinstaller --onefile --name LocalLLM-lite lite/src/launcher.py`
   - Output: `dist/LocalLLM-lite.exe`
+
+- Electron desktop app (optional):
+  - Install packager: `cd electron && npm i -D electron-packager`
+  - Build: `npx electron-packager . FrankLocalNotes --platform=win32 --arch=x64 --out dist-electron --overwrite`
+  - Output folder: `electron/dist-electron/FrankLocalNotes-win32-x64`
 
 ## Repo Layout
 - `lite/` — Python code and env
@@ -62,4 +75,3 @@ Local notes + retrieval with Ollama, FastAPI, and a persistent Chroma store. Opt
   - note creation, group membership, tab operations
   - keyword vs. LLM search scopes
   - crash recovery (autosave snapshots)
-
