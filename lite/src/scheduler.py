@@ -1,8 +1,8 @@
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from apscheduler.schedulers.background import BackgroundScheduler
 
-_scheduler = BackgroundScheduler()
+_scheduler = BackgroundScheduler(timezone="UTC")
 
 
 def nightly_job():
@@ -32,7 +32,7 @@ def schedule_reindex(note_id: str, immediate: bool = False):
         delay_ms = int(s.get("REINDEX_DEBOUNCE_MS", 500))
     except Exception:
         delay_ms = 500
-    run_at = datetime.utcnow() + timedelta(milliseconds=(0 if immediate else delay_ms))
+    run_at = datetime.now(timezone.utc) + timedelta(milliseconds=(0 if immediate else delay_ms))
     _scheduler.add_job(_do_reindex, id=f"reindex:{note_id}", args=[note_id], run_date=run_at, replace_existing=True)
 
 

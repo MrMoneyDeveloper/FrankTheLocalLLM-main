@@ -6,8 +6,8 @@
   "scripts": {
     "api": "python -m lite.src.app",
     "electron": "npm --prefix electron run start",
-    "dev": "concurrently -k -n API,APP -c blue,green \"npm:api\" \"npm:electron\"",
-    "dev:wait": "concurrently -k -n API,APP -c blue,green \"npm:api\" \"wait-on http://127.0.0.1:8001/health && npm:electron\""
+    "dev": "concurrently -n API,APP -c blue,green \"npm:api\" \"npm:electron\"",
+    "dev:wait": "concurrently -n API,APP -c blue,green \"npm:api\" \"wait-on http://127.0.0.1:8001/health && npm:electron\""
   },
   "devDependencies": {
     "concurrently": "^9.0.1",

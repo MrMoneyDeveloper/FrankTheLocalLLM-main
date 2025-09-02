@@ -18,6 +18,7 @@ DEFAULT_SETTINGS: Dict[str, Any] = {
     "REINDEX_DEBOUNCE_MS": 500,
     "SEARCH_THROTTLE_MS": 200,
     "MAX_CHUNKS_PER_QUERY": 64,
+    "SIMPLE_MODE": True,
 }
 
 

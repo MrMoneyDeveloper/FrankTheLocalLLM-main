@@ -1,12 +1,13 @@
 :root {
   --bg: #0f1115;
   --panel: #151922;
-  --panel-2: #1b2030;
-  --text: #e0e6f0;
-  --muted: #94a3b8;
-  --accent: #4ea1ff;
-  --accent-2: #8b5cf6;
-  --border: #2b3242;
+  --panel-2: #171b28;
+  --text: #e7ebf3;
+  --muted: #a3b1c6;
+  --accent: #ff4e4e; /* red accent */
+  --accent-2: #ff7a7a;
+  --border: #263044;
+  --soft: #121826;
 }
 
 html, body, #app { height: 100%; margin: 0; font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); }
@@ -21,6 +22,8 @@ html, body, #app { height: 100%; margin: 0; font-family: ui-sans-serif, system-u
 #tabbar .tab { margin-right: 6px; user-select: none; }
 #tabbar .tab .menu { z-index: 1000; }
 #editor { padding: 12px; height: 100%; overflow: auto; background: #0f131b; }
+#editor { overflow: hidden; }
+#editorBody { overflow: auto; }
 textarea.note { width: 100%; height: 100%; background: transparent; color: var(--text); border: 1px solid var(--border); outline: none; resize: none; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 14px; border-radius: 8px; padding: 10px; }
 .section { margin-bottom: 14px; }
 .row { display: flex; gap: 8px; margin-top: 6px; }
@@ -35,3 +38,27 @@ button:hover { border-color: var(--accent); color: var(--text); }
 label { color: var(--muted); }
 
 #statusbar { background: #0c1220; color: var(--muted); box-shadow: inset 0 1px 0 var(--border); }
+
+/* Simple Mode: collapse right panel */
+.simple-mode #minihub { display: none; }
+
+/* Ask bar */
+#askBarWrap { display: flex; align-items: center; gap: 8px; background: var(--soft); border: 1px solid var(--border); border-radius: 10px; padding: 6px 8px; margin-bottom: 10px; }
+#askBarWrap input#askInput { flex: 1; background: transparent; color: var(--text); border: none; outline: none; }
+#askAdvanced { display: none; gap: 6px; align-items: center; }
+.askbar-expanded #askAdvanced { display: flex; }
+.askbar-expanded #askInput { flex: 1; }
+
+/* Dropdown */
+#quickActions { border: 1px solid var(--border); }
+#quickMenu { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 6px; }
+#quickMenu .dropdown-item { display: block; width: 100%; text-align: left; background: transparent; color: var(--text); border: none; padding: 6px 8px; }
+#quickMenu .dropdown-item:hover { background: var(--soft); }
+
+/* Hide scrollbars where applied */
+.hide-scrollbars { scrollbar-width: none; }
+.hide-scrollbars::-webkit-scrollbar { width: 0; height: 0; }
+
+/* Splitters (resizable borders) */
+.splitter { width: 6px; cursor: col-resize; background: transparent; }
+.splitter:hover { background: rgba(255,255,255,0.06); }

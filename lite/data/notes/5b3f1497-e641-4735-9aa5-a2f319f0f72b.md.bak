@@ -1,0 +1,168 @@
+---
+id: 5b3f1497-e641-4735-9aa5-a2f319f0f72b
+title: Test
+---
+Wifi Password 
+@dm1n@T3chn1qu3s
+
+192.168.120.10 should be the 8 bay server
+
+mikrotik IP is 192.168.120.250
+mikrotik user - ITSUPPORT
+pass - !nsp3ct10nTEC
+
+teamviewer for the HOST Server running pastel 
+id 509 971 422
+pass !nsp3ct10nTEC
+
+workpool
+USER: itsupport
+pass: itsupport!
+
+https://workpool.techniquesgroup.co.za/login.jsp
+
+Admin settings
+https://workpool.techniquesgroup.co.za/administration/resource.do?goToWorkPoolAdministration=true
+
+Notifications
+https://workpool.techniquesgroup.co.za/interactionservices/admin/index.jsp
+-------
+URL : https://spamfirewall.1-grid.com
+Email : spamtitan@techniquesgroup.co.za
+Password : 8f3sd01n
+
+https://lasertechniques-group-sa.odoo.com
+Email: itsupport@techniquesgroup.co.za
+Password: itsupport!
+
+NAS 
+https://192.168.120.9:5001/
+https://nas.techniquesgroup.co.za/
+https://techniquesgroup.direct.quickconnect.to:5001
+USER: itsupport                       
+PASS: Q;7w5VJ:  
+Nas 1 = 8th bay
+Nas = 5 bay
+
+DSM = 8 bay
+USER: itsupport                       
+PASS: l";YN2 
+
+atscanner@techniquesgroup.co.za
+21UBXEDQYe~z
+
+
+8 Bay 
+https://192.168.120.10:5011/
+ITSUPPORT
+!nsp3ct10nTEC
+
+
+http://192.168.116.4/freepbx/config.php
+admin
+!nsp3ct10n
+
+
+Cpanel
+https://srv158.hostserv.co.za:2083/
+USER: techniquesgroupc
+PASS: HujpLy45Hue
+
+
+Switch in Workshop
+http://192.168.120.254/
+user: itsupport
+pass: !nsp3ct10n
+
+IP Scanner Range
+192.168.120.1-254, 192.168.116.1-254
+
+TGITSupport
+
+
+pastel
+509971422
+!nsp3ct10nTEC
+
+
+DURBAN IS 120
+aUTOMTION IS 192.168.120
+192.168.119 LOCAL LAN
+PABX IS 192.168.116 0/24
+
+192.168.120.6 Is laser AP
+Laser is 130
+Laser 1.0 - !nsp3ct10n
+Laser 2.0 - L@zer@TG
+
+
+Joburg network - 192.168.118.1
+LOCAL LAN 192.168.88 
+pABX 118 0/24
+
+Capetown network - 192.168.115.1
+LAN 119 
+PABX 115 0/24
+DiskstationCT 192.168.115.1
+PRINTER - 254
+
+
+
+LAN 1 is nothing plugged in 
+Lan 2 is WAN neotell
+Lan 3 Switch 
+lan 4 in PABX 
+ETHERNET 5 
+
+Wlan  is the wifi on the mikrotik
+
+
+
+Lazer Wifi - L@zer@TG
+
+
+
+
+Login is Automation
+
+For every brach there needs to be local brach maswurade
+there needs to be a vpn masqered 
+and there needs to be a wan masquered
+viop in masquereds
+
+Far south 192.168.119.4
+
+TG Gmail
+Email - tgtechnicianit@gmail.com
+password - !Tsupport1988
+
+
+
+                            INTERNET
+                               |
+                            Router 1 (MikroTik)
+                               | (IP: 192.168.120.250)
+                               | (User: ITSUPPORT, Password: !nsp3ct10nTEC)
+                               /            \
+             ----------------              ----------------
+            |                                                |
+    Switch 1 (General Network)                       Switch 2 (Telephones)
+  (Network Devices, Servers, etc.)                 (Office Phones)
+            |
+    Synology NAS (5-Bay 192.168.120.9)
+            |  
+    Various Network Devices
+            |
+    Synology NAS (8-Bay, IP: 192.168.120.10)  
+   (Future Use/Redundancy)
+            |
+     Host Server Running Pastel
+         | (TeamViewer ID: 509 971 422, Password: !nsp3ct10nTEC)
+            |
+       Workpool System
+         | (URL: https://workpool.techniquesgroup.co.za/login.jsp)
+         | (User: itsupport, Password: itsupport!)
+            |
+       Spamfirewall
+         | (URL: https://spamfirewall.1-grid.com)
+         | (Email: spamtitan@techniquesgroup.co.za, Password: 8f3sd01n)

@@ -88,7 +88,17 @@ function findFreePort(start = 8001, attempts = 20) {
 }
 
 async function startBackendIfNeeded() {
+  // If already up, we're good
   if (await isBackendUp()) return true
+  // In development, do not spawn the backend. Wait for external API (npm:api).
+  if (!app.isPackaged) {
+    log('dev mode: waiting for external API to come up')
+    for (let i = 0; i < 60; i++) { // ~30s
+      if (await isBackendUp()) return true
+      await wait(500)
+    }
+    return false
+  }
   // Try to spawn python backend using module path
   const pythonCandidates = [
     process.env.PYTHON || 'python',
@@ -102,7 +112,8 @@ async function startBackendIfNeeded() {
     const dataDir = path.join(userData, 'lite-data')
     const docsDir = path.join(dataDir, 'docs')
     const chromaDir = path.join(dataDir, 'chroma')
-    const cwd = app.isPackaged ? process.resourcesPath : process.cwd()
+    const projectRoot = path.resolve(__dirname, '..')
+    const cwd = app.isPackaged ? process.resourcesPath : projectRoot
     // try to pick a free port to avoid auto-increment surprises
     backend.port = await findFreePort(backend.port)
     backendProc = spawn(cmd, useModule, {
@@ -158,7 +169,7 @@ function createWindow() {
       nodeIntegration: false,
       sandbox: true,
       webSecurity: true,
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, 'preload.cjs'),
     }
   })
   mainWindow.loadFile(path.join(__dirname, 'renderer', 'index.html'))

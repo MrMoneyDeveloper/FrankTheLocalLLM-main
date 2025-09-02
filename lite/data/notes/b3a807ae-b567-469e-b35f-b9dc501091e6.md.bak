@@ -1,0 +1,15 @@
+---
+id: b3a807ae-b567-469e-b35f-b9dc501091e6
+title: Welcome to Local Notes
+---
+# Welcome
+
+- Press Ctrl/Cmd+K for global search (All/Group/Note)
+- Use the right mini-hub for LLM search (This Note / Groups / All)
+- Settings: models and performance (chunk size/overlap, debounce)
+
+Tips:
+
+- Drag tabs to reorder; Ctrl/Cmd-select then right-click to Merge
+- Drag notes onto groups to add them; a note can be in multiple groups
+- Autosave every ~500ms; snapshots enable crash recovery

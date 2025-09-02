@@ -38,7 +38,15 @@ def notes_get(id: str):
 @router.post("/notes/create")
 def notes_create(body: NoteCreate):
     rec = notes_store.create_note(body.title, body.content or "")
-    # indexing handled by caller if desired; legacy app triggers indexing here
+    # Reindex inline on create for immediate RAG availability
+    try:
+        from ..storage.config import load_settings
+        from ..storage.indexing import reindex_note
+
+        s = load_settings()
+        reindex_note(rec["id"], rec["title"], body.content or "", s["CHUNK_SIZE"], s["CHUNK_OVERLAP"])
+    except Exception:
+        pass
     return rec
 
 

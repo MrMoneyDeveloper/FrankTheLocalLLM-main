@@ -38,6 +38,9 @@ async function refresh() {
   ])
   state.notes = notes.ok ? (notes.data.notes || []) : []
   state.groups = groups.ok ? (groups.data.groups || []) : []
+  if (settings.ok && settings.data) {
+    document.body.classList.toggle('simple-mode', !!settings.data.SIMPLE_MODE)
+  }
   renderGroups()
   renderNotesList()
   // Fill moveToGroup select
@@ -59,7 +62,10 @@ function closeTab(id) {
   if (state.activeId === id) state.activeId = state.openTabs[0]?.id || null
   renderTabs()
   if (state.activeId) window.api.notes.get(state.activeId).then((r)=>{ if(r.ok) renderEditor(r.data) })
-  else document.getElementById('editor').innerHTML = ''
+  else {
+    const eb = document.getElementById('editorBody')
+    if (eb) eb.innerHTML = '' // keep Ask bar visible
+  }
   try { window.api.tabs.registerClose(id, id) } catch {}
 }
 
@@ -123,6 +129,65 @@ async function start() {
     await refresh()
     window.openNote(r.data.id)
   }
+  const createGroupBtn = document.getElementById('createGroupBtn')
+  const newGroupName = document.getElementById('newGroupName')
+  if (createGroupBtn && newGroupName) createGroupBtn.onclick = async ()=>{
+    const name = (newGroupName.value || '').trim()
+    if (!name) return
+    const r = await window.api.groups.create(name)
+    if (!r.ok) { setStatus('Create group failed: ' + (r.error || r.status), true); return }
+    newGroupName.value = ''
+    await refresh()
+  }
+  const osb = document.getElementById('openSearchBtn')
+  if (osb) osb.onclick = ()=>{
+    const el = document.getElementById('searchModal')
+    const m = new bootstrap.Modal(el)
+    m.show()
+    setTimeout(()=>{ const inp = document.getElementById('globalSearchInput'); if (inp) inp.focus() }, 100)
+  }
+  // Projects (groups) collapse toggle
+  const ph = document.getElementById('projectsHeader')
+  if (ph) {
+    const WRAP_ID = 'groups'
+    const key = 'ui:projects:collapsed'
+    const apply = ()=>{
+      const w = document.getElementById(WRAP_ID)
+      const v = localStorage.getItem(key) === '1'
+      if (w) w.style.display = v ? 'none' : 'block'
+    }
+    ph.onclick = ()=>{
+      const v = localStorage.getItem(key) === '1'
+      localStorage.setItem(key, v ? '0' : '1')
+      apply()
+    }
+    apply()
+  }
+
+  // Resizable splitters
+  initSplitters()
+}
+
+function initSplitters() {
+  const left = document.getElementById('splitLeft')
+  const right = document.getElementById('splitRight')
+  const sidebar = document.getElementById('sidebar')
+  const minihub = document.getElementById('minihub')
+  // restore
+  try { const w = parseInt(localStorage.getItem('ui:sidebar:w')||'0',10); if (w) sidebar.style.width = w+'px' } catch{}
+  try { const w = parseInt(localStorage.getItem('ui:minihub:w')||'0',10); if (w) minihub.style.width = w+'px' } catch{}
+  function drag(el, onMove, onEnd) {
+    if (!el) return
+    el.addEventListener('mousedown', (e)=>{
+      e.preventDefault()
+      const move = (ev)=> onMove(ev)
+      const up = ()=>{ document.removeEventListener('mousemove', move); document.removeEventListener('mouseup', up); if (onEnd) onEnd() }
+      document.addEventListener('mousemove', move)
+      document.addEventListener('mouseup', up)
+    })
+  }
+  drag(left, (e)=>{ const x = e.clientX; const min = 180; const max = Math.min(window.innerWidth*0.5, 500); const w = Math.max(min, Math.min(max, x)); sidebar.style.width = w+'px' }, ()=>{ localStorage.setItem('ui:sidebar:w', parseInt(sidebar.style.width,10)) })
+  drag(right, (e)=>{ const x = e.clientX; const fromRight = window.innerWidth - x; const min = 220; const max = Math.min(window.innerWidth*0.5, 560); const w = Math.max(min, Math.min(max, fromRight)); minihub.style.width = w+'px' }, ()=>{ localStorage.setItem('ui:minihub:w', parseInt(minihub.style.width,10)) })
 }
 
 start()

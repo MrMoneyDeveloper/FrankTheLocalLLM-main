@@ -1,0 +1,9 @@
+{
+  "CHAT_MODEL": "llama3.1",
+  "EMBED_MODEL": "nomic-embed-text",
+  "CHUNK_SIZE": 800,
+  "CHUNK_OVERLAP": 100,
+  "REINDEX_DEBOUNCE_MS": 500,
+  "SEARCH_THROTTLE_MS": 200,
+  "MAX_CHUNKS_PER_QUERY": 64
+}
