@@ -35,6 +35,20 @@ Local notes + retrieval with Ollama, FastAPI, and a persistent Chroma store. Opt
   - API: http://127.0.0.1:8001 (auto-increments if busy)
   - Electron loads local `renderer/index.html`; no external network assets
 
+## Debug Logs
+- Enable verbose logs by setting `DEBUG=1` before starting:
+  - Git Bash / Linux / macOS: `DEBUG=1 ./runall` (or `DEBUG=1 bash ./scripts/run.sh`)
+  - PowerShell: `$env:DEBUG='1'; ./runall.ps1` (or `./scripts/run.ps1`)
+- Logs are written to your Electron userData path:
+  - Windows: `%AppData%/Frank Local Notes/logs/app.log`
+  - macOS: `~/Library/Application Support/Frank Local Notes/logs/app.log`
+  - Linux: `~/.config/Frank Local Notes/logs/app.log`
+- The log captures:
+  - Backend spawn and health checks
+  - Renderer console messages and failed loads
+  - IPC events for open/focus/close
+  - Backend stdout/stderr (when DEBUG=1)
+
 ## Run Scripts (Updated)
 - `./runall` (Unix/Git Bash) or `./runall.ps1` (PowerShell) now:
   - Create `.venv`, install `lite/requirements.txt`

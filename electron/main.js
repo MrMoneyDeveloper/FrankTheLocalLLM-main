@@ -1,10 +1,33 @@
 import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import path from 'path'
+import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { spawn } from 'child_process'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+const DEBUG = String(process.env.DEBUG || '').toLowerCase() === '1' || String(process.env.DEBUG || '').toLowerCase() === 'true'
+
+let logFile = null
+function initLogger() {
+  try {
+    const logsDir = path.join(app.getPath('userData'), 'logs')
+    fs.mkdirSync(logsDir, { recursive: true })
+    logFile = path.join(logsDir, 'app.log')
+  } catch {}
+}
+
+function log(...args) {
+  const line = `[${new Date().toISOString()}] ` + args.map(a => (typeof a === 'string' ? a : JSON.stringify(a))).join(' ')
+  if (DEBUG) {
+    // eslint-disable-next-line no-console
+    console.log(line)
+  }
+  try {
+    if (!logFile) return
+    fs.appendFileSync(logFile, line + '\n')
+  } catch {}
+}
 
 const DEFAULT_BACKEND = {
   host: process.env.APP_HOST || '127.0.0.1',
@@ -23,7 +46,9 @@ async function isBackendUp() {
   const url = `http://${backend.host}:${backend.port}/health`
   try {
     const res = await fetch(url, { method: 'GET' })
-    return res.ok
+    const ok = res.ok
+    if (!ok) log('health check not ok', res.status)
+    return ok
   } catch {
     return false
   }
@@ -38,15 +63,15 @@ async function startBackendIfNeeded() {
     path.join(process.cwd(), '.venv', 'Scripts', 'python.exe')
   ]
   const cmd = pythonCandidates.find(Boolean)
-  const mod = app.isPackaged
-    ? path.join(process.resourcesPath, 'lite', 'src', 'app.py')
-    : path.join(process.cwd(), 'lite', 'src', 'app.py')
+  const useModule = ['-m', 'lite.src.app']
   try {
     const userData = app.getPath('userData')
     const dataDir = path.join(userData, 'lite-data')
     const docsDir = path.join(dataDir, 'docs')
     const chromaDir = path.join(dataDir, 'chroma')
-    backendProc = spawn(cmd, [mod], {
+    const cwd = app.isPackaged ? process.resourcesPath : process.cwd()
+    backendProc = spawn(cmd, useModule, {
+      cwd,
       env: { 
         ...process.env,
         APP_PORT: String(backend.port),
@@ -54,18 +79,37 @@ async function startBackendIfNeeded() {
         DOCS_DIR: docsDir,
         CHROMA_DIR: chromaDir,
       },
-      stdio: 'ignore',
+      stdio: DEBUG ? 'pipe' : 'ignore',
       detached: true,
     })
+    if (DEBUG && backendProc.stdout && backendProc.stderr) {
+      backendProc.stdout.on('data', (d) => log('[api stdout]', String(d).trim()))
+      backendProc.stderr.on('data', (d) => log('[api stderr]', String(d).trim()))
+    }
     backendProc.unref()
+    log('spawned backend', { port: backend.port, cwd })
   } catch (e) {
-    console.warn('Failed to spawn backend:', e)
+    log('Failed to spawn backend:', e && e.message ? e.message : String(e))
   }
   // wait for it to come up
   for (let i = 0; i < 20; i++) {
     if (await isBackendUp()) return
     await wait(500)
   }
+}
+
+function wireWindowLogging(win) {
+  try {
+    win.webContents.on('console-message', (_e, level, message, line, sourceId) => {
+      log('[renderer]', level, message, sourceId + ':' + line)
+    })
+    win.webContents.on('did-fail-load', (_e, ec, desc, _url, isMainFrame) => {
+      log('did-fail-load', ec, desc, 'isMainFrame=', isMainFrame)
+    })
+    win.webContents.on('render-process-gone', (_e, details) => {
+      log('render-process-gone', details && details.reason)
+    })
+  } catch {}
 }
 
 function createWindow() {
@@ -82,6 +126,7 @@ function createWindow() {
     }
   })
   mainWindow.loadFile(path.join(__dirname, 'renderer', 'index.html'))
+  wireWindowLogging(mainWindow)
 }
 
 // Single instance lock
@@ -91,6 +136,8 @@ if (!gotTheLock) {
 }
 
 app.whenReady().then(async () => {
+  initLogger()
+  log('app ready')
   await startBackendIfNeeded()
   createWindow()
   app.on('activate', () => {
@@ -111,6 +158,7 @@ app.on('window-all-closed', () => {
 
 // IPC for single-open behavior
 ipcMain.handle('notes-open', async (event, noteId) => {
+  log('notes-open', noteId)
   const existing = openNotes.get(noteId)
   if (existing) {
     const win = BrowserWindow.fromId(existing.windowId)
@@ -128,6 +176,7 @@ ipcMain.handle('notes-open', async (event, noteId) => {
 })
 
 ipcMain.handle('notes-focus', async (event, noteId) => {
+  log('notes-focus', noteId)
   const info = openNotes.get(noteId)
   if (!info) return { ok: false, error: 'not-open' }
   const win = BrowserWindow.fromId(info.windowId)
@@ -139,6 +188,7 @@ ipcMain.handle('notes-focus', async (event, noteId) => {
 })
 
 ipcMain.on('tabs-register-open', (event, { noteId, tabId }) => {
+  log('tabs-register-open', noteId, tabId)
   try {
     const win = BrowserWindow.fromWebContents(event.sender)
     if (win && noteId) {
@@ -148,6 +198,7 @@ ipcMain.on('tabs-register-open', (event, { noteId, tabId }) => {
 })
 
 ipcMain.on('tabs-register-close', (event, { noteId, tabId }) => {
+  log('tabs-register-close', noteId, tabId)
   try {
     const win = BrowserWindow.fromWebContents(event.sender)
     const cur = openNotes.get(noteId)
@@ -155,4 +206,13 @@ ipcMain.on('tabs-register-close', (event, { noteId, tabId }) => {
       openNotes.delete(noteId)
     }
   } catch {}
+})
+
+ipcMain.handle('logs-path', async () => {
+  try {
+    const logsDir = path.join(app.getPath('userData'), 'logs')
+    return { ok: true, path: logsDir }
+  } catch (e) {
+    return { ok: false, error: e && e.message ? e.message : String(e) }
+  }
 })

@@ -1,10 +1,13 @@
 import { contextBridge, ipcRenderer } from 'electron'
+const DEBUG = String(process.env.DEBUG || '').toLowerCase() === '1' || String(process.env.DEBUG || '').toLowerCase() === 'true'
+function dlog(...args) { if (DEBUG) console.log('[preload]', ...args) }
 
 const host = process.env.APP_HOST || '127.0.0.1'
 const port = parseInt(process.env.APP_PORT || '8001', 10)
 const base = `http://${host}:${port}`
 
 async function http(path, opts = {}) {
+  dlog('http', opts.method || 'GET', path)
   try {
     const res = await fetch(base + path, opts)
     const ct = res.headers.get('content-type') || ''
@@ -13,10 +16,13 @@ async function http(path, opts = {}) {
     else body = await res.text()
     if (!res.ok) {
       const msg = (body && body.detail) || (typeof body === 'string' ? body : JSON.stringify(body)) || `HTTP ${res.status}`
+      dlog('http-error', res.status, path, msg)
       return { ok: false, status: res.status, error: msg }
     }
+    dlog('http-ok', path)
     return { ok: true, data: body }
   } catch (e) {
+    dlog('http-ex', path, e && e.message)
     return { ok: false, error: (e && e.message) || 'Network error' }
   }
 }
@@ -100,6 +106,9 @@ const api = {
       ipcRenderer.on('focus-note', listener)
       return () => ipcRenderer.removeListener('focus-note', listener)
     }
+  },
+  debug: {
+    logsPath: () => ipcRenderer.invoke('logs-path')
   }
 }
 
