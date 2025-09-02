@@ -32,24 +32,35 @@ python -m pip install -r lite/requirements.txt
 # ensure .env
 [ -f lite/.env ] || cp lite/.env.example lite/.env
 
-# check/start ollama
-if ! command -v ollama >/dev/null 2>&1; then
-  echo "ERROR: 'ollama' not found. Install from https://ollama.com." >&2
-  exit 1
+# Ollama (optional) — allow skipping via SKIP_OLLAMA=1
+if [ "${SKIP_OLLAMA:-0}" != "1" ]; then
+  if ! command -v ollama >/dev/null 2>&1; then
+    echo "ERROR: 'ollama' not found. Install from https://ollama.com, or set SKIP_OLLAMA=1" >&2
+    exit 1
+  fi
+  if ! curl -fsS http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
+    echo "Starting Ollama (serve) in background..."
+    ( ollama serve >/dev/null 2>&1 & ) || true
+    for i in $(seq 1 40); do
+      if curl -fsS http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
+        break
+      fi
+      sleep 0.5
+    done
+  fi
+else
+  export FAKE_EMBED=1
+  export FAKE_LLM=1
 fi
 
-# Is Ollama API responding? if not, start it
-if ! curl -fsS http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
-  echo "Starting Ollama (serve) in background..."
-  ( ollama serve >/dev/null 2>&1 & ) || true
-  # Wait up to 20s for readiness
-  for i in $(seq 1 40); do
-    if curl -fsS http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
-      break
-    fi
-    sleep 0.5
-  done
+# If Node is available, install deps and run Electron + API together
+if command -v node >/dev/null 2>&1; then
+  echo "Installing Node dependencies..."
+  npm install
+  (cd electron && npm install)
+  echo "Starting Electron + FastAPI (npm run dev)..."
+  npm run dev
+else
+  echo "Node.js not found; starting Python backend + Gradio UI only"
+  python -m lite.src.launcher
 fi
-
-# bootstrap + run single process (API + UI)
-python -m lite.src.launcher

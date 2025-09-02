@@ -8,25 +8,37 @@ if (!(Test-Path ".venv")) { python -m venv .venv }
 
 if (!(Test-Path "lite\.env")) { Copy-Item "lite\.env.example" "lite\.env" }
 
-# Check/start ollama
-$ollama = (Get-Command "ollama" -ErrorAction SilentlyContinue)
-if (-not $ollama) { Write-Error "ollama not found. Install from https://ollama.com"; exit 1 }
-
-# If Ollama API not responding, start server
-function Test-Ollama {
-  try { Invoke-WebRequest -Uri "http://127.0.0.1:11434/api/tags" -UseBasicParsing -TimeoutSec 2 | Out-Null; return $true } catch { return $false }
-}
-if (-not (Test-Ollama)) {
-  Write-Host "Starting Ollama (serve) in background..."
-  Start-Process -WindowStyle Minimized -NoNewWindow -FilePath "ollama" -ArgumentList "serve" | Out-Null
-  # Wait up to ~20s
-  $retries = 40
-  while ($retries -gt 0) {
-    if (Test-Ollama) { break }
-    Start-Sleep -Milliseconds 500
-    $retries -= 1
+# Ollama (optional). Skip with $env:SKIP_OLLAMA=1
+if ($env:SKIP_OLLAMA -ne "1") {
+  $ollama = (Get-Command "ollama" -ErrorAction SilentlyContinue)
+  if (-not $ollama) { Write-Error "ollama not found. Install from https://ollama.com (or set SKIP_OLLAMA=1)"; exit 1 }
+  function Test-Ollama {
+    try { Invoke-WebRequest -Uri "http://127.0.0.1:11434/api/tags" -UseBasicParsing -TimeoutSec 2 | Out-Null; return $true } catch { return $false }
   }
+  if (-not (Test-Ollama)) {
+    Write-Host "Starting Ollama (serve) in background...)"
+    Start-Process -WindowStyle Minimized -NoNewWindow -FilePath "ollama" -ArgumentList "serve" | Out-Null
+    $retries = 40
+    while ($retries -gt 0) {
+      if (Test-Ollama) { break }
+      Start-Sleep -Milliseconds 500
+      $retries -= 1
+    }
+  }
+} else {
+  $env:FAKE_EMBED = "1"; $env:FAKE_LLM = "1"
 }
 
-# Run single process (API + UI)
-& .\.venv\Scripts\python -m lite.src.launcher
+# If Node is present, install deps and run Electron + API via npm
+if (Get-Command node -ErrorAction SilentlyContinue) {
+  Write-Host "Installing Node dependencies..."
+  npm install
+  Push-Location electron
+  npm install
+  Pop-Location
+  Write-Host "Starting Electron + FastAPI (npm run dev)..."
+  npm run dev
+} else {
+  Write-Host "Node.js not found; starting Python backend + Gradio UI only"
+  & .\.venv\Scripts\python -m lite.src.launcher
+}

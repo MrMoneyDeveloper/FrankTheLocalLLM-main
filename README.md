@@ -35,6 +35,15 @@ Local notes + retrieval with Ollama, FastAPI, and a persistent Chroma store. Opt
   - API: http://127.0.0.1:8001 (auto-increments if busy)
   - Electron loads local `renderer/index.html`; no external network assets
 
+## Run Scripts (Updated)
+- `./runall` (Unix/Git Bash) or `./runall.ps1` (PowerShell) now:
+  - Create `.venv`, install `lite/requirements.txt`
+  - Ensure `lite/.env` exists
+  - Optionally start Ollama (skip with `SKIP_OLLAMA=1`)
+  - Install Node deps at repo root and in `electron/`
+  - Start Electron + FastAPI together using `npm run dev`
+- You can still run only the Python backend + Gradio UI with `bash ./scripts/run.sh` or `./scripts/run.ps1` if Node isn’t installed.
+
 ## One-Command Launcher: `runall`
 - Cross-platform convenience wrappers are provided at repo root:
   - Unix/Git Bash: `./runall`

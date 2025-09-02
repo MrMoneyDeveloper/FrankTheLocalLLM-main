@@ -62,9 +62,6 @@ def _render_frontmatter(meta: Dict[str, str]) -> str:
     return "\n".join(lines)
 
 
-def _normalize_title(title: Optional[str], content: str) -> str:
-
-
 def list_notes() -> List[Dict]:
     df = read_parquet_safe(NOTES_INDEX_TABLE)
     if df.empty:
@@ -235,7 +232,7 @@ def search_keyword(q: str, note_ids: Optional[List[str]] = None) -> List[Dict]:
     if df.empty:
         return []
     if note_ids:
-        df = df[df["id"].isin(note_ids)]
+        df = df[df["note_id"].isin(note_ids)]
     out: List[Dict] = []
     for _, row in df.iterrows():
         nid = row["note_id"]
