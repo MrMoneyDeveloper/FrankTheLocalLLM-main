@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain, shell, dialog } from 'electron'
 import path from 'path'
 import fs from 'fs'
+import net from 'net'
 import { fileURLToPath } from 'url'
 import { spawn } from 'child_process'
 
@@ -54,6 +55,38 @@ async function isBackendUp() {
   }
 }
 
+async function ensureOllamaUp() {
+  if (String(process.env.SKIP_OLLAMA || '0') === '1') return true
+  try {
+    const ctl = new AbortController()
+    const id = setTimeout(() => ctl.abort(), 2000)
+    const r = await fetch('http://127.0.0.1:11434/api/tags', { signal: ctl.signal })
+    clearTimeout(id)
+    return r.ok
+  } catch {
+    return false
+  }
+}
+
+function findFreePort(start = 8001, attempts = 20) {
+  return new Promise((resolve) => {
+    let p = start
+    const tryNext = () => {
+      const server = net.createServer()
+      server.unref()
+      server.on('error', () => {
+        p += 1
+        if (attempts-- > 0) tryNext()
+        else resolve(start)
+      })
+      server.listen(p, '127.0.0.1', () => {
+        server.close(() => resolve(p))
+      })
+    }
+    tryNext()
+  })
+}
+
 async function startBackendIfNeeded() {
   if (await isBackendUp()) return true
   // Try to spawn python backend using module path
@@ -70,6 +103,8 @@ async function startBackendIfNeeded() {
     const docsDir = path.join(dataDir, 'docs')
     const chromaDir = path.join(dataDir, 'chroma')
     const cwd = app.isPackaged ? process.resourcesPath : process.cwd()
+    // try to pick a free port to avoid auto-increment surprises
+    backend.port = await findFreePort(backend.port)
     backendProc = spawn(cmd, useModule, {
       cwd,
       env: { 
@@ -92,7 +127,7 @@ async function startBackendIfNeeded() {
     log('Failed to spawn backend:', e && e.message ? e.message : String(e))
   }
   // wait for it to come up
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 40; i++) {
     if (await isBackendUp()) return true
     await wait(500)
   }
@@ -139,6 +174,14 @@ if (!gotTheLock) {
 app.whenReady().then(async () => {
   initLogger()
   log('app ready')
+  const ollamaOk = await ensureOllamaUp()
+  if (!ollamaOk) {
+    const msg = 'Ollama is not reachable on 127.0.0.1:11434. Start it first (`ollama serve`) or set SKIP_OLLAMA=1 for development.'
+    log(msg)
+    try { await dialog.showMessageBox({ type: 'error', title: 'Ollama Required', message: msg }) } catch {}
+    app.quit()
+    return
+  }
   const ok = await startBackendIfNeeded()
   if (!ok) {
     const msg = 'Backend failed to start. Ensure Python is installed and Ollama is running (or set SKIP_OLLAMA=1). See logs for details.'
@@ -222,6 +265,14 @@ ipcMain.handle('logs-path', async () => {
   try {
     const logsDir = path.join(app.getPath('userData'), 'logs')
     return { ok: true, path: logsDir }
+  } catch (e) {
+    return { ok: false, error: e && e.message ? e.message : String(e) }
+  }
+})
+
+ipcMain.handle('backend-base', async () => {
+  try {
+    return { ok: true, base: `http://${backend.host}:${backend.port}` }
   } catch (e) {
     return { ok: false, error: e && e.message ? e.message : String(e) }
   }

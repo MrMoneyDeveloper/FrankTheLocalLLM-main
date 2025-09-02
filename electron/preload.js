@@ -2,13 +2,23 @@ import { contextBridge, ipcRenderer } from 'electron'
 const DEBUG = String(process.env.DEBUG || '').toLowerCase() === '1' || String(process.env.DEBUG || '').toLowerCase() === 'true'
 function dlog(...args) { if (DEBUG) console.log('[preload]', ...args) }
 
-const host = process.env.APP_HOST || '127.0.0.1'
-const port = parseInt(process.env.APP_PORT || '8001', 10)
-const base = `http://${host}:${port}`
+let _basePromise = null
+async function getBase() {
+  if (!_basePromise) _basePromise = ipcRenderer.invoke('backend-base')
+  try {
+    const res = await _basePromise
+    if (res && res.ok && res.base) return res.base
+  } catch {}
+  // fallback
+  const host = process.env.APP_HOST || '127.0.0.1'
+  const port = parseInt(process.env.APP_PORT || '8001', 10)
+  return `http://${host}:${port}`
+}
 
 async function http(path, opts = {}) {
   dlog('http', opts.method || 'GET', path)
   try {
+    const base = await getBase()
     const res = await fetch(base + path, opts)
     const ct = res.headers.get('content-type') || ''
     let body
