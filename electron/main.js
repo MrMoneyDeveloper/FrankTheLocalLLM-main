@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, shell } from 'electron'
+import { app, BrowserWindow, ipcMain, shell, dialog } from 'electron'
 import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
@@ -55,7 +55,7 @@ async function isBackendUp() {
 }
 
 async function startBackendIfNeeded() {
-  if (await isBackendUp()) return
+  if (await isBackendUp()) return true
   // Try to spawn python backend using module path
   const pythonCandidates = [
     process.env.PYTHON || 'python',
@@ -93,9 +93,10 @@ async function startBackendIfNeeded() {
   }
   // wait for it to come up
   for (let i = 0; i < 20; i++) {
-    if (await isBackendUp()) return
+    if (await isBackendUp()) return true
     await wait(500)
   }
+  return false
 }
 
 function wireWindowLogging(win) {
@@ -138,7 +139,16 @@ if (!gotTheLock) {
 app.whenReady().then(async () => {
   initLogger()
   log('app ready')
-  await startBackendIfNeeded()
+  const ok = await startBackendIfNeeded()
+  if (!ok) {
+    const msg = 'Backend failed to start. Ensure Python is installed and Ollama is running (or set SKIP_OLLAMA=1). See logs for details.'
+    log(msg)
+    try {
+      await dialog.showMessageBox({ type: 'error', title: 'Startup Error', message: msg })
+    } catch {}
+    app.quit()
+    return
+  }
   createWindow()
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
