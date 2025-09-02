@@ -1,4 +1,5 @@
 import time
+from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
 
 _scheduler = BackgroundScheduler()
@@ -9,8 +10,38 @@ def nightly_job():
     pass
 
 
+def _do_reindex(note_id: str):
+    try:
+        from .storage.config import load_settings
+        from .storage.indexing import reindex_note
+        from .storage import notes as notes_store
+
+        s = load_settings()
+        rec = notes_store.get_note(note_id)
+        reindex_note(note_id, rec.get("title", ""), rec.get("content", ""), s["CHUNK_SIZE"], s["CHUNK_OVERLAP"])
+    except Exception:
+        pass
+
+
+def schedule_reindex(note_id: str, immediate: bool = False):
+    delay_ms = 0
+    try:
+        from .storage.config import load_settings
+
+        s = load_settings()
+        delay_ms = int(s.get("REINDEX_DEBOUNCE_MS", 500))
+    except Exception:
+        delay_ms = 500
+    run_at = datetime.utcnow() + timedelta(milliseconds=(0 if immediate else delay_ms))
+    _scheduler.add_job(_do_reindex, id=f"reindex:{note_id}", args=[note_id], run_date=run_at, replace_existing=True)
+
+
 def start_scheduler():
-    _scheduler.add_job(nightly_job, "cron", hour=3, minute=0)
+    # nightly maintenance
+    try:
+        _scheduler.add_job(nightly_job, "cron", hour=3, minute=0)
+    except Exception:
+        pass
     _scheduler.start()
 
 
@@ -21,4 +52,3 @@ if __name__ == "__main__":
             time.sleep(5)
     except KeyboardInterrupt:
         _scheduler.shutdown()
-

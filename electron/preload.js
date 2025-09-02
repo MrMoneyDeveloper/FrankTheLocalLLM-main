@@ -1,15 +1,24 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 
 const host = process.env.APP_HOST || '127.0.0.1'
 const port = parseInt(process.env.APP_PORT || '8001', 10)
 const base = `http://${host}:${port}`
 
 async function http(path, opts = {}) {
-  const res = await fetch(base + path, opts)
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const ct = res.headers.get('content-type') || ''
-  if (ct.includes('application/json')) return res.json()
-  return res.text()
+  try {
+    const res = await fetch(base + path, opts)
+    const ct = res.headers.get('content-type') || ''
+    let body
+    if (ct.includes('application/json')) body = await res.json()
+    else body = await res.text()
+    if (!res.ok) {
+      const msg = (body && body.detail) || (typeof body === 'string' ? body : JSON.stringify(body)) || `HTTP ${res.status}`
+      return { ok: false, status: res.status, error: msg }
+    }
+    return { ok: true, data: body }
+  } catch (e) {
+    return { ok: false, error: (e && e.message) || 'Network error' }
+  }
 }
 
 const api = {
@@ -25,17 +34,51 @@ const api = {
       body: JSON.stringify({ id, title, content, reindex })
     }),
     delete: (id) => http(`/notes/delete?id=${encodeURIComponent(id)}`, { method: 'POST' }),
-    search: (q, noteIds) => http(`/notes/search?q=${encodeURIComponent(q)}&note_ids=${encodeURIComponent((noteIds||[]).join(','))}`)
+    open: async (noteId) => ipcRenderer.invoke('notes-open', noteId),
+    focus: async (noteId) => ipcRenderer.invoke('notes-focus', noteId),
   },
   groups: {
     list: () => http('/groups/list'),
     create: (name) => http('/groups/create', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name }) }),
+    rename: (id, name) => http('/groups/rename', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, name }) }),
     delete: (id) => http(`/groups/delete?id=${encodeURIComponent(id)}`, { method: 'POST' }),
+    notes: (groupId) => http(`/groups/notes?group_id=${encodeURIComponent(groupId)}`),
     addNote: (groupId, noteId) => http(`/groups/add_note?group_id=${encodeURIComponent(groupId)}&note_id=${encodeURIComponent(noteId)}`, { method: 'POST' }),
-    removeNote: (groupId, noteId) => http(`/groups/remove_note?group_id=${encodeURIComponent(groupId)}&note_id=${encodeURIComponent(noteId)}`, { method: 'POST' })
+    removeNote: (groupId, noteId) => http(`/groups/remove_note?group_id=${encodeURIComponent(groupId)}&note_id=${encodeURIComponent(noteId)}`, { method: 'POST' }),
+    reorder: (orderedIds) => http('/groups/reorder', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ordered_ids: orderedIds }) }),
+    reorderNotes: (groupId, orderedNoteIds) => http('/groups/reorder_notes', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ group_id: groupId, ordered_note_ids: orderedNoteIds }) }),
+  },
+  tabs: {
+    merge: async (_tabIds) => ({ ok: true }), // stub
+    unstack: async (_stackId) => ({ ok: true }), // stub
+    reorder: async (_sessionId, _tabId, _toPos) => ({ ok: true }), // stub
+    saveSession: (sessionId, tabs) => http('/tabs/save_session', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ session_id: sessionId, tabs }) }),
+    loadSession: (sessionId) => http(`/tabs/load_session?session_id=${encodeURIComponent(sessionId)}`),
+    registerOpen: (noteId, tabId) => { ipcRenderer.send('tabs-register-open', { noteId, tabId }) },
+    registerClose: (noteId, tabId) => { ipcRenderer.send('tabs-register-close', { noteId, tabId }) },
+  },
+  search: {
+    keywordAll: (q) => http(`/notes/search?q=${encodeURIComponent(q)}`),
+    keywordGroup: async (q, groupId) => {
+      const g = await http(`/groups/notes?group_id=${encodeURIComponent(groupId)}`)
+      if (!g.ok) return g
+      const ids = (g.data.note_ids || []).join(',')
+      return http(`/notes/search?q=${encodeURIComponent(q)}&note_ids=${encodeURIComponent(ids)}`)
+    },
+    keywordNote: (q, noteId) => http(`/notes/search?q=${encodeURIComponent(q)}&note_ids=${encodeURIComponent(noteId)}`),
   },
   llm: {
-    chat: (prompt) => http('/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt }) }),
+    ask: (arg) => {
+      const payload = typeof arg === 'string' ? { prompt: arg } : {
+        prompt: arg.prompt,
+        note_ids: (arg.noteIds || []).join(','),
+        group_ids: (arg.groupIds || []).join(','),
+        date_start: arg.dateStart || null,
+        date_end: arg.dateEnd || null,
+        k: arg.k || 6,
+      }
+      return http('/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    },
     search: ({ q, k = 5, noteIds = [], groupIds = [], dateStart = null, dateEnd = null }) => {
       const params = new URLSearchParams()
       params.set('q', q)
@@ -50,8 +93,14 @@ const api = {
   settings: {
     get: () => http('/settings/get'),
     update: (partial) => http('/settings/update', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(partial) })
+  },
+  events: {
+    onFocusNote: (cb) => {
+      const listener = (_evt, noteId) => cb(noteId)
+      ipcRenderer.on('focus-note', listener)
+      return () => ipcRenderer.removeListener('focus-note', listener)
+    }
   }
 }
 
 contextBridge.exposeInMainWorld('api', api)
-

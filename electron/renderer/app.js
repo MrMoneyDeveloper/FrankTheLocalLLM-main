@@ -23,17 +23,24 @@ function msFromDateInput(s) {
   return d.getTime()
 }
 
+function setStatus(msg, isError = false) {
+  const el = document.getElementById('statusbar')
+  if (!el) return
+  el.textContent = msg
+  el.style.color = isError ? '#b00020' : '#666'
+}
+
 async function refresh() {
   const [notes, groups, settings] = await Promise.all([
     window.api.notes.list(),
     window.api.groups.list(),
     window.api.settings.get(),
   ])
-  state.notes = notes.notes
-  state.groups = groups.groups
+  if (!notes.ok) { setStatus('Failed to load notes: ' + (notes.error || notes.status), true); state.notes = [] } else { state.notes = notes.data.notes || [] }
+  if (!groups.ok) { setStatus('Failed to load groups: ' + (groups.error || groups.status), true); state.groups = [] } else { state.groups = groups.data.groups || [] }
   renderNotesList()
   renderGroups()
-  renderSettings(settings)
+  if (!settings.ok) { setStatus('Failed to load settings: ' + (settings.error || settings.status), true) } else { renderSettings(settings.data) }
 }
 
 function renderNotesList() {
@@ -105,17 +112,27 @@ function renderSettings(settings) {
 }
 
 async function openNote(id) {
-  // single-open policy
+  // Ask main to focus existing tab if open anywhere
+  try {
+    const res = await window.api.notes.open(id)
+    if (res && res.focused) { return }
+  } catch {}
+  // Maintain single-open within this window
   const exists = state.openTabs.find((t) => t.id === id)
   if (exists) {
     state.activeId = id
-    return renderTabs()
+    renderTabs()
+    return
   }
   const note = await window.api.notes.get(id)
-  state.openTabs.push({ id, title: note.title })
+  if (!note.ok) { setStatus('Open failed: ' + (note.error || note.status), true); return }
+  const rec = note.data
+  state.openTabs.push({ id, title: rec.title })
   state.activeId = id
   renderTabs()
-  renderEditor(note)
+  renderEditor(rec)
+  // register with main
+  window.api.tabs.registerOpen(id, id)
 }
 
 function closeTab(id) {
@@ -123,8 +140,10 @@ function closeTab(id) {
   if (idx >= 0) state.openTabs.splice(idx, 1)
   if (state.activeId === id) state.activeId = state.openTabs[0]?.id || null
   renderTabs()
-  if (state.activeId) window.api.notes.get(state.activeId).then(renderEditor)
+  if (state.activeId) window.api.notes.get(state.activeId).then((r)=>{ if(r.ok) renderEditor(r.data) })
   else $('#editor').innerHTML = ''
+  // unregister
+  try { window.api.tabs.registerClose(id, id) } catch {}
 }
 
 function renderTabs() {
@@ -167,9 +186,11 @@ function renderEditor(note) {
       try { localStorage.setItem('snapshots:' + note.id, JSON.stringify(state.snapshots[note.id])) } catch {}
       // autosave
       const res = await window.api.notes.update(note.id, { content: area.value })
+      if (!res.ok) { setStatus('Autosave failed: ' + (res.error || res.status), true); return }
       // update tab title if changed derivation
+      const data = res.data
       const tab = state.openTabs.find((t) => t.id === note.id)
-      if (tab && tab.title !== res.title) { tab.title = res.title; renderTabs() }
+      if (tab && tab.title !== data.title) { tab.title = data.title; renderTabs() }
       const st = document.getElementById('indexStatus'); if (st) { st.textContent = 'Indexed at ' + new Date().toLocaleTimeString() }
     }, debounce)
   })
@@ -195,9 +216,23 @@ function renderEditor(note) {
     let groupIds = []
     if (scope === 'note') noteIds = [note.id]
     if (scope === 'groups') groupIds = Array.from($('#moveToGroup').options).map(o => o.value)
-    const res = await window.api.llm.search({ q: $('#llmQuery').value, noteIds, groupIds, dateStart: ds, dateEnd: de, k: 8 })
-    renderLlmResults(res.results || [])
+    const res = await window.api.llm.ask($('#llmQuery').value)
+    if (!res.ok) { setStatus('LLM error: ' + (res.error || res.status), true); return }
+    const ans = (res.data && res.data.answer) || ''
+    renderLlmResults([{ answer: ans }])
   }
+
+  // Subscribe to main focus events
+  try {
+    window.api.events.onFocusNote((noteId) => {
+      const exists = state.openTabs.find((t) => t.id === noteId)
+      if (exists) {
+        state.activeId = noteId
+        renderTabs()
+        window.api.notes.get(noteId).then((r)=>{ if(r.ok) renderEditor(r.data) })
+      }
+    })
+  } catch {}
 }
 
 function renderLlmResults(items) {

@@ -1,15 +1,16 @@
 import os
 import time
 import uuid
-from typing import Dict, List, Optional
+import hashlib
+from typing import Dict, List, Optional, Tuple
 
 import pandas as pd
 
-from .config import NOTES_DIR, load_settings
-from .parquet_util import _atomic_replace, read_parquet_safe, table_path
+from .config import NOTES_DIR, load_settings, _atomic_write
+from .parquet_util import atomic_replace, read_parquet_safe, table_path
 
 
-NOTES_TABLE = table_path("notes")
+NOTES_INDEX_TABLE = table_path("notes_index")
 GROUPS_TABLE = table_path("groups")
 GROUP_NOTES_TABLE = table_path("group_notes")
 
@@ -29,27 +30,80 @@ def _now() -> int:
     return int(time.time() * 1000)
 
 
+def _note_path(note_id: str) -> str:
+    return os.path.join(NOTES_DIR, f"{note_id}.md")
+
+
+def _note_path_legacy(note_id: str) -> str:
+    return os.path.join(NOTES_DIR, f"{note_id}.txt")
+
+
+def _sha256(s: str) -> str:
+    return hashlib.sha256(s.encode("utf-8")).hexdigest()
+
+
+def _split_frontmatter(raw: str) -> Tuple[Dict, str]:
+    if raw.startswith("---\n"):
+        end = raw.find("\n---\n", 4)
+        if end != -1:
+            header = raw[4:end].strip()
+            body = raw[end + 5 :]
+            meta: Dict[str, str] = {}
+            for line in header.splitlines():
+                if ":" in line:
+                    k, v = line.split(":", 1)
+                    meta[k.strip()] = v.strip()
+            return meta, body
+    return {}, raw
+
+
+def _render_frontmatter(meta: Dict[str, str]) -> str:
+    lines = ["---"] + [f"{k}: {v}" for k, v in meta.items()] + ["---", ""]
+    return "\n".join(lines)
+
+
+def _normalize_title(title: Optional[str], content: str) -> str:
+
+
 def list_notes() -> List[Dict]:
-    df = read_parquet_safe(NOTES_TABLE)
+    df = read_parquet_safe(NOTES_INDEX_TABLE)
     if df.empty:
         return []
-    return df.sort_values("updated_at", ascending=False).to_dict(orient="records")
+    # Map storage columns to API shape
+    df = df.sort_values("updated_at", ascending=False)
+    out = []
+    for _, row in df.iterrows():
+        out.append({
+            "id": row["note_id"],
+            "title": row.get("title", "Untitled"),
+            "updated_at": row.get("updated_at"),
+        })
+    return out
 
 
 def get_note(note_id: str) -> Dict:
-    df = read_parquet_safe(NOTES_TABLE)
-    row = df[df["id"] == note_id]
+    df = read_parquet_safe(NOTES_INDEX_TABLE)
+    row = df[df["note_id"] == note_id]
     if row.empty:
-        raise FileNotFoundError(f"Note not found: {note_id}")
-    path = os.path.join(NOTES_DIR, f"{note_id}.txt")
+        # try legacy
+        path = _note_path_legacy(note_id)
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                raw = f.read()
+        except FileNotFoundError:
+            raise FileNotFoundError(f"Note not found: {note_id}")
+        # synthesize
+        title = _normalize_title(None, raw)
+        return {"id": note_id, "title": title, "content": raw, "updated_at": _now()}
+    path = row.iloc[0]["path"]
     try:
         with open(path, "r", encoding="utf-8") as f:
-            content = f.read()
+            raw = f.read()
     except FileNotFoundError:
-        content = ""
-    r = row.iloc[0].to_dict()
-    r["content"] = content
-    return r
+        raw = ""
+    meta, body = _split_frontmatter(raw)
+    title = row.iloc[0].get("title") or meta.get("title") or _normalize_title(None, body)
+    return {"id": note_id, "title": title, "content": body, "updated_at": int(row.iloc[0].get("updated_at") or _now())}
 
 
 def create_note(title: Optional[str] = None, content: str = "") -> Dict:
@@ -57,66 +111,102 @@ def create_note(title: Optional[str] = None, content: str = "") -> Dict:
     note_id = str(uuid.uuid4())
     title = _normalize_title(title, content)
     ts = _now()
-    # write content
-    with open(os.path.join(NOTES_DIR, f"{note_id}.txt"), "w", encoding="utf-8") as f:
-        f.write(content)
-    # update parquet
-    df = read_parquet_safe(NOTES_TABLE)
+    meta = {"id": note_id, "title": title}
+    raw = _render_frontmatter(meta) + content
+    path = _note_path(note_id)
+    _atomic_write(path, raw)
+    size = os.path.getsize(path)
+    sha = _sha256(content)
+    # update parquet index
+    df = read_parquet_safe(NOTES_INDEX_TABLE)
+    if df.empty:
+        df = pd.DataFrame(columns=["note_id", "title", "path", "updated_at", "size", "sha256"])
     rec = {
-        "id": note_id,
+        "note_id": note_id,
         "title": title,
-        "created_at": ts,
+        "path": path,
         "updated_at": ts,
+        "size": int(size),
+        "sha256": sha,
     }
     df = pd.concat([df, pd.DataFrame([rec])], ignore_index=True)
-    _atomic_replace(NOTES_TABLE, df)
-    return rec
+    atomic_replace(NOTES_INDEX_TABLE, df)
+    return {"id": note_id, "title": title, "updated_at": ts}
 
 
 def update_note(note_id: str, title: Optional[str], content: Optional[str]) -> Dict:
-    df = read_parquet_safe(NOTES_TABLE)
-    idx = df.index[df["id"] == note_id]
+    df = read_parquet_safe(NOTES_INDEX_TABLE)
+    idx = df.index[df["note_id"] == note_id]
     if len(idx) == 0:
-        raise FileNotFoundError(f"Note not found: {note_id}")
-    path = os.path.join(NOTES_DIR, f"{note_id}.txt")
-    existing_content = None
-    if content is not None:
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(content)
-        existing_content = content
+        # allow legacy file fallback
+        path = _note_path(note_id)
     else:
+        path = df.loc[idx, "path"].iloc[0]
+    # read existing
+    raw = ""
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            raw = f.read()
+    except FileNotFoundError:
+        # attempt legacy .txt
         try:
-            with open(path, "r", encoding="utf-8") as f:
-                existing_content = f.read()
+            with open(_note_path_legacy(note_id), "r", encoding="utf-8") as f:
+                raw = f.read()
         except FileNotFoundError:
-            existing_content = ""
-    # update metadata
-    if title is not None:
-        df.loc[idx, "title"] = title
+            raw = ""
+    meta, body = _split_frontmatter(raw)
+    cur_title = meta.get("title") or (df.loc[idx, "title"].iloc[0] if len(idx) else None) or _normalize_title(None, body)
+    new_title = title if title is not None else cur_title
+    new_body = content if content is not None else body
+    new_meta = {"id": note_id, "title": new_title}
+    new_raw = _render_frontmatter(new_meta) + (new_body or "")
+    # write
+    _atomic_write(_note_path(note_id), new_raw)
+    ts = _now()
+    size = os.path.getsize(_note_path(note_id))
+    sha = _sha256(new_body or "")
+    # update index parquet
+    dfi = read_parquet_safe(NOTES_INDEX_TABLE)
+    if dfi.empty:
+        dfi = pd.DataFrame(columns=["note_id", "title", "path", "updated_at", "size", "sha256"])
+    if len(idx) == 0:
+        # add
+        dfi = pd.concat([
+            dfi,
+            pd.DataFrame([
+                {
+                    "note_id": note_id,
+                    "title": new_title,
+                    "path": _note_path(note_id),
+                    "updated_at": ts,
+                    "size": int(size),
+                    "sha256": sha,
+                }
+            ])
+        ], ignore_index=True)
     else:
-        # auto-title if empty
-        df.loc[idx, "title"] = _normalize_title(df.loc[idx, "title"].iloc[0], existing_content or "")
-    df.loc[idx, "updated_at"] = _now()
-    _atomic_replace(NOTES_TABLE, df)
-    return df.loc[idx].iloc[0].to_dict()
+        dfi.loc[idx, ["title", "path", "updated_at", "size", "sha256"]] = [new_title, _note_path(note_id), ts, int(size), sha]
+    atomic_replace(NOTES_INDEX_TABLE, dfi)
+    return {"id": note_id, "title": new_title, "updated_at": ts}
 
 
 def delete_note(note_id: str) -> bool:
-    # delete file
-    try:
-        os.remove(os.path.join(NOTES_DIR, f"{note_id}.txt"))
-    except FileNotFoundError:
-        pass
+    # delete files
+    for p in (_note_path(note_id), _note_path_legacy(note_id)):
+        try:
+            os.remove(p)
+        except FileNotFoundError:
+            pass
     # remove from parquet
-    df = read_parquet_safe(NOTES_TABLE)
+    df = read_parquet_safe(NOTES_INDEX_TABLE)
     if not df.empty:
-        df = df[df["id"] != note_id]
-        _atomic_replace(NOTES_TABLE, df)
+        df = df[df["note_id"] != note_id]
+        atomic_replace(NOTES_INDEX_TABLE, df)
     # remove group mapping
     gm = read_parquet_safe(GROUP_NOTES_TABLE)
     if not gm.empty:
         gm = gm[gm["note_id"] != note_id]
-        _atomic_replace(GROUP_NOTES_TABLE, gm)
+        atomic_replace(GROUP_NOTES_TABLE, gm)
     return True
 
 
@@ -124,7 +214,16 @@ def list_groups() -> List[Dict]:
     df = read_parquet_safe(GROUPS_TABLE)
     if df.empty:
         return []
-    return df.sort_values("name").to_dict(orient="records")
+    # pass-through for compatibility if using old schema
+    cols = list(df.columns)
+    if "id" in cols and "name" in cols:
+        return df.sort_values("name").to_dict(orient="records")
+    if "group_id" in cols and "name" in cols:
+        out = []
+        for _, r in df.sort_values("name").iterrows():
+            out.append({"id": r["group_id"], "name": r["name"]})
+        return out
+    return []
 
 
 def search_keyword(q: str, note_ids: Optional[List[str]] = None) -> List[Dict]:
@@ -132,21 +231,27 @@ def search_keyword(q: str, note_ids: Optional[List[str]] = None) -> List[Dict]:
     ql = q.lower().strip()
     if not ql:
         return []
-    df = read_parquet_safe(NOTES_TABLE)
+    df = read_parquet_safe(NOTES_INDEX_TABLE)
     if df.empty:
         return []
     if note_ids:
         df = df[df["id"].isin(note_ids)]
     out: List[Dict] = []
     for _, row in df.iterrows():
-        nid = row["id"]
-        title = row["title"]
-        path = os.path.join(NOTES_DIR, f"{nid}.txt")
+        nid = row["note_id"]
+        title = row.get("title")
+        path = row.get("path") or _note_path(nid)
         try:
             with open(path, "r", encoding="utf-8") as f:
-                content = f.read()
+                raw = f.read()
         except FileNotFoundError:
-            content = ""
+            # try legacy
+            try:
+                with open(_note_path_legacy(nid), "r", encoding="utf-8") as f:
+                    raw = f.read()
+            except FileNotFoundError:
+                raw = ""
+        _, content = _split_frontmatter(raw)
         idx = content.lower().find(ql)
         if idx >= 0 or ql in (title or "").lower():
             start = max(0, idx - 40)
@@ -154,4 +259,3 @@ def search_keyword(q: str, note_ids: Optional[List[str]] = None) -> List[Dict]:
             snippet = content[start:end].replace("\n", " ")
             out.append({"id": nid, "title": title, "snippet": snippet})
     return out
-

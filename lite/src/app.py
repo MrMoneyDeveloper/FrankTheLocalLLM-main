@@ -1,17 +1,18 @@
 import os
 import uvicorn
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 from .bootstrap import bootstrap, find_available_port
 from .vectorstore import add_documents, query
 from .ollama_client import chat
-from .storage.config import load_settings, save_settings
-from .storage import notes as notes_store
-from .storage import groups as groups_store
-from .storage.indexing import reindex_note
 from .storage.parquet_util import read_parquet_safe, table_path
+from .api.notes import router as notes_router
+from .api.groups import router as groups_router
+from .api.tabs import router as tabs_router
+from .api.settings import router as settings_router
+from .scheduler import start_scheduler
 
 load_dotenv()
 
@@ -27,9 +28,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Routers (notes, groups, tabs, settings)
+app.include_router(notes_router)
+app.include_router(groups_router)
+app.include_router(tabs_router)
+app.include_router(settings_router)
+
 
 class ChatIn(BaseModel):
     prompt: str
+    note_ids: str | None = None  # comma-separated
+    group_ids: str | None = None  # comma-separated
+    date_start: int | None = None
+    date_end: int | None = None
+    k: int = 6
 
 
 @app.get("/health")
@@ -39,9 +51,133 @@ def health():
 
 @app.post("/chat")
 def chat_endpoint(body: ChatIn):
-    msgs = [{"role": "user", "content": body.prompt}]
+    # Resolve allowed note ids from request
+    allowed: list[str] | None = None
+    if body.group_ids:
+        gm = read_parquet_safe(table_path("group_notes"))
+        if not gm.empty:
+            gids = [g for g in body.group_ids.split(",") if g]
+            allowed = gm[gm["group_id"].isin(gids)]["note_id"].dropna().unique().tolist()
+        else:
+            allowed = []
+    if body.note_ids:
+        ids = [x for x in body.note_ids.split(",") if x]
+        allowed = ids if allowed is None else [n for n in allowed if n in ids]
+    # Date filter on notes
+    note_filter: list[str] | None = None
+    if body.date_start or body.date_end:
+        df = read_parquet_safe(table_path("notes_index"))
+        if not df.empty:
+            if body.date_start:
+                df = df[df["updated_at"] >= int(body.date_start)]
+            if body.date_end:
+                df = df[df["updated_at"] <= int(body.date_end)]
+            note_filter = df["note_id"].tolist()
+    if note_filter is not None:
+        if allowed is None:
+            allowed = note_filter
+        else:
+            allowed = [n for n in allowed if n in note_filter]
+
+    # RAG using embeddings.parquet + MMR
+    from .ollama_client import embed_texts
+    import math
+    import pandas as pd
+
+    embs = read_parquet_safe(table_path("embeddings"))
+    if embs.empty:
+        # fallback: direct chat without context
+        msgs = [
+            {"role": "system", "content": "Use ONLY provided context; if not found, reply 'Not found in allowed scope'."},
+            {"role": "user", "content": body.prompt},
+        ]
+        answer = chat(msgs)
+        return {"answer": answer, "citations": []}
+
+    if allowed:
+        embs = embs[embs["note_id"].isin(allowed)]
+    if body.date_start or body.date_end:
+        embs = embs[(~embs["updated_at"].isna())]
+        if body.date_start:
+            embs = embs[embs["updated_at"] >= int(body.date_start)]
+        if body.date_end:
+            embs = embs[embs["updated_at"] <= int(body.date_end)]
+    if embs.empty:
+        return {"answer": "Not found in allowed scope", "citations": []}
+
+    qv = embed_texts([body.prompt])[0]
+
+    def norm(v):
+        n = math.sqrt(sum(x * x for x in v)) or 1.0
+        return [x / n for x in v]
+
+    qn = norm(qv)
+
+    def cos(a, b):
+        return sum(x * y for x, y in zip(a, b))
+
+    # Build candidate list
+    cand = []
+    for _, r in embs.iterrows():
+        try:
+            ev = r["embedding"]
+            if isinstance(ev, list):
+                en = norm(ev)
+                s = cos(qn, en)
+                cand.append((s, r["note_id"], int(r["chunk_index"]), r["text"]))
+        except Exception:
+            continue
+    cand.sort(key=lambda x: x[0], reverse=True)
+
+    # MMR diversification
+    K = max(1, int(body.k))
+    lambda_ = 0.7
+    selected: list[tuple] = []
+    selected_vecs: list[list[float]] = []
+    for score, nid, cidx, text in cand:
+        if len(selected) >= K:
+            break
+        # compute marginal relevance
+        # similarity to already selected chunks
+        if not selected:
+            selected.append((score, nid, cidx, text))
+            # store embedding vec for this text (re-read from embs)
+            try:
+                ev = embs[(embs["note_id"] == nid) & (embs["chunk_index"] == cidx)]["embedding"].iloc[0]
+                selected_vecs.append(norm(ev))
+            except Exception:
+                selected_vecs.append([])
+            continue
+        ev = embs[(embs["note_id"] == nid) & (embs["chunk_index"] == cidx)]["embedding"].iloc[0]
+        en = norm(ev) if isinstance(ev, list) else []
+        redundancy = max((cos(en, sv) for sv in selected_vecs if sv), default=0.0)
+        mmr = lambda_ * score - (1.0 - lambda_) * redundancy
+        # keep a running list of candidates with a threshold
+        # simple greedy: if mmr positive, accept
+        if mmr >= 0 or len(selected) < K:
+            selected.append((score, nid, cidx, text))
+            selected_vecs.append(en)
+
+    # Build system prompt with context
+    # Fetch titles
+    idx = read_parquet_safe(table_path("notes_index"))
+    titles = {}
+    if not idx.empty:
+        for _, r in idx.iterrows():
+            titles[r["note_id"]] = r.get("title", "")
+    context_lines = []
+    citations = []
+    for s, nid, cidx, text in selected[:K]:
+        title = titles.get(nid, "")
+        context_lines.append(f"[note_id={nid}] {title}\n{text}\n")
+        citations.append({"note_id": nid, "title": title, "chunk_index": cidx, "score": s})
+    sys = "Use ONLY provided context; if not found, reply 'Not found in allowed scope'.\n\nContext:\n" + "\n---\n".join(context_lines)
+    msgs = [
+        {"role": "system", "content": sys},
+        {"role": "user", "content": body.prompt},
+    ]
     answer = chat(msgs)
-    return {"answer": answer}
+    return {"answer": answer, "citations": citations}
 
 
 @app.post("/ingest")
@@ -76,152 +212,26 @@ def search(q: str, k: int = 5, note_ids: str | None = None, group_ids: str | Non
         ids = [x for x in note_ids.split(",") if x]
         allowed = ids if allowed is None else [n for n in allowed if n in ids]
     if date_start or date_end:
-        df = read_parquet_safe(table_path("notes"))
+        df = read_parquet_safe(table_path("notes_index"))
         if not df.empty:
             if date_start:
                 df = df[df["updated_at"] >= int(date_start)]
             if date_end:
                 df = df[df["updated_at"] <= int(date_end)]
-            ids = df["id"].tolist()
+            ids = df["note_id"].tolist()
             allowed = ids if allowed is None else [n for n in allowed if n in ids]
         else:
             allowed = []
     return {"results": query(q, k, allowed)}
 
 
-# Notes API
-class NoteCreate(BaseModel):
-    title: str | None = None
-    content: str | None = ""
-
-
-class NoteUpdate(BaseModel):
-    id: str
-    title: str | None = None
-    content: str | None = None
-    reindex: bool = True
-
-
-@app.get("/notes/list")
-def notes_list():
-    return {"notes": notes_store.list_notes()}
-
-
-@app.get("/notes/get")
-def notes_get(id: str):
-    try:
-        return notes_store.get_note(id)
-    except FileNotFoundError as e:
-        raise HTTPException(status_code=404, detail=str(e))
-
-
-@app.post("/notes/create")
-def notes_create(body: NoteCreate):
-    rec = notes_store.create_note(body.title, body.content or "")
-    # index on create
-    settings = load_settings()
-    try:
-        reindex_note(rec["id"], rec["title"], body.content or "", settings["CHUNK_SIZE"], settings["CHUNK_OVERLAP"])
-    except Exception:
-        pass
-    return rec
-
-
-@app.post("/notes/update")
-def notes_update(body: NoteUpdate):
-    rec = notes_store.update_note(body.id, body.title, body.content)
-    if body.reindex:
-        # read latest content to index
-        try:
-            cur = notes_store.get_note(body.id)
-            settings = load_settings()
-            reindex_note(body.id, rec["title"], cur.get("content", ""), settings["CHUNK_SIZE"], settings["CHUNK_OVERLAP"])
-        except Exception:
-            pass
-    return rec
-
-
-@app.post("/notes/delete")
-def notes_delete(id: str):
-    try:
-        ok = notes_store.delete_note(id)
-        # also remove from vectorstore by metadata
-        from .vectorstore import _collection
-
-        try:
-            _collection.delete(where={"note_id": id})
-        except Exception:
-            pass
-        return {"ok": ok}
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-
-@app.get("/notes/search")
-def notes_search(q: str, note_ids: str | None = None):
-    ids = [x for x in (note_ids or "").split(",") if x]
-    return {"results": notes_store.search_keyword(q, ids or None)}
-
-
-# Groups API
-class GroupCreate(BaseModel):
-    name: str
-
-
-@app.get("/groups/list")
-def groups_list():
-    return {"groups": groups_store.list_groups()}
-
-
-@app.post("/groups/create")
-def groups_create(body: GroupCreate):
-    try:
-        return groups_store.create_group(body.name)
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-
-@app.post("/groups/delete")
-def groups_delete(id: str):
-    return {"ok": groups_store.delete_group(id)}
-
-
-@app.post("/groups/add_note")
-def groups_add_note(group_id: str, note_id: str):
-    return {"ok": groups_store.add_note_to_group(group_id, note_id)}
-
-
-@app.post("/groups/remove_note")
-def groups_remove_note(group_id: str, note_id: str):
-    return {"ok": groups_store.remove_note_from_group(group_id, note_id)}
-
-
-# Settings API
-@app.get("/settings/get")
-def settings_get():
-    return load_settings()
-
-
-class SettingsUpdate(BaseModel):
-    CHAT_MODEL: str | None = None
-    EMBED_MODEL: str | None = None
-    CHUNK_SIZE: int | None = None
-    CHUNK_OVERLAP: int | None = None
-    REINDEX_DEBOUNCE_MS: int | None = None
-    SEARCH_THROTTLE_MS: int | None = None
-    MAX_CHUNKS_PER_QUERY: int | None = None
-
-
-@app.post("/settings/update")
-def settings_update(body: SettingsUpdate):
-    cur = load_settings()
-    upd = {k: v for k, v in body.model_dump().items() if v is not None}
-    return save_settings({**cur, **upd})
-
-
 def run_api(auto_port: bool = True) -> int:
     """Bootstrap and run the API, returning the port used."""
     bootstrap()
+    try:
+        start_scheduler()
+    except Exception:
+        pass
     port = PORT
     if auto_port:
         try:

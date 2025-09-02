@@ -1,0 +1,17 @@
+{
+  "name": "frank-local-dev",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Dev scripts to run Electron + FastAPI concurrently",
+  "scripts": {
+    "api": "python lite/src/app.py",
+    "electron": "npm --prefix electron run start",
+    "dev": "concurrently -k -n API,APP -c blue,green \"npm:api\" \"npm:electron\"",
+    "dev:wait": "concurrently -k -n API,APP -c blue,green \"npm:api\" \"wait-on http://127.0.0.1:8001/health && npm:electron\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "wait-on": "^8.0.1",
+    "@playwright/test": "^1.46.0"
+  }
+}

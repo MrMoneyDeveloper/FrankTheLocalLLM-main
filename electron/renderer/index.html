@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;" />
     <title>Local Notes + LLM</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="app">
-      <aside id="sidebar">
+    <div id="app" class="d-flex flex-row w-100 h-100">
+      <aside id="sidebar" class="border-end p-2" style="width: 260px;">
         <div class="section">
           <h3>Groups</h3>
           <div id="groups"></div>
@@ -27,13 +28,15 @@
         <div class="section">
           <h3>Settings</h3>
           <div id="settings"></div>
+          <button id="openSettings" class="btn btn-outline-secondary btn-sm mt-2">Open Settings</button>
         </div>
       </aside>
-      <main id="main">
-        <div id="tabbar"></div>
-        <div id="editor"></div>
+      <main id="main" class="flex-fill d-flex flex-column">
+        <div id="tabbar" class="border-bottom p-2 bg-light"></div>
+        <div id="editor" class="flex-fill"></div>
+        <footer id="statusbar" class="border-top p-1 small text-muted">Ready</footer>
       </main>
-      <aside id="minihub">
+      <aside id="minihub" class="border-start p-2" style="width: 320px;">
         <div class="section">
           <h3>Note Actions</h3>
           <div class="row">
@@ -71,11 +74,50 @@
             <button id="runLlm">Run</button>
           </div>
           <div id="llmResults"></div>
-          <div id="indexStatus"></div>
+          <div id="indexStatus" class="mt-2"></div>
+          <button id="reindexNow" class="btn btn-outline-secondary btn-sm mt-1">Reindex now</button>
         </div>
       </aside>
     </div>
-    <script src="app.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="main.js"></script>
+    <div class="modal" tabindex="-1" id="settingsModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header"><h5 class="modal-title">Settings</h5></div>
+          <div class="modal-body">
+            <div class="mb-2"><label>CHAT_MODEL</label><input id="set_CHAT_MODEL" class="form-control" /></div>
+            <div class="mb-2"><label>EMBED_MODEL</label><input id="set_EMBED_MODEL" class="form-control" /></div>
+            <div class="mb-2"><label>CHUNK_SIZE</label><input id="set_CHUNK_SIZE" class="form-control" /></div>
+            <div class="mb-2"><label>CHUNK_OVERLAP</label><input id="set_CHUNK_OVERLAP" class="form-control" /></div>
+            <div class="mb-2"><label>REINDEX_DEBOUNCE_MS</label><input id="set_REINDEX_DEBOUNCE_MS" class="form-control" /></div>
+            <div class="mb-2"><label>SEARCH_THROTTLE_MS</label><input id="set_SEARCH_THROTTLE_MS" class="form-control" /></div>
+            <div class="mb-2"><label>MAX_CHUNKS_PER_QUERY</label><input id="set_MAX_CHUNKS_PER_QUERY" class="form-control" /></div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary" id="saveSettings">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="searchModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header"><h5 class="modal-title">Search (Ctrl/Cmd+K)</h5></div>
+          <div class="modal-body">
+            <div class="mb-2"><input id="globalSearchInput" class="form-control" placeholder="Type to search..." /></div>
+            <div id="searchTabs" class="btn-group mb-2" role="group">
+              <button type="button" class="btn btn-outline-primary active" data-tab="all">All</button>
+              <button type="button" class="btn btn-outline-primary" data-tab="group">Group</button>
+              <button type="button" class="btn btn-outline-primary" data-tab="note">This Note</button>
+            </div>
+            <div id="globalSearchResults"></div>
+          </div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+        </div>
+      </div>
+    </div>
   </body>
   </html>
-

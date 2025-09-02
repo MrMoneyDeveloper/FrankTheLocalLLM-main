@@ -42,11 +42,35 @@ def load_settings() -> Dict[str, Any]:
         return DEFAULT_SETTINGS.copy()
 
 
+def _fsync_file(p: str) -> None:
+    try:
+        fd = os.open(p, os.O_RDONLY)
+        try:
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+    except Exception:
+        pass
+
+
+def _fsync_dir(p: str) -> None:
+    try:
+        dfd = os.open(os.path.dirname(p) or ".", os.O_RDONLY)
+        try:
+            os.fsync(dfd)
+        finally:
+            os.close(dfd)
+    except Exception:
+        pass
+
+
 def _atomic_write(path: str, content: str) -> None:
     tmp = path + ".tmp"
     bak = path + ".bak"
     with open(tmp, "w", encoding="utf-8") as f:
         f.write(content)
+        f.flush()
+        os.fsync(f.fileno())
     # backup previous if exists
     if os.path.exists(path):
         try:
@@ -59,6 +83,8 @@ def _atomic_write(path: str, content: str) -> None:
         except Exception:
             pass
     os.replace(tmp, path)
+    _fsync_file(path)
+    _fsync_dir(path)
 
 
 def save_settings(data: Dict[str, Any]) -> Dict[str, Any]:
@@ -67,4 +93,3 @@ def save_settings(data: Dict[str, Any]) -> Dict[str, Any]:
     merged.update(data or {})
     _atomic_write(SETTINGS_PATH, json.dumps(merged, ensure_ascii=False, indent=2))
     return merged
-

@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    env:
+      SKIP_OLLAMA: "1"
+      FAKE_EMBED: "1"
+      FAKE_LLM: "1"
+      APP_HOST: "127.0.0.1"
+      APP_PORT: "8001"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Python deps
+        run: |
+          python -m pip install -U pip
+          python -m pip install -r lite/requirements.txt
+      - name: Install Node deps
+        run: |
+          npm ci
+          cd electron && npm ci
+      - name: Install Playwright
+        run: |
+          npx playwright install --with-deps
+      - name: Run Python tests
+        run: |
+          pytest -q
+      - name: Run Playwright tests
+        run: |
+          npx playwright test -c electron/tests/playwright.config.ts
+
